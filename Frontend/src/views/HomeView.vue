@@ -1,9 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import ShowCard from '../components/ShowCard.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+    <main>
+        <div class="w-full h-screen flex items-center justify-center">
+            <ShowCard />
+        </div>
+    </main>
 </template>
