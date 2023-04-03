@@ -1,11 +1,13 @@
 <script setup>
-import ShowCard from '../components/ShowCard.vue'
+import test from '../components/Header.vue'
+import grr from '../components/DarkMode.vue'
 </script>
 
 <template>
     <main>
+        <test />
+        <grr />
         <div class="w-full h-screen flex items-center justify-center">
-            <ShowCard />
         </div>
     </main>
 </template>
