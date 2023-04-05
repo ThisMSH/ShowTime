@@ -1,13 +1,12 @@
 <script setup>
-import test from '../components/Header.vue'
-import grr from '../components/DarkMode.vue'
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>
-    <main>
-        <test />
-        <grr />
-        <div class="w-full h-screen flex items-center justify-center">
-        </div>
+    <Header />
+    <main class="mt-[70px] lg:mt-[92px]">
+        <RouterView />
     </main>
+    <Footer />
 </template>

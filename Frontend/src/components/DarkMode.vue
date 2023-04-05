@@ -26,7 +26,6 @@ const toggleDark = useToggle(isDark);
 
 <style scoped>
 .toggleWrapper {
-  position: relative;
   overflow: hidden;
   color: white;
 }
