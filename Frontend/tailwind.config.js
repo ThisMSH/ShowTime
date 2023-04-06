@@ -30,6 +30,18 @@ module.exports = {
                     '0 0px 10px rgb(255 0 0)',
                     '0 0px 60px rgb(255 0 0)'
                 ],
+                'blue': [
+                    '0 0px 10px rgb(0 0 255)',
+                    '0 0px 60px rgb(0 0 255)'
+                ],
+                'gray': [
+                    '0 0px 10px rgb(128 128 128)',
+                    '0 0px 60px rgb(128 128 128)'
+                ],
+                'yellow': [
+                    '0 0px 10px rgb(255, 215, 0)',
+                    '0 0px 60px rgb(255, 215, 0)'
+                ],
             },
             boxShadow: {
                 'header-icons-inner-orange': [
@@ -64,6 +76,7 @@ module.exports = {
     },
     plugins: [
         require('flowbite/plugin'),
+        require('tailwindcss-3d'),
         plugin(function({ addVariant }) {
             addVariant('child', '&>*');
             addVariant('child-hover', '&>*:hover');

@@ -24,9 +24,7 @@ window.addEventListener("scroll", function() {
 	navBar.value.classList.toggle("navbar", window.scrollY > 0);
 });
 
-onMounted(async () => {
-
-});
+onMounted(async () => {});
 </script>
 
 <template>
