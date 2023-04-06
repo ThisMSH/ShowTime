@@ -30,8 +30,8 @@ onMounted(async () => {
 </script>
 
 <template>
-    <header class="fixed top-0 left-0 w-full z-30">
-        <nav ref="navBar" class="bg-slate-100 px-4 py-3 lg:p-6 dark:bg-slate-950 bg-opacity-40 dark:bg-opacity-40 backdrop-blur border-slate-400 dark:border-slate-600 transition-all duration-300">
+    <header class="fixed top-0 left-0 w-full z-30 backdrop-blur">
+        <nav ref="navBar" class="bg-slate-100 px-4 py-3 lg:p-6 dark:bg-slate-950 bg-opacity-30 dark:bg-opacity-40 border-slate-400 dark:border-slate-600 transition-all duration-300">
             <div class="absolute h-full w-32 sm:w-2/5 lg:w-2/5 right-0 top-0 bg-orange-500 bg-opacity-70 dark:bg-opacity-70 rounded-l-full transition-all"></div>
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <!-- Logo -->
@@ -244,6 +244,6 @@ onMounted(async () => {
     .navbar {
         padding: 6px 16px !important;
         border-bottom: 1px solid;
-}   
+    }   
 }
 </style>

@@ -4,8 +4,8 @@ import { Icon } from '@iconify/vue';
 
 <template>
     <section>
-        <div class="relative">
-            <video class="w-full h-home-tablet lg:h-home-desktop object-cover" autoplay loop muted poster="../../assets/images/other/Animes-low.png">
+        <div class="relative h-home-tablet lg:h-home-desktop">
+            <video class="w-full h-full object-cover" autoplay loop muted poster="../../assets/images/other/Animes-low.png">
                 <source src="../../assets/videos/index.mp4" type="video/mp4">
             </video>
             <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-gradient-to-l from-black from-0% via-black via-40% to-transparent to-100%"></div>
