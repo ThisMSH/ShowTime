@@ -157,7 +157,7 @@ const liveShows = [
     <!-- Top section -->
     <section>
         <div class="relative h-home-tablet lg:h-home-desktop">
-            <video class="w-full h-full object-cover" autoplay loop muted poster="../../assets/images/other/Animes-low.png">
+            <video class="w-full h-full object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                 <source src="../../assets/videos/index.mp4" type="video/mp4">
             </video>
             <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-gradient-to-l from-black from-0% via-black via-40% to-transparent to-100%"></div>
@@ -178,7 +178,7 @@ const liveShows = [
     <section class="container mx-auto mt-40">
         <div class="grid grid-cols-2 gap-x-4 gap-y-10">
             <div class="relative">
-                <video class="absolute top-2 left-3 w-[92%] h-[84%] object-cover" autoplay loop muted poster="../../assets/images/other/Animes-low.png">
+                <video class="absolute top-2 left-3 w-[92%] h-[84%] object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                     <source src="../../assets/videos/index.mp4" type="video/mp4">
                 </video>
                 <img class="relative" src="../../assets/images/other/TV.png" alt="TV">
@@ -194,7 +194,7 @@ const liveShows = [
                 </p>
             </div>
             <div class="relative">
-                <video class="absolute top-14 left-1/2 -translate-x-1/2 w-[32%] h-[32%] object-cover" autoplay loop muted poster="../../assets/images/other/Animes-low.png">
+                <video class="absolute top-14 left-1/2 -translate-x-1/2 w-[32%] h-[32%] object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                     <source src="../../assets/videos/index.mp4" type="video/mp4">
                 </video>
                 <img class="relative left-1/2 -translate-x-1/2" src="../../assets/images/other/Phone.png" alt="TV">
@@ -236,10 +236,10 @@ const liveShows = [
     <!-- Q & A -->
     <section class="container mx-auto mt-40">
         <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Frequently Asked Questions</h2>
-        <div class="my-40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-            <div id="accordion-color" data-accordion="collapse" data-inactive-classes="bg-slate-200 dark:bg-slate-800" data-active-classes="bg-slate-400 dark:bg-slate-600 text-slate-600 dark:text-slate-200">
+        <div class=" w-1/2 my-40 mx-auto rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <div id="accordion-color" data-accordion="collapse" data-inactive-classes="bg-slate-300 dark:bg-slate-800" data-active-classes="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200">
                 <h4 class="text-xl" id="accordion-color-heading-1">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
                     <span>What is ShowTime?</span>
                     <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -250,7 +250,7 @@ const liveShows = [
                     </div>
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-2">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
                         <span>Another question?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -261,7 +261,7 @@ const liveShows = [
                     </div>
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-3">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
                         <span>Another question?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -272,7 +272,7 @@ const liveShows = [
                     </div>
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-4">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-color-body-4" aria-expanded="false" aria-controls="accordion-color-body-4">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-4" aria-expanded="false" aria-controls="accordion-color-body-4">
                         <span>Another question?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -283,7 +283,7 @@ const liveShows = [
                     </div>
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-5">
-                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-color-body-5" aria-expanded="false" aria-controls="accordion-color-body-5">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-5" aria-expanded="false" aria-controls="accordion-color-body-5">
                         <span>Another question?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
