@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:32', 'min:3', 'not_regex:/\s+/', 'unique:'.User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'birthday' => ['required', 'date', 'before:'.date('Y-m-d', strtotime('-13 years'))],
-            'user_type' => ['sometimes', 'integer', 'between:0,2'],
+            // 'user_type' => ['sometimes', 'integer', 'between:0,2'],
             'avatar' => ['sometimes', 'file', 'image', 'max:512'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'birthday' => $request->birthday,
-            'user_type' => $request->user_type,
+            // 'user_type' => $request->user_type,
             'avatar' => $request->avatar,
             'password' => Hash::make($request->password),
         ]);

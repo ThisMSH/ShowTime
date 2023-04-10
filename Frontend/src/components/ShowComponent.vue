@@ -1,14 +1,18 @@
+<script setup>
+const props = defineProps(["show"]);
+</script>
+
 <template>
     <div class="max-w-[46vw] w-40 md:w-48">
         <RouterLink to="">
-            <img class="mb-3" src="../assets/images/testing/113810l.jpg" alt="cover">
+            <img class="mb-3" :src="show.cover" alt="Show Cover">
         </RouterLink>
         <RouterLink to="">
-            <h6 class="text-slate-950 dark:text-slate-100 mb-3">Fate/stay night: Heaven's Feel</h6>
+            <h6 class="text-slate-950 dark:text-slate-100 mb-3">{{ show.title }}</h6>
         </RouterLink>
         <div class="flex justify-between items-center">
-            <p class="text-orange-500 dark:text-orange-400">Series</p>
-            <p class="text-neutral-500 dark:text-neutral-400">9.5/10</p>
+            <p class="text-orange-500 dark:text-orange-400">{{ show.show_type }}</p>
+            <p class="text-neutral-500 dark:text-neutral-400">{{ show.rating }}</p>
         </div>
     </div>
 </template>
