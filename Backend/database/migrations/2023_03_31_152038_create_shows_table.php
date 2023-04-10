@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('shows', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('show_type');
-            $table->unsignedBigInteger('show_added_by');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title', 500);
             $table->string('season');
             $table->string('cover');
@@ -22,8 +22,8 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('sequel')->nullable();
             $table->unsignedBigInteger('prequel')->nullable();
-            $table->foreign('show_type')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('show_added_by')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
             $table->foreign('sequel')->references('id')->on('shows')->onDelete('no action')->onUpdate('cascade');
             $table->foreign('prequel')->references('id')->on('shows')->onDelete('no action')->onUpdate('cascade');
             $table->timestamps();
