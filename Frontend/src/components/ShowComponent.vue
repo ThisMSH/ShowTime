@@ -3,7 +3,7 @@ const props = defineProps(["show"]);
 </script>
 
 <template>
-    <div class="max-w-[46vw] w-40 md:w-48">
+    <div class="max-w-[46vw] w-36 md:w-40 lg:w-48">
         <RouterLink to="">
             <img class="mb-3" :src="show.cover" alt="Show Cover">
         </RouterLink>

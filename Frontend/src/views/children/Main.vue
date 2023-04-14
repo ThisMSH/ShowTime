@@ -160,13 +160,13 @@ const liveShows = [
             <video class="w-full h-full object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                 <source src="../../assets/videos/index.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-gradient-to-l from-black from-0% via-black via-40% to-transparent to-100%"></div>
-            <div class="p-10 absolute top-0 right-0 w-2/5 h-full flex flex-col items-center justify-evenly text-5xl text-center text-slate-100 font-medium">
+            <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-gradient-to-l from-black from-0% via-black via-100% md:via-60% lg:via-40% to-transparent to-100%"></div>
+            <div class="p-10 absolute top-0 right-0 w-full md:w-3/5 lg:w-2/5 h-full flex flex-col items-center justify-evenly text-3xl lg:text-4xl 2xl:text-5xl text-center text-slate-100 font-medium">
                 <p>Welcome to</p>
-                <h1 class="bg-gradient-to-l from-red-500 to-orange-500 bg-clip-text text-transparent font-bold font-lobster text-8xl">ShowTime</h1>
+                <h1 class="bg-gradient-to-l from-red-500 to-orange-500 bg-clip-text text-transparent font-bold font-lobster text-6xl lg:text-7xl 2xl:text-8xl">ShowTime</h1>
                 <p>Join today and discover our library of Series, Movies and Anime.</p>
                 <RouterLink to="" class="relative flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-slate-100 rounded-l-full rounded-r-full group bg-gradient-to-br from-red-500 to-orange-400 group-hover:from-red-500 group-hover:to-orange-400 hover:text-slate-950 focus:ring-4 focus:outline-none focus:ring-red-800">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-l-full rounded-r-full group-hover:bg-opacity-0 text-xl">
+                    <span class="relative px-4 py-2 lg:px-5 lg:py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-l-full rounded-r-full group-hover:bg-opacity-0 text-xl">
                         <Icon class="inline-block text-3xl md:text-4xl" icon="line-md:play" /> Join Today
                     </span>
                 </RouterLink>
@@ -176,25 +176,25 @@ const liveShows = [
     </section>
     <!-- Resposive design showcase -->
     <section class="container mx-auto mt-40">
-        <div class="grid grid-cols-2 gap-x-4 gap-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-10">
             <div class="relative">
-                <video class="absolute top-2 left-3 w-[92%] h-[84%] object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
+                <video class="absolute top-0.5 left-px w-[94%] h-[85%] md:h-[86%] lg:h-[84%] xl:h-[85%] object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                     <source src="../../assets/videos/index.mp4" type="video/mp4">
                 </video>
                 <img class="relative" src="../../assets/images/other/TV.png" alt="TV">
             </div>
-            <div>
-                <p class="h-full text-5xl text-center px-24 flex justify-center items-center">
+            <div class="order-first md:order-none">
+                <p class="h-full text-2xl lg:text-4xl 2xl:text-5xl text-center px-24 flex justify-center items-center">
                     Watch our shows on your favorite device, whether you’re on TV, Desktop 
                 </p>
             </div>
             <div>
-                <p class="h-full text-5xl text-center px-24 flex justify-center items-center">
+                <p class="h-full text-2xl lg:text-4xl 2xl:text-5xl text-center px-24 flex justify-center items-center">
                     On your Tablet or your Phone! 
                 </p>
             </div>
             <div class="relative">
-                <video class="absolute top-14 left-1/2 -translate-x-1/2 w-[32%] h-[32%] object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
+                <video class="absolute top-14 left-1/2 -translate-x-1/2 aspect-video w-64 object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                     <source src="../../assets/videos/index.mp4" type="video/mp4">
                 </video>
                 <img class="relative left-1/2 -translate-x-1/2" src="../../assets/images/other/Phone.png" alt="TV">
@@ -204,8 +204,8 @@ const liveShows = [
     <!-- Anime showcase -->
     <section class="container mx-auto mt-40">
         <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Anime Recommendation</h2>
-        <div class="flex justify-around my-52">
-            <ShowCard v-for="showCardContent in animeShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent"  />
+        <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
+            <ShowCard v-for="showCardContent in animeShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent" class="max-lg:scale-90" />
         </div>
     </section>
     <section>
@@ -220,7 +220,7 @@ const liveShows = [
     <!-- Live action showcase -->
     <section class="container mx-auto mt-40">
         <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Shows Recommendation</h2>
-        <div class="flex justify-around my-52">
+        <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
             <ShowCard v-for="showCardContent in liveShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent"  />
         </div>
     </section>
@@ -236,7 +236,7 @@ const liveShows = [
     <!-- Q & A -->
     <section class="container mx-auto mt-40">
         <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Frequently Asked Questions</h2>
-        <div class=" w-1/2 my-40 mx-auto rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+        <div class=" sm:w-3/4 md:w-2/3 lg:w-1/2 my-40 mx-3 sm:mx-auto rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
             <div id="accordion-color" data-accordion="collapse" data-inactive-classes="bg-slate-300 dark:bg-slate-800" data-active-classes="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200">
                 <h4 class="text-xl" id="accordion-color-heading-1">
                     <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
@@ -251,7 +251,7 @@ const liveShows = [
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-2">
                     <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-b-0 border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
-                        <span>Another question?</span>
+                        <span>How can I watch a show?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                 </h4>
@@ -262,7 +262,7 @@ const liveShows = [
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-3">
                     <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
-                        <span>Another question?</span>
+                        <span>Can I watch all the shows?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                 </h4>
@@ -273,7 +273,7 @@ const liveShows = [
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-4">
                     <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-4" aria-expanded="false" aria-controls="accordion-color-body-4">
-                        <span>Another question?</span>
+                        <span>How can I become a premium user?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                 </h4>
@@ -284,7 +284,7 @@ const liveShows = [
                 </div>
                 <h4 class="text-xl" id="accordion-color-heading-5">
                     <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border border-slate-200 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600" data-accordion-target="#accordion-color-body-5" aria-expanded="false" aria-controls="accordion-color-body-5">
-                        <span>Another question?</span>
+                        <span>What is the character in the bottom right?</span>
                         <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                 </h4>
