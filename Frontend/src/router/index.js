@@ -4,6 +4,7 @@ import Main from '../views/children/Main.vue';
 import Category from '../views/children/Category.vue';
 import Show from '../views/children/Show.vue';
 import Episode from '../views/children/Episode.vue';
+import LoginView from '../views/LoginView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,11 @@ const router = createRouter({
                     component: Episode
                 },
             ]
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView
         }
     ]
 })
