@@ -203,13 +203,13 @@ const liveShows = [
     </section>
     <!-- Anime showcase -->
     <section class="container mx-auto mt-40">
-        <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Anime Recommendation</h2>
+        <h2 class="relative text-2xl md:text-3xl text-center font-semibold before:absolute before:w-48 before:h-0.5 md:before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Anime Recommendation</h2>
         <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
             <ShowCard v-for="showCardContent in animeShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent" class="max-lg:scale-90" />
         </div>
     </section>
     <section>
-        <h2 class="relative text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Latest Anime</h2>
+        <h2 class="relative text-2xl md:text-3xl text-center font-semibold before:absolute before:w-48 before:h-0.5 md:before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Latest Anime</h2>
         <div class="my-40">
             <ShowsSlider :shows="animeShows" />
         </div>
@@ -219,13 +219,13 @@ const liveShows = [
     </section>
     <!-- Live action showcase -->
     <section class="container mx-auto mt-40">
-        <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Shows Recommendation</h2>
+        <h2 class="relative text-2xl md:text-3xl text-center font-semibold before:absolute before:w-48 before:h-0.5 md:before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Shows Recommendation</h2>
         <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
             <ShowCard v-for="showCardContent in liveShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent"  />
         </div>
     </section>
     <section>
-        <h2 class="relative text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Latest Shows</h2>
+        <h2 class="relative text-2xl md:text-3xl text-center font-semibold before:absolute before:w-48 before:h-0.5 md:before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Our Latest Shows</h2>
         <div class="my-40">
             <ShowsSlider :shows="liveShows" />
         </div>
@@ -235,7 +235,7 @@ const liveShows = [
     </section>
     <!-- Q & A -->
     <section class="container mx-auto mt-40">
-        <h2 class="relative  text-3xl text-center font-semibold before:absolute before:w-48 before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Frequently Asked Questions</h2>
+        <h2 class="relative text-2xl md:text-3xl text-center font-semibold before:absolute before:w-48 before:h-0.5 md:before:h-1 before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:bg-slate-950 before:dark:bg-slate-100">Frequently Asked Questions</h2>
         <div class=" sm:w-3/4 md:w-2/3 lg:w-1/2 my-40 mx-3 sm:mx-auto rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
             <div id="accordion-color" data-accordion="collapse" data-inactive-classes="bg-slate-300 dark:bg-slate-800" data-active-classes="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200">
                 <h4 class="text-xl" id="accordion-color-heading-1">
