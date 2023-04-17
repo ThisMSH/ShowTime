@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('episodes', function (Blueprint $table) {
+        Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('show_id');
-            $table->unsignedTinyInteger('episode_type')->default(0); // Requires Premium (1) or not (0)
-            $table->string('title', 500);
-            $table->string('number');
-            $table->text('description');
-            $table->string('thumbnail');
-            $table->string('video');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+            $table->string('logo');
+            $table->string('character');
+            $table->string('color');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('show_id')->references('id')->on('shows')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('episodes');
+        Schema::dropIfExists('recommendations');
     }
 };

@@ -42,6 +42,22 @@ module.exports = {
                     '0 0px 10px rgb(255, 215, 0)',
                     '0 0px 60px rgb(255, 215, 0)'
                 ],
+                'orange': [
+                    '0 0px 10px rgb(255, 95, 21)',
+                    '0 0px 60px rgb(255, 95, 21)'
+                ],
+                'green': [
+                    '0 0px 10px rgb(80, 200, 120)',
+                    '0 0px 60px rgb(80, 200, 120)'
+                ],
+                'violet': [
+                    '0 0px 10px rgb(148, 0, 211)',
+                    '0 0px 60px rgb(148, 0, 211)'
+                ],
+                'pink': [
+                    '0 0px 10px rgb(255, 20, 147)',
+                    '0 0px 60px rgb(255, 20, 147)'
+                ],
             },
             boxShadow: {
                 'header-icons-inner-orange': [

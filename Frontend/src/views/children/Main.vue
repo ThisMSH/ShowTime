@@ -17,7 +17,7 @@ const animeShowCardContents = [
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
     "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511735132041288/Shingeki_no_Kyojin_anime_Logo.png",
     "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511734687436810/Eren-Jaeger-PNG-Image.png",
-    "color": "slate",
+    "color": "blue",
     },
 ];
 
@@ -90,7 +90,7 @@ const liveShowCardContents = [
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
     "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558067439874068/logo.png",
     "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558067184025620/char1.png",
-    "color": "slate",
+    "color": "gray",
     },
 ];
 

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Show;
+use App\Observers\ShowObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Show::observe(ShowObserver::class);
     }
 }
