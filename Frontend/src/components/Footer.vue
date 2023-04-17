@@ -1,6 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import CircleLogo from './utilites/CircleLogo.vue';
+import H4 from './utilites/H4.vue';
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -15,9 +16,7 @@ const currentYear = new Date().getFullYear();
                 </RouterLink>
             </div>
             <div>
-                <h4
-                    class="text-xl font-semibold relative mb-5 before:absolute before:left-0 before:top-8 before:w-16 before:h-0.5 before:bg-slate-900 before:dark:bg-slate-100">
-                    Categories</h4>
+                <H4 title="Categories" />
                 <ul class="flex flex-col gap-y-1">
                     <li>
                         <RouterLink to=""
@@ -42,9 +41,7 @@ const currentYear = new Date().getFullYear();
             </ul>
         </div>
         <div>
-            <h4
-                class="text-xl font-semibold relative mb-5 before:absolute before:left-0 before:top-8 before:w-16 before:h-0.5 before:bg-slate-900 before:dark:bg-slate-100">
-                Support & Service</h4>
+            <H4 title="Support & Service" />
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
@@ -74,9 +71,7 @@ const currentYear = new Date().getFullYear();
             </ul>
         </div>
         <div>
-            <h4
-                class="text-xl font-semibold relative mb-5 before:absolute before:left-0 before:top-8 before:w-16 before:h-0.5 before:bg-slate-900 before:dark:bg-slate-100">
-                ShowTime</h4>
+            <H4 title="ShowTime" />
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
@@ -101,9 +96,7 @@ const currentYear = new Date().getFullYear();
             </ul>
         </div>
         <div>
-            <h4
-                class="text-xl font-semibold relative mb-5 before:absolute before:left-0 before:top-8 before:w-16 before:h-0.5 before:bg-slate-900 before:dark:bg-slate-100">
-                Account</h4>
+            <H4 title="Account" />
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
