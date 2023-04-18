@@ -1,7 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue';
-import CircleLogo from './utilites/CircleLogo.vue';
-import H4 from './utilites/H4.vue';
+import CircleLogo from './utilities/CircleLogo.vue';
+import H4 from './utilities/H4.vue';
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -20,22 +20,22 @@ const currentYear = new Date().getFullYear();
                 <ul class="flex flex-col gap-y-1">
                     <li>
                         <RouterLink to=""
-                            class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                            class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                             Series</RouterLink>
                     </li>
                     <li>
                         <RouterLink to=""
-                            class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                            class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                             Movies</RouterLink>
                     </li>
                     <li>
                         <RouterLink to=""
-                            class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                            class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Anime Series</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Anime Movies</RouterLink>
                 </li>
             </ul>
@@ -45,27 +45,27 @@ const currentYear = new Date().getFullYear();
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Terms of Use</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Privacy Policy</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Help/FAQ</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         License</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Contact Us</RouterLink>
                 </li>
             </ul>
@@ -75,22 +75,22 @@ const currentYear = new Date().getFullYear();
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         About</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         News</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Store</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Games</RouterLink>
                 </li>
             </ul>
@@ -100,22 +100,22 @@ const currentYear = new Date().getFullYear();
             <ul class="flex flex-col gap-y-1">
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Create Account</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Log In</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
+                        class="text-sm lg:text-base inline-block transition-all hover:underline hover:underline-offset-2 hover:translate-x-2">
                         Pricing</RouterLink>
                 </li>
                 <li>
                     <RouterLink to=""
-                        class="text-sm inline-flex gap-x-2 transition-all hover:underline hover:underline-offset-2 hover:translate-x-2 text-orange-500 dark:text-orange-400">
+                        class="text-sm lg:text-base inline-flex gap-x-2 transition-all hover:underline hover:underline-offset-2 hover:translate-x-2 text-orange-500 dark:text-orange-400">
                         <Icon icon="mdi:crown" class="text-xl" /> Become Premium
                     </RouterLink>
                 </li>

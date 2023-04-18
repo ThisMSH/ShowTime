@@ -1,11 +1,11 @@
 <script setup>
-import DarkMode from './utilites/DarkMode.vue';
+import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
 import { onMounted } from 'vue';
 import { ref } from 'vue';
 import { initFlowbite } from 'flowbite';
-import RectangularLogo from './utilites/RectangularLogo.vue';
-import CircleLogoDark from './utilites/CircleLogoDark.vue';
+import RectangularLogo from './utilities/RectangularLogo.vue';
+import CircleLogoDark from './utilities/CircleLogoDark.vue';
 
 // const sideHeader = ref(null);
 const sideHeaderClasses = ref("-right-80");

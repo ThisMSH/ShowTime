@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue';
 import ScrollDown from '../../components/ScrollDown.vue';
 import ShowCard from '../../components/ShowCard.vue';
 import ShowsSlider from '../../components/ShowsSlider.vue';
-import H2 from '../../components/utilites/H2.vue';
+import H2 from '../../components/utilities/H2.vue';
 
 const animeShowCardContents = [
     {

@@ -2,7 +2,8 @@
 import { Icon } from '@iconify/vue';
 import { onMounted, ref } from 'vue';
 import EpisodeComponent from '../../components/EpisodeComponent.vue';
-import ToggleBtn from '../../components/utilites/ToggleBtn.vue';
+import ToggleBtn from '../../components/utilities/ToggleBtn.vue';
+import Trailer from '../../components/modals/Trailer.vue';
 
 const episodeBtn = ref(null);
 const trailerBtn = ref(null);
@@ -21,7 +22,7 @@ const showEpisodes = function () {
     trailerIcon.value.classList.remove("-rotate-12", "scale-125");
     episodesContainer.value.classList.add("block");
     episodesContainer.value.classList.remove("hidden");
-    trailersContainer.value.classList.remove("block");
+    trailersContainer.value.classList.remove("flex");
     trailersContainer.value.classList.add("hidden");
     episodeBtn.value.classList.add("dark:text-slate-950");
     trailerBtn.value.classList.remove("dark:text-slate-950");
@@ -33,7 +34,7 @@ const showTrailers = function () {
     trailerIcon.value.classList.add("-rotate-12", "scale-125");
     episodesContainer.value.classList.remove("block");
     episodesContainer.value.classList.add("hidden");
-    trailersContainer.value.classList.add("block");
+    trailersContainer.value.classList.add("flex");
     trailersContainer.value.classList.remove("hidden");
     episodeBtn.value.classList.remove("dark:text-slate-950");
     trailerBtn.value.classList.add("dark:text-slate-950");
@@ -48,18 +49,15 @@ const toggleSideShowInfo = function () {
     toggleSideShowInfoBtn.value.classList.toggle("top-24");
     toggleSideShowInfoBtn.value.classList.toggle("top-2");
 };
-const rotateArrow = function () {
-
-}
 
 const episodes = [
     {
-        "title": "Fate/stay night",
+        "title": "Episode 1 - Ryomen Sukuna",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE.png",
         "link": "episode/1",
     },
     {
-        "title": "JJK Movie",
+        "title": "Episode 2 - Someone with something that is something with something",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-1.png",
         "link": "episode/1",
     },
@@ -130,7 +128,7 @@ onMounted(async () => {
             </div>
             <div class="relative px-10">
                 <picture>
-                    <img class="" src="../../assets/images/testing/jjk.png" alt="">
+                    <img class="max-h-[500px]" src="../../assets/images/testing/jjk.png" alt="">
                 </picture>
             </div>
         </div>
@@ -141,16 +139,16 @@ onMounted(async () => {
             </div>
             <div class="relative px-10">
                 <picture>
-                    <img class="" src="../../assets/images/testing/117645l.jpg" alt="">
+                    <img class="max-h-[600px]" src="../../assets/images/testing/117645l.jpg" alt="">
                 </picture>
             </div>
         </div>
     </section>
     <!-- Episodes section -->
     <section>
-        <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[repeat(2,_minmax(0,_auto))] lg:gap-20">
+        <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[repeat(2,_minmax(0,_auto))] lg:gap-10 xl:gap-20">
             <!-- Side information -->
-            <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-10 z-[31] transition-all duration-300">
+            <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-10 z-[31] transition-all duration-300 lg:hidden">
                 <ToggleBtn ref="toggleBtn" />
             </div>
             <div ref="sideShowInfo" class="lg:block max-lg:fixed max-lg:top-0 max-lg:-left-[400px] max-lg:z-30 max-lg:overflow-y-auto max-lg:h-full max-lg:transition-all max-lg:duration-300">
@@ -222,15 +220,19 @@ onMounted(async () => {
                         <div ref="btnBg" class="absolute left-5 w-48 h-14 bg-orange-400 rounded-l-full rounded-r-full transition-all duration-300"></div>
                     </div>
                 </div>
+                <!-- Episodes tab -->
                 <div ref="episodesContainer">
-                    <div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-8 justify-center">
+                    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-5 gap-y-8 justify-center items-start">
                         <div class="max-sm:w-[80vw] flex items-center justify-center" v-for="episode in episodes" :key="episode.title">
-                            <EpisodeComponent :title="episode.title" :image="episode.image" :toEpisode="episode.link" />
+                            <EpisodeComponent :title="episode.title" :image="episode.image" :toEpisode="episode.link" customClass="w-full sm:w-60 mt-3" imageClass="w-full sm:w-60" />
                         </div>
                     </div>
                 </div>
-                <div ref="trailersContainer" class="hidden">
-                    trailers
+                <!-- Trailers tab -->
+                <div ref="trailersContainer" class="hidden gap-10">         
+                    <Trailer watchID="78WIYzX_m98" />
+                    <Trailer watchID="PjPUAf4wJGI" />
+                    <Trailer watchID="-1wcilQ58hI" />
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 <script setup>
-import DarkMode from '../components/utilites/DarkMode.vue';
-import HexagonalRow from '../components/utilites/HexagonalRow.vue';
-import RectangularLogo from '../components/utilites/RectangularLogo.vue';
-import TextInput from '../components/utilites/TextInput.vue';
-import SubmitBtn from '../components/utilites/SubmitBtn.vue';
+import DarkMode from '../components/utilities/DarkMode.vue';
+import HexagonalRow from '../components/utilities/HexagonalRow.vue';
+import RectangularLogo from '../components/utilities/RectangularLogo.vue';
+import TextInput from '../components/utilities/TextInput.vue';
+import SubmitBtn from '../components/utilities/SubmitBtn.vue';
 import { ref } from 'vue';
 
 let email = ref(null);

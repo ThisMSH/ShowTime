@@ -1,6 +1,6 @@
 <script setup>
 import ShowComponent from '../../components/ShowComponent.vue';
-import H2 from '../../components/utilites/H2.vue';
+import H2 from '../../components/utilities/H2.vue';
 
 const animeShows = [
     {

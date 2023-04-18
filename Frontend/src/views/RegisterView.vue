@@ -1,8 +1,8 @@
 <script setup>
-import DarkMode from '../components/utilites/DarkMode.vue'
-import RectangularLogo from '../components/utilites/RectangularLogo.vue';
-import TextInput from '../components/utilites/TextInput.vue';
-import SubmitBtn from '../components/utilites/SubmitBtn.vue';
+import DarkMode from '../components/utilities/DarkMode.vue'
+import RectangularLogo from '../components/utilities/RectangularLogo.vue';
+import TextInput from '../components/utilities/TextInput.vue';
+import SubmitBtn from '../components/utilities/SubmitBtn.vue';
 import Datepicker from 'flowbite-datepicker/Datepicker';
 import { onMounted, ref } from 'vue';
 
