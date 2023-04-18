@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
+// use Laravolt\Avatar\Avatar;
+use Laravolt\Avatar\Facade as Avatar;
 
 class RegisteredUserController extends Controller
 {
@@ -26,9 +29,25 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'birthday' => ['required', 'date', 'before:'.date('Y-m-d', strtotime('-13 years'))],
             // 'user_type' => ['sometimes', 'integer', 'between:0,2'],
-            'avatar' => ['sometimes', 'file', 'image', 'max:512'],
+            'avatar' => ['sometimes', 'nullable', 'file', 'mimes:png,jpeg,jpg,gif', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        /**
+         * storePublicly method can be used to store the uploaded file in a designated
+         * location on the server and generate a unique filename for the file,
+         * but it also makes the file accessible through a public URL
+         */
+
+        $path = null;
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->storePublicly('avatars', 'public');
+        } else {
+            $avatar = Avatar::create($request->name)->toBase64();
+            $path = 'avatars/' . time() . "-" . $request->username . '.png';
+            Storage::disk('public')->put($path, $avatar);
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -36,13 +55,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'birthday' => $request->birthday,
             // 'user_type' => $request->user_type,
-            'avatar' => $request->avatar,
+            'avatar' => $path,
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return response()->noContent();
     }
