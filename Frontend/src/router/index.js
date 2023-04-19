@@ -6,6 +6,8 @@ import Show from '../views/children/Show.vue';
 import Episode from '../views/children/Episode.vue';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
+import DashboardView from '../views/DashboardView.vue';
+import Profile from '../views/children/Profile.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +48,18 @@ const router = createRouter({
             path: '/register',
             name: 'SignUp',
             component: RegisterView
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: DashboardView,
+            children: [
+                {
+                    path: 'profile',
+                    name: 'profile',
+                    component: Profile
+                }
+            ]
         },
     ]
 })

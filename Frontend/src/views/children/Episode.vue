@@ -73,7 +73,7 @@ const episodes = [
 <template>
     <div class="container px-3 mx-auto grid grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 mb-20">
         <!-- Video section -->
-        <section class="col-span-3 flex flex-col gap-y-6">
+        <section class="mt-5 col-span-3 flex flex-col gap-y-6">
             <div class="">
                 <VideoPlayer class="aspect-video" />
             </div>
@@ -84,7 +84,7 @@ const episodes = [
             </div>
         </section>
         <!-- Episodes list section -->
-        <section class="col-span-3 lg:col-span-1 row-span-2 mt-5">
+        <section class="mt-5 col-span-3 lg:col-span-1 row-span-2">
             <div class="flex flex-col px-4 py-6 gap-y-5 rounded-2xl bg-slate-300 dark:bg-slate-700">
                 <h3 class="text-xl sm:text-2xl lg:text-3xl text-orange-500 dark:text-amber-500 font-medium sm:font-semibold">Episodes</h3>
                 <div class="hidden sm:block lg:hidden xl:block rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden" v-for="episode in episodes" :key="episode.title">

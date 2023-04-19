@@ -44,7 +44,7 @@ const toggleSideShowInfo = function () {
     switchingArrows.classList.toggle("rotate-z-180");
     sideShowInfo.value.classList.toggle("max-lg:left-0");
     sideShowInfo.value.classList.toggle("max-lg:-left-[400px]");
-    toggleSideShowInfoBtn.value.classList.toggle("-left-10");
+    toggleSideShowInfoBtn.value.classList.toggle("-left-9");
     toggleSideShowInfoBtn.value.classList.toggle("left-2");
     toggleSideShowInfoBtn.value.classList.toggle("top-24");
     toggleSideShowInfoBtn.value.classList.toggle("top-2");
@@ -54,62 +54,62 @@ const episodes = [
     {
         "title": "Episode 1 - Ryomen Sukuna",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Episode 2 - Someone with something that is something with something",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-1.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "JJK S2",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-2.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Fate/Zero",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-3.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "JJK S1",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-4.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Naruto",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-5.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "One Piece",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-6.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "OPM",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-7.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Kimetsu no Yaiba",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-8.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Kimetsu no Yaiba",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-9.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Kimetsu no Yaiba",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-10.png",
-        "link": "episode/1",
+        "link": "episode",
     },
     {
         "title": "Kimetsu no Yaiba",
         "image": "http://localhost:3000/src/assets/images/testing/IMAGE-11.png",
-        "link": "episode/1",
+        "link": "episode",
     },
 ];
 
@@ -148,10 +148,10 @@ onMounted(async () => {
     <section>
         <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[repeat(2,_minmax(0,_auto))] lg:gap-10 xl:gap-20">
             <!-- Side information -->
-            <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-10 z-[31] transition-all duration-300 lg:hidden">
+            <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-9 z-[31] transition-all duration-300 lg:hidden">
                 <ToggleBtn ref="toggleBtn" />
             </div>
-            <div ref="sideShowInfo" class="lg:block max-lg:fixed max-lg:top-0 max-lg:-left-[400px] max-lg:z-30 max-lg:overflow-y-auto max-lg:h-full max-lg:transition-all max-lg:duration-300">
+            <div ref="sideShowInfo" id="side-show-info" class="lg:block max-lg:fixed max-lg:top-0 max-lg:-left-[400px] max-lg:z-30 max-lg:overflow-y-auto max-lg:h-full max-lg:transition-all max-lg:duration-300">
                 <div class="relative w-96 px-2 py-12 flex flex-col items-center gap-y-5 bg-slate-300 dark:bg-slate-700 rounded-2xl max-lg:rounded-none  max-lg:pt-28">
                     <h3 class="text-xl sm:text-2xl lg:text-3xl text-amber-500 font-medium sm:font-semibold">JUJUTSU KAISEN S1</h3>
                     <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
@@ -238,7 +238,3 @@ onMounted(async () => {
         </div>
     </section>
 </template>
-
-<style>
-
-</style>

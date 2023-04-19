@@ -4,10 +4,10 @@ const props = defineProps(["show"]);
 
 <template>
     <div class="max-w-[46vw] w-36 md:w-40 lg:w-48">
-        <RouterLink to="">
+        <RouterLink to="/show">
             <img class="mb-3" :src="show.cover" alt="Show Cover">
         </RouterLink>
-        <RouterLink to="">
+        <RouterLink to="/show">
             <h6 class="text-slate-950 dark:text-slate-100 mb-3">{{ show.title }}</h6>
         </RouterLink>
         <div class="flex justify-between items-center">
