@@ -1,11 +1,13 @@
 <script setup>
 import { Icon } from '@iconify/vue';
+
+defineProps(["switchArrows"]);
 </script>
 
 <template>
     <button type="button" class="btn">
         <div class="strong">
-            <Icon id="icon-arrow" class="icon transition-all duration-300" icon="ic:baseline-double-arrow" />
+            <Icon id="icon-arrow" :class="switchArrows" class="icon transition-all duration-300" icon="ic:baseline-double-arrow" />
         </div>
         <div id="container-stars">
             <div id="stars"></div>
@@ -62,23 +64,25 @@ import { Icon } from '@iconify/vue';
 #glow {
     position: absolute;
     display: flex;
-    width: 5rem;
+    width: 4.5rem;
 }
 
 .circle {
     width: 100%;
-    height: 5rem;
-    filter: blur(2rem);
+    height: 4.5rem;
+    filter: blur(1rem);
     animation: pulse_3011 4s infinite;
     z-index: -1;
 }
 
 .circle:nth-of-type(1) {
     background: rgba(254, 83, 186, 0.636);
+    border-radius: 100% 0% 0% 100% / 50% 50% 50% 50% ;
 }
 
 .circle:nth-of-type(2) {
     background: rgba(142, 81, 234, 0.704);
+    border-radius: 0% 100% 100% 0% / 50% 50% 50% 50% ;
 }
 
 .btn:hover #container-stars {
