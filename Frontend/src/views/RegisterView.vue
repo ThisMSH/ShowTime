@@ -2,8 +2,8 @@
 import DarkMode from '../components/utilities/DarkMode.vue'
 import RectangularLogo from '../components/utilities/RectangularLogo.vue';
 import TextInput from '../components/utilities/TextInput.vue';
+import DateInput from '../components/utilities/DateInput.vue';
 import SubmitBtn from '../components/utilities/SubmitBtn.vue';
-import Datepicker from 'flowbite-datepicker/Datepicker';
 import { onMounted, ref } from 'vue';
 
 let name = ref(null);
@@ -13,18 +13,10 @@ let birthday = ref(null);
 let password = ref(null);
 let confirm_password = ref(null);
 let image = ref(null);
-let datePick = ref(null);
 
 onMounted(() => {
-    new Datepicker(datePick.value, {
-        clearBtn: true,
-        todayBtn: true,
-        autohide: true,
-        orientation: 'bottom',
-        format: 'dd-mm-yyyy',
-        maxDate: new Date(),
-    });
-})
+    
+});
 </script>
 
 <template>
@@ -57,13 +49,7 @@ onMounted(() => {
                                 <TextInput v-model:input="name" label="Full name" inputType="text" inputID="name" error="" errorID="name_error" />
                                 <TextInput v-model:input="username" label="Username" inputType="text" inputID="username" error="" errorID="username_error" />
                                 <TextInput v-model:input="email" label="E-mail" inputType="email" inputID="email" error="" errorID="email_error" />
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 right-0 flex items-center pl-3 pointer-events-none">
-                                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                                    </div>
-                                    <input id="birthday" ref="datePick" datepicker type="text" class="block py-2.5 px-0 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" ">
-                                    <label for="birthday" class="absolute text-sm text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Birthday</label>
-                                </div>
+                                <DateInput v-model:input="birthday" label="Birthday" inputID="birthday" error="" errorID="birthday_error" />
                                 <TextInput v-model:input="password" label="Password" inputType="password" inputID="pwd" error="" errorID="pwd_error" />
                                 <TextInput v-model:input="confirm_password" label="Confirm password" inputType="password" inputID="c_pwd" error="" errorID="c_pwd_error" />
                                 <TextInput class="lg:col-span-2" v-model:input="image" label="Avatar (optional)" inputType="file" inputID="avatar" error="" errorID="avatar_error" />

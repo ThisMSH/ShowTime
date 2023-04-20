@@ -61,7 +61,7 @@ onMounted(async () => {
                     <div class="z-10 hidden my-4 text-base list-none bg-white divide-y divide-slate-100 rounded-lg shadow dark:bg-slate-700 dark:divide-slate-600 overflow-hidden" id="user-dropdown">
                         <div class="px-4 py-3">
                             <span class="block text-sm text-slate-900 dark:text-white">Bonnie Green</span>
-                            <span class="block text-sm text-slate-500 truncate dark:text-slate-400">example@flowbite.com</span>
+                            <span class="block text-sm text-slate-500 truncate dark:text-slate-400">example@example.com</span>
                         </div>
                         <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="user-menu-button">
                             <li>
@@ -142,16 +142,16 @@ onMounted(async () => {
                                 <div id="dropdown2" class="z-10 hidden bg-white divide-y divide-slate-100 rounded-lg shadow w-44 dark:bg-slate-700 overflow-hidden">
                                     <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="categories-dropdown-mobile">
                                         <li>
-                                            <RouterLink to="" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Series</p></RouterLink>
+                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Series</p></RouterLink>
                                         </li>
                                         <li>
-                                            <RouterLink to="" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Movies</p></RouterLink>
+                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Movies</p></RouterLink>
                                         </li>
                                         <li>
-                                            <RouterLink to="" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Series</p></RouterLink>
+                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Series</p></RouterLink>
                                         </li>
                                         <li>
-                                            <RouterLink to="" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Movies</p></RouterLink>
+                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Movies</p></RouterLink>
                                         </li>
                                     </ul>
                                 </div>

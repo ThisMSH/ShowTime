@@ -8,6 +8,9 @@ import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DashboardView from '../views/DashboardView.vue';
 import Profile from '../views/children/Profile.vue';
+import Pricing from '../views/children/Pricing.vue';
+import ManageUsers from '../views/children/ManageUsers.vue';
+import ManageShows from '../views/children/ManageShows.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,7 +61,22 @@ const router = createRouter({
                     path: 'profile',
                     name: 'profile',
                     component: Profile
-                }
+                },
+                {
+                    path: 'pricing',
+                    name: 'pricing',
+                    component: Pricing
+                },
+                {
+                    path: 'manage_shows',
+                    name: 'manage_shows',
+                    component: ManageShows
+                },
+                {
+                    path: 'manage_users',
+                    name: 'manage_users',
+                    component: ManageUsers
+                },
             ]
         },
     ]

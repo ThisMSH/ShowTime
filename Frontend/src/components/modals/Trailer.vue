@@ -1,7 +1,6 @@
 <script setup>
 import { initModals } from 'flowbite';
 import { onMounted } from 'vue';
-import { Icon } from '@iconify/vue';
 import DefaultButton from '../utilities/DefaultButton.vue';
 
 const props = defineProps(["watchID"])

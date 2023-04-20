@@ -3,11 +3,9 @@ import DashboardSideMenu from '../components/DashboardSideMenu.vue';
 </script>
 
 <template>
-    <main class="grid grid-cols-2">
+    <main class="container mx-auto mt-4 grid grid-cols-[auto_1fr] gap-x-16">
         <DashboardSideMenu />
-        <div class="">
-            <RouterView />
-        </div>
+        <RouterView />
     </main>
 </template>
 

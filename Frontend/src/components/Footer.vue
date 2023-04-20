@@ -1,9 +1,8 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import CircleLogo from './utilities/CircleLogo.vue';
+import FooterRights from './utilities/FooterRights.vue';
 import H4 from './utilities/H4.vue';
-
-const currentYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -149,8 +148,7 @@ const currentYear = new Date().getFullYear();
         </div>
         <div class="border-b border-slate-300 dark:border-slate-600"></div>
         <div>
-            <p class="text-sm text-center text-slate-600 dark:text-slate-400 p-2">© {{ currentYear }} ShowTime, all
-                rights reserved. Made with ❤️</p>
+            <FooterRights />
         </div>
     </div>
 </footer></template>
