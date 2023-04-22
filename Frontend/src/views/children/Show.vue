@@ -164,6 +164,23 @@ onMounted(async () => {
                         <p>13</p>
                     </div>
                     <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
+                    <div class="relative z-0 my-2">
+                        <label for="underline_select" class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">My Rating</label>
+                        <select id="underline_select" class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer">
+                            <option disabled selected>Select</option>
+                            <option value="10">10 - Masterpiece</option>
+                            <option value="9">9 - Great</option>
+                            <option value="8">8 - Very good</option>
+                            <option value="7">7 - Good</option>
+                            <option value="6">6 - Fine</option>
+                            <option value="5">5 - Average</option>
+                            <option value="4">4 - Bad</option>
+                            <option value="3">3 - Very bad</option>
+                            <option value="2">2 - Horrible</option>
+                            <option value="1">1 - Appalling</option>
+                        </select>
+                    </div>
+                    <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                     <div class="flex w-full">
                         <RouterLink class="inline-flex items-center gap-x-2" to="">
                             <Icon class="text-5xl" icon="ic:round-keyboard-double-arrow-left" />

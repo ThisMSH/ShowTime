@@ -42,7 +42,7 @@ let pwd = ref(null);
                     <form>
                         <div class="flex flex-col items-center justify-between gap-y-14">
                             <div class="w-64 flex flex-col gap-y-8">
-                                <TextInput v-model:input="email" label="Your E-mail" inputType="email" inputID="user_email" error="" errorID="user_email_error" />
+                                <TextInput v-model:input="email" label="Your E-mail" inputType="email" inputID="user_email" error="" errorID="user_email_error" :isFocused="true" />
                                 <TextInput v-model:input="pwd" label="Your password" inputType="password" inputID="user_password" error="" errorID="user_password_error" />
                             </div>
                             <SubmitBtn name="Login" />

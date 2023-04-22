@@ -34,7 +34,7 @@
   }
   100% {
     opacity: 0;
-    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    transform: translateY(55px) scale(0.5);
   }
 }
 </style>

@@ -40,8 +40,7 @@ const toggleDashboardSections = function () {
     }
 }
 const hideShowSideMenu = function () {
-    sideDashboardMenu.value.classList.toggle("h-[680px]");
-    sideDashboardMenu.value.classList.toggle("h-10");
+    sideDashboardMenu.value.classList.toggle("h-0");
     sideDashboardMenu.value.classList.toggle("overflow-hidden");
     sideMenuList.value.classList.toggle("opacity-0");
 }
@@ -53,7 +52,7 @@ onMounted(() => {
 
 <template>
     <aside class="">
-        <div ref="sideDashboardMenu" class="sticky top-4 h-[600px] pb-10 bg-slate-300 dark:bg-slate-800 ml-4 w-64 flex flex-col justify-end items-center rounded-lg transition-all duration-500">
+        <div ref="sideDashboardMenu" class="sticky top-4 pb-10 bg-slate-300 dark:bg-slate-800 ml-4 w-64 flex flex-col justify-end items-center rounded-lg transition-all duration-500">
             <!-- hide and show menu in small screens -->
             <div class="lg:hidden absolute top-0 h-10 flex justify-center items-center">
                 <button @click="hideShowSideMenu" type="button" class="text-3xl">
@@ -74,7 +73,7 @@ onMounted(() => {
                 </div>
             </div>
             <!-- Side menu contents -->
-            <ul ref="sideMenuList" class="flex flex-col text-start w-full transition-all duration-500 child:relative child:w-full child:h-20 child:rounded-xl child:border-8 child:border-transparent child:transition-all child:duration-500 child:before:absolute child:before:w-5 child:before:h-5 child:before:rounded-br-3xl child:before:shadow-[6px_5px_0_5px] child:before:shadow-slate-100 child:before:dark:shadow-slate-950 child:before:-right-3 child:before:-top-7 child:before:opacity-0 child:before:scale-0 child:before:transition-all child:before:duration-500 child:before:origin-bottom-right child:after:absolute child:after:w-5 child:after:h-5 child:after:rounded-tr-3xl child:after:shadow-[6px_-5px_0_5px] child:after:shadow-slate-100 child:after:dark:shadow-slate-950 child:after:-right-3 child:after:-bottom-7 child:after:opacity-0 child:after:scale-0 child:after:transition-all child:after:duration-500 child:after:origin-bottom-right">
+            <ul ref="sideMenuList" class="mt-36 flex flex-col text-start w-full transition-all duration-500 child:relative child:w-full child:h-20 child:rounded-xl child:border-8 child:border-transparent child:transition-all child:duration-500 child:before:absolute child:before:w-5 child:before:h-5 child:before:rounded-br-3xl child:before:shadow-[6px_5px_0_5px] child:before:shadow-slate-100 child:before:dark:shadow-slate-950 child:before:-right-3 child:before:-top-7 child:before:opacity-0 child:before:scale-0 child:before:transition-all child:before:duration-500 child:before:origin-bottom-right child:after:absolute child:after:w-5 child:after:h-5 child:after:rounded-tr-3xl child:after:shadow-[6px_-5px_0_5px] child:after:shadow-slate-100 child:after:dark:shadow-slate-950 child:after:-right-3 child:after:-bottom-7 child:after:opacity-0 child:after:scale-0 child:after:transition-all child:after:duration-500 child:after:origin-bottom-right">
                 <li @click="toggleDashboardSections" class="dashboard-sections active">
                     <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/profile" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
