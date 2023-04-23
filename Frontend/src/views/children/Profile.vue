@@ -39,7 +39,7 @@ onMounted(() => {
                     <TextInput v-model:input="email" label="E-mail" inputType="email" inputID="email" :isReadOnly="true" />
                     <TextInput v-model:input="birthday" label="Birthday" inputType="text" inputID="birthday" :isReadOnly="true" />
                 </div>
-                <div class="mb-10 mt-20">
+                <div class="mb-10 mt-20 flex justify-center items-center">
                     <UpdateUser />
                 </div>
             </div>

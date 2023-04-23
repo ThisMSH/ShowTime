@@ -11,12 +11,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex justify-center items-center" >
-        <button type="button" class="flex items-center gap-x-3 px-4 py-1 bg-red-400 dark:bg-red-600 text-black dark:text-white rounded-md hover:bg-red-500 hover:dark:bg-red-700" :data-modal-target="userID" :data-modal-toggle="userID">
-            <Icon class="text-lg" icon="fa-solid:user-times" />
-            <span>Delete</span>
-        </button>
-    </div>
+    <button type="button" class="flex items-center gap-x-3 px-4 py-1 bg-red-400 dark:bg-red-600 text-black dark:text-white rounded-md hover:bg-red-500 hover:dark:bg-red-700" :data-modal-target="userID" :data-modal-toggle="userID">
+        <Icon class="text-lg" icon="fa-solid:user-times" />
+        <span>Delete</span>
+    </button>
 
     <div :id="userID" tabindex="-1"
         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

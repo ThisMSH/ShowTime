@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('show_id');
-            $table->string('trailer')->nullable();
+            $table->string('title');
+            $table->string('trailer');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
             $table->foreign('show_id')->references('id')->on('shows')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -16,8 +16,10 @@ const toggleBtn = ref(null);
 const sideShowInfo = ref(null);
 const toggleSideShowInfoBtn = ref(null);
 const showEpisodes = function () {
-    btnBg.value.classList.remove("left-[220px]");
-    btnBg.value.classList.add("left-5");
+    btnBg.value.classList.remove("sm:left-[252px]");
+    btnBg.value.classList.add("sm:left-5");
+    btnBg.value.classList.remove("left-[236px]");
+    btnBg.value.classList.add("left-1");
     episodeIcon.value.classList.add("-rotate-12", "scale-125");
     trailerIcon.value.classList.remove("-rotate-12", "scale-125");
     episodesContainer.value.classList.add("block");
@@ -28,8 +30,10 @@ const showEpisodes = function () {
     trailerBtn.value.classList.remove("dark:text-slate-950");
 };
 const showTrailers = function () {
-    btnBg.value.classList.add("left-[220px]");
-    btnBg.value.classList.remove("left-5");
+    btnBg.value.classList.add("sm:left-[252px]");
+    btnBg.value.classList.remove("sm:left-5");
+    btnBg.value.classList.add("left-[236px]");
+    btnBg.value.classList.remove("left-1");
     episodeIcon.value.classList.remove("-rotate-12", "scale-125");
     trailerIcon.value.classList.add("-rotate-12", "scale-125");
     episodesContainer.value.classList.remove("block");
@@ -220,21 +224,21 @@ onMounted(async () => {
                         Yuji Itadori is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a classmate who has been attacked by curses, he eats the finger of Ryomen Sukuna, taking the curse into his own soul. From then on, he shares one body with Ryomen Sukuna. Guided by the most powerful of sorcerers, Satoru Gojo, Itadori is admitted to Tokyo Jujutsu High School, an organization that fights the curses... and thus begins the heroic tale of a boy who became a curse to exorcise a curse, a life from which he could never turn back.
                     </p>
                 </div>
-                <div class="relative max-md:scale-75 max-md:-left-10">
-                    <div class="relative inline-flex gap-x-2 px-5 py-1 bg-slate-200 dark:bg-slate-800 rounded-l-full rounded-r-full">
-                        <button ref="episodeBtn" @click="showEpisodes" class="dark:text-slate-950 text-xl w-48 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
+                <div class="relative max-sm:-left-12 max-sm:scale-[0.7] max-md:scale-75 max-md:-left-10">
+                    <div class="relative inline-flex gap-x-2 px-1 py-0.5 sm:px-5 sm:py-1 bg-slate-200 dark:bg-slate-800 rounded-l-full rounded-r-full">
+                        <button ref="episodeBtn" @click="showEpisodes" class="dark:text-slate-950 text-xl border w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
                             <div ref="episodeIcon" class="-rotate-12 scale-125 transition-all duration-300">
                                 <Icon class="text-3xl" icon="ic:round-live-tv" />
                             </div>
                             <span> Episodes</span>
                         </button>
-                        <button ref="trailerBtn" @click="showTrailers" class="text-xl w-48 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
+                        <button ref="trailerBtn" @click="showTrailers" class="text-xl border w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
                             <div ref="trailerIcon" class="transition-all duration-300">
                                 <Icon class="text-3xl" icon="ic:round-pause-presentation" />
                             </div>
-                            <span> Trailers</span>
+                            <span> Promotionals</span>
                         </button>
-                        <div ref="btnBg" class="absolute left-5 w-48 h-14 bg-orange-400 rounded-l-full rounded-r-full transition-all duration-300"></div>
+                        <div ref="btnBg" class="absolute left-1 sm:left-5 w-56 h-14 bg-orange-400 rounded-l-full rounded-r-full transition-all duration-300"></div>
                     </div>
                 </div>
                 <!-- Episodes tab -->
@@ -246,7 +250,7 @@ onMounted(async () => {
                     </div>
                 </div>
                 <!-- Trailers tab -->
-                <div ref="trailersContainer" class="hidden gap-10">         
+                <div ref="trailersContainer" class="hidden gap-10 flex-wrap">         
                     <Trailer watchID="78WIYzX_m98" />
                     <Trailer watchID="PjPUAf4wJGI" />
                     <Trailer watchID="-1wcilQ58hI" />

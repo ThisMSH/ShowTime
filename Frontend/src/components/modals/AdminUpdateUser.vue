@@ -19,13 +19,10 @@ onMounted(() => {
 
 <template>
     <!-- Modal toggle -->
-    <div class="flex justify-center items-center">
-        <button type="button" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700" :data-modal-toggle="update_username">
-            <Icon class="text-lg" icon="fa-solid:user-edit" />
-            <span>Edit</span>
-        </button>
-    </div>
-
+    <button type="button" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700" :data-modal-toggle="update_username">
+        <Icon class="text-lg" icon="fa-solid:user-edit" />
+        <span>Edit</span>
+    </button>
     <!-- Main modal -->
     <div :id="update_username" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
