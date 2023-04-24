@@ -82,7 +82,7 @@ onMounted(() => {
                     </RouterLink>
                 </li>
                 <li @click="toggleDashboardSections" class="dashboard-sections hidden">
-                    <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard" >
+                    <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/profile" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                          text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-sky-400 after:dark:bg-sky-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="ic:baseline-favorite" /></span>
                         <span class="text text-lg font-medium pl-4 transition-all duration-500">My Favorites</span>
@@ -108,15 +108,29 @@ onMounted(() => {
                     <li @click="toggleDashboardSections" class="dashboard-sections">
                         <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_users" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
-                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-lime-400 after:dark:bg-lime-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="ic:round-manage-accounts" /></span>
+                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-lime-400 after:dark:bg-lime-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-account-box-outline-rounded" /></span>
                             <span class="text text-lg font-medium pl-4 transition-all duration-500">Users Information</span>
                         </RouterLink>
                     </li>
                     <li @click="toggleDashboardSections" class="dashboard-sections">
                         <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_shows" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
-                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-violet-400 after:dark:bg-violet-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="ic:outline-video-settings" /></span>
+                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-violet-400 after:dark:bg-violet-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-cinematic-blur-outline-rounded" /></span>
                             <span class="text text-lg font-medium pl-4 transition-all duration-500">Shows Management</span>
+                        </RouterLink>
+                    </li>
+                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                        <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_episodes" >
+                            <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
+                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-pink-400 after:dark:bg-pink-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-video-camera-outline-rounded" /></span>
+                            <span class="text text-lg font-medium pl-4 transition-all duration-500">Episodes Management</span>
+                        </RouterLink>
+                    </li>
+                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                        <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_episodes" >
+                            <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
+                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-amber-400 after:dark:bg-amber-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-panorama-outline-rounded" /></span>
+                            <span class="text text-lg font-medium pl-4 transition-all duration-500">Promotions Management</span>
                         </RouterLink>
                     </li>
                 </template>
@@ -129,10 +143,8 @@ onMounted(() => {
 .active {
     @apply translate-x-8 bg-slate-100 dark:bg-slate-950;
 }
+.active::after,
 .active::before {
-    @apply right-6 opacity-100 scale-100;
-}
-.active::after {
     @apply right-6 opacity-100 scale-100;
 }
 .dashboard-sections.active:nth-child(1) .icon,
@@ -155,19 +167,16 @@ onMounted(() => {
 .dashboard-sections.active:nth-child(6) .icon::before {
     @apply bg-violet-400 dark:bg-violet-600;
 }
-.dashboard-sections.active:nth-child(1) .icon::before {
-    @apply opacity-50;
+.dashboard-sections.active:nth-child(7) .icon,
+.dashboard-sections.active:nth-child(7) .icon::before {
+    @apply bg-pink-400 dark:bg-pink-600;
 }
-.dashboard-sections.active:nth-child(2) .icon::before {
-    @apply opacity-50;
+.dashboard-sections.active:nth-child(8) .icon,
+.dashboard-sections.active:nth-child(8) .icon::before {
+    @apply bg-amber-400 dark:bg-amber-600;
 }
-.dashboard-sections.active:nth-child(3) .icon::before {
-    @apply opacity-50;
-}
-.dashboard-sections.active:nth-child(5) .icon::before {
-    @apply opacity-50;
-}
-.dashboard-sections.active:nth-child(6) .icon::before {
+.dashboard-sections.active .icon::before
+{
     @apply opacity-50;
 }
 .icon::after {

@@ -47,7 +47,7 @@ onMounted(() => {
                         <DateInput v-model:input="update_birthday" label="Birthday" inputID="update_birthday" error="" errorID="birthday_error" />
                         <TextInput class="lg:col-span-2" v-model:input="update_image" label="Avatar (optional)" inputType="file" inputID="update_avatar" error="" errorID="avatar_error" />
                         <div class="lg:col-span-2 flex justify-center items-center">
-                            <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
+                            <NoBlackBgButton name="Update" iconName="ic:round-system-update-alt" />
                         </div>
                     </div>
                 </form>

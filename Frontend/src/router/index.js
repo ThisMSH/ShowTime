@@ -11,6 +11,8 @@ import Profile from '../views/children/Profile.vue';
 import Pricing from '../views/children/Pricing.vue';
 import ManageUsers from '../views/children/ManageUsers.vue';
 import ManageShows from '../views/children/ManageShows.vue';
+import ManageEpisodes from '../views/children/ManageEpisodes.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +58,7 @@ const router = createRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: DashboardView,
+            redirect: '/dashboard/profile',
             children: [
                 {
                     path: 'profile',
@@ -77,8 +80,19 @@ const router = createRouter({
                     name: 'manage_users',
                     component: ManageUsers
                 },
+                {
+                    path: 'manage_episodes',
+                    name: 'manage_episodes',
+                    component: ManageEpisodes
+                },
             ]
         },
+        // 404 Page not found
+        {
+            path: '/:catchAll(.*)',
+            name: 'PageNotFound',
+            component: PageNotFound
+        }
     ]
 })
 

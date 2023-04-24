@@ -7,6 +7,8 @@ import { Icon } from '@iconify/vue';
 import AdminCreateShow from '../../components/modals/AdminCreateShow.vue';
 import AdminCreateEpisode from '../../components/modals/AdminCreateEpisode.vue';
 import AdminCreatePromo from '../../components/modals/AdminCreatePromo.vue';
+import AdminUpdateShow from '../../components/modals/AdminUpdateShow.vue';
+import AdminDeleteShow from '../../components/modals/AdminDeleteShow.vue';
 
 const people = [
     {
@@ -79,13 +81,11 @@ const people = [
                     </div>
                 </div>
             </dl>
-            <!-- Creating Shows and Trailer -->
+            <!-- Creating Shows -->
             <div class="mt-10 flex justify-between items-center gap-3 flex-wrap">
                 <H4 class="mb-0" title="List of all the shows" />
                 <div class="flex justify-center items-center gap-3 flex-wrap">
                     <AdminCreateShow />
-                    <AdminCreateEpisode />
-                    <AdminCreatePromo />
                 </div>
             </div>
             <!-- Shows Management -->
@@ -93,7 +93,7 @@ const people = [
                 <div class="">
                     <div class="inline-block min-w-full align-middle">
                         <div class="shadow ring-1 ring-black ring-opacity-5">
-                            <table class="min-w-full divide-y divide-slate-400">
+                            <table class="min-w-full divide-y divide-slate-400 border border-slate-400 dark:border-slate-500">
                                 <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-800">
                                     <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Cover
@@ -139,13 +139,8 @@ const people = [
                                                 {{ person.role }}</td>
                                             <td
                                                 class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <!-- <AdminUpdateUser />
-                                                <AdminDeleteUser userID="1" /> -->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="" colspan="7">
-                                                hello
+                                                <AdminUpdateShow />
+                                                <AdminDeleteShow showID="1" />
                                             </td>
                                         </tr>
                                     </template>

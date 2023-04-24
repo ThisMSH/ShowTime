@@ -31,6 +31,9 @@ class RegisteredUserController extends Controller
             // 'user_type' => ['sometimes', 'integer', 'between:0,2'],
             'avatar' => ['sometimes', 'nullable', 'file', 'mimes:png,jpeg,jpg,gif', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'username.not_regex' => 'White spaces are not allowed in the username.',
+            'birthday.before' => 'You must be at least 13 years old.'
         ]);
 
         /**
@@ -44,10 +47,18 @@ class RegisteredUserController extends Controller
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->storePublicly('avatars', 'public');
         } else {
-            $avatar = Avatar::create($request->name)->toBase64();
-            $path = 'avatars/' . time() . "-" . $request->username . '.png';
-            Storage::disk('public')->put($path, $avatar);
+            $path = 'avatar/default.jpg';
         }
+        
+        /** 
+         * Doesn't seem to work
+         * Package name: laravolt/avatar
+        */
+        // else {
+        //     $avatar = Avatar::create($request->name)->toBase64();
+        //     $path = 'avatars/' . time() . "-" . $request->username . '.png';
+        //     Storage::disk('public')->put($path, $avatar);
+        // }
 
         $user = User::create([
             'name' => $request->name,
