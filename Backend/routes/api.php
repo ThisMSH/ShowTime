@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [UserController::class, 'show']);
 });
 
+Route::get('/show', [ShowController::class, 'index']);
+Route::get('/show/{show}', [ShowController::class, 'show']);
+Route::get('/show/search/{search}', [ShowController::class, 'search']);
 Route::post('/show', [ShowController::class, 'store']);
+Route::patch('/show/{show}', [ShowController::class, 'update']);
+Route::delete('/show/{show}', [ShowController::class, 'destroy']);
+
+Route::get('/episode', [EpisodeController::class, 'index']);
+Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
+Route::post('/episode', [EpisodeController::class, 'store']);
+Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
+Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);

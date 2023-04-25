@@ -11,7 +11,7 @@ class StoreEpisodeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreEpisodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'max:500'],
+            'number' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'episode_type' => ['sometimes', 'integer'],
+            'thumbnail' => ['required', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=16/9,min_width=240,min_height=135'],
+            'video' => ['required', 'file', 'mimes:mp4,mkv'],
+            'show_id' => ['required', 'integer']
         ];
     }
 }

@@ -1,7 +1,7 @@
 <script setup>
 import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import RectangularLogo from './utilities/RectangularLogo.vue';
 import CircleLogoDark from './utilities/CircleLogoDark.vue';
 import { useAuthStore } from '../stores/auth';
@@ -24,8 +24,10 @@ function closeSideHeader() {
     // sideHeader.value.classList.add("-right-80");
 }
 
-window.addEventListener("scroll", function() {
-	navBar.value.classList.toggle("navbar", window.scrollY > 0);
+onMounted(() => {
+    window.addEventListener("scroll", function() {
+        navBar.value.classList.toggle("navbar", window.scrollY > 0);
+    });
 });
 </script>
 

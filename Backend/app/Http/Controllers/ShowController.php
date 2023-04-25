@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Show;
 use App\Http\Requests\StoreShowRequest;
 use App\Http\Requests\UpdateShowRequest;
+use App\Http\Resources\EpisodeResource;
 use App\Http\Resources\ShowResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,11 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
+        return $this->success(
+            ShowResource::collection(
+                Show::orderBy('title')->get()
+            )
+        );
     }
 
     /**
@@ -27,22 +32,24 @@ class ShowController extends Controller
      */
     public function store(StoreShowRequest $request)
     {
-        $request->validated($request->all());
+        $request->validated();
 
         $title_no_whitespace = str_replace(' ', '-', $request->title);
+        $season_no_whitespace = str_replace(' ', '-', $request->season);
+        $cover_name = $title_no_whitespace . "-" . $season_no_whitespace;
 
         if ($request->hasFile('cover')) {
-            $cover = "shows/cover/" . $title_no_whitespace . "-cover." . $request->cover->getClientOriginalExtension();
+            $cover = "shows/cover/{$cover_name}-cover.{$request->cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($cover, file_get_contents($request->cover));
         }
 
         if ($request->hasFile('wide_cover')) {
-            $wide_cover = "shows/wide-cover/" . $title_no_whitespace . "-wide-cover." . $request->wide_cover->getClientOriginalExtension();
+            $wide_cover = "shows/wide-cover/{$cover_name}-wide-cover.{$request->wide_cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($wide_cover, file_get_contents($request->wide_cover));
         }
 
         $show = Show::create([
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'season' => $request->season,
@@ -61,15 +68,14 @@ class ShowController extends Controller
      */
     public function show(Show $show)
     {
-        //
-    }
+        $episodes = $show->episodes()
+            ->orderBy('number')
+            ->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Show $show)
-    {
-        //
+        return $this->success([
+            'show' => new ShowResource($show),
+            'episodes' => EpisodeResource::collection($episodes)
+        ]);
     }
 
     /**
@@ -77,7 +83,32 @@ class ShowController extends Controller
      */
     public function update(UpdateShowRequest $request, Show $show)
     {
-        //
+        $request->validated();
+
+        $title_no_whitespace = str_replace(' ', '-', $request->title ?? $show->title);
+        $season_no_whitespace = str_replace(' ', '-', $request->season ?? $show->season);
+        $cover_name = "{$title_no_whitespace}-{$season_no_whitespace}";
+
+        if ($request->hasFile('cover')) {
+            $cover = "shows/cover/{$cover_name}-cover.{$request->cover->getClientOriginalExtension()}";
+            Storage::disk('public')->put($cover, file_get_contents($request->cover));
+        } else {
+            $cover = null;
+        }
+
+        if ($request->hasFile('wide_cover')) {
+            $wide_cover = "shows/wide-cover/{$cover_name}-wide-cover.{$request->wide_cover->getClientOriginalExtension()}";
+            Storage::disk('public')->put($wide_cover, file_get_contents($request->wide_cover));
+        } else {
+            $wide_cover = null;
+        }
+
+        $request->cover = $cover;
+        $request->wide_cover = $wide_cover;
+
+        $show->update($request->all());
+
+        return $this->success(new ShowResource($show));
     }
 
     /**
@@ -85,6 +116,16 @@ class ShowController extends Controller
      */
     public function destroy(Show $show)
     {
-        //
+        return $show->delete();
+    }
+
+    /**
+     * Search for a specific show.
+     */
+    public function search($search)
+    {
+        $search = Show::where('title', 'LIKE', '%' . $search . '%')->get();
+
+        return $this->success(ShowResource::collection($search));
     }
 }
