@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // User info
     Route::get('/user', [UserController::class, 'show']);
 });
+
+Route::post('/show', [ShowController::class, 'store']);
