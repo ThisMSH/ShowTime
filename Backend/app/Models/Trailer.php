@@ -12,6 +12,7 @@ class Trailer extends Model
     protected $fillable = [
         'user_id',
         'show_id',
+        'title',
         'trailer'
     ];
 

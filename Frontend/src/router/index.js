@@ -28,19 +28,22 @@ const router = createRouter({
                     component: Main
                 },
                 {
-                    path: 'category',
+                    path: 'category/:id',
                     name: 'category',
-                    component: Category
+                    component: Category,
+                    props: true
                 },
                 {
-                    path: 'show',
+                    path: 'show/:id',
                     name: 'show',
-                    component: Show
+                    component: Show,
+                    props: true
                 },
                 {
-                    path: 'episode',
+                    path: 'episode/:id',
                     name: 'episode',
-                    component: Episode
+                    component: Episode,
+                    props: true
                 },
             ]
         },

@@ -9,8 +9,7 @@ export const useAuthStore = defineStore("auth", {
     }),
     getters: {
         getUser: (state) => state.authUser,
-        getErrors: (state) => state.authErrors,
-        getRegisterStatus: (state) => state.isLoading
+        getErrors: (state) => state.authErrors
     },
     actions: {
         async fetchToken() {

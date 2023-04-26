@@ -85,7 +85,7 @@ const episodes = [
         </section>
         <!-- Episodes list section -->
         <section class="mt-5 col-span-3 lg:col-span-1 row-span-2">
-            <div class="flex flex-col px-4 py-6 gap-y-5 rounded-2xl bg-slate-300 dark:bg-slate-700">
+            <div class="flex flex-col px-4 py-6 gap-y-5 rounded-md bg-slate-200 dark:bg-slate-900">
                 <h3 class="text-xl sm:text-2xl lg:text-3xl text-orange-500 dark:text-amber-500 font-medium sm:font-semibold">Episodes</h3>
                 <div class="hidden sm:block lg:hidden xl:block rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden" v-for="episode in episodes" :key="episode.title">
                     <EpisodeComponentHori :title="episode.title" :image="episode.image" :toEpisode="episode.link" customClass="px-3 py-2.5" clamp="line-clamp-2" />

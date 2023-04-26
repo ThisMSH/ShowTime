@@ -35,7 +35,7 @@ class ShowResource extends JsonResource
                     "season" => Show::find($this->prequel)->season,
                     "cover" => asset(Storage::url(Show::find($this->prequel)->cover))
                 ]
-                : null,
+                : "",
                 "sequel" => $this->sequel ?
                 [
                     "id" => (string)$this->sequel,
@@ -43,7 +43,7 @@ class ShowResource extends JsonResource
                     "season" => Show::find($this->sequel)->season,
                     "cover" => asset(Storage::url(Show::find($this->sequel)->cover))
                 ]
-                : null,
+                : "",
                 "category" => [
                     "id" => (string)$this->category->id,
                     "name" => $this->category->category

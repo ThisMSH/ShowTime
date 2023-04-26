@@ -226,13 +226,13 @@ onMounted(async () => {
                 </div>
                 <div class="relative max-sm:-left-12 max-sm:scale-[0.7] max-md:scale-75 max-md:-left-10">
                     <div class="relative inline-flex gap-x-2 px-1 py-0.5 sm:px-5 sm:py-1 bg-slate-200 dark:bg-slate-800 rounded-l-full rounded-r-full">
-                        <button ref="episodeBtn" @click="showEpisodes" class="dark:text-slate-950 text-xl border w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
+                        <button ref="episodeBtn" @click="showEpisodes" class="dark:text-slate-950 text-xl w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
                             <div ref="episodeIcon" class="-rotate-12 scale-125 transition-all duration-300">
                                 <Icon class="text-3xl" icon="ic:round-live-tv" />
                             </div>
                             <span> Episodes</span>
                         </button>
-                        <button ref="trailerBtn" @click="showTrailers" class="text-xl border w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
+                        <button ref="trailerBtn" @click="showTrailers" class="text-xl w-56 h-14 rounded-l-full rounded-r-full font-medium flex items-center justify-center gap-x-3 z-[1]">
                             <div ref="trailerIcon" class="transition-all duration-300">
                                 <Icon class="text-3xl" icon="ic:round-pause-presentation" />
                             </div>

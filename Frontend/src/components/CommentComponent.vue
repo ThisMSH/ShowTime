@@ -1,5 +1,10 @@
 <script setup>
+import { initDropdowns } from 'flowbite';
+import { onMounted } from 'vue';
 
+onMounted (() => {
+    initDropdowns();
+});
 </script>
 
 <template>

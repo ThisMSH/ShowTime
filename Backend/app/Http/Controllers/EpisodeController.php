@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Episode;
 use App\Http\Requests\StoreEpisodeRequest;
 use App\Http\Requests\UpdateEpisodeRequest;
-use App\Http\Resources\CommentsResource;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\EpisodeResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -67,11 +67,11 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
-        // $comments = $episode->comments()->all();
+        $comments = $episode->comments()->get();
 
         return $this->success([
             'episode' => new EpisodeResource($episode),
-            // 'comments' => CommentsResource::collection($comments)
+            'comments' => CommentResource::collection($comments)
         ]);
     }
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 500);
             $table->string('season');
             $table->string('cover');
-            $table->string('wide_cover')->nullable();
+            $table->string('wide_cover');
             $table->text('description');
             $table->unsignedBigInteger('sequel')->nullable();
             $table->unsignedBigInteger('prequel')->nullable();

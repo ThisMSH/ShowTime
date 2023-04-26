@@ -5,29 +5,28 @@ import { ref, onMounted } from 'vue';
 import RectangularLogo from './utilities/RectangularLogo.vue';
 import CircleLogoDark from './utilities/CircleLogoDark.vue';
 import { useAuthStore } from '../stores/auth';
+import { useCategoryStore } from '../stores/category';
 
 const authStore = useAuthStore();
-
-// const sideHeader = ref(null);
+const categoryStore = useCategoryStore();
 const sideHeaderClasses = ref("-right-80");
 const navBar = ref(null);
 
 function openSideHeader() {
     sideHeaderClasses.value = "right-0";
-    // sideHeader.value.classList.add("right-0");
-    // sideHeader.value.classList.remove("-right-80");
 }
 
 function closeSideHeader() {
     sideHeaderClasses.value = "-right-80";
-    // sideHeader.value.classList.remove("right-0");
-    // sideHeader.value.classList.add("-right-80");
 }
 
-onMounted(() => {
+onMounted(async () => {
     window.addEventListener("scroll", function() {
         navBar.value.classList.toggle("navbar", window.scrollY > 0);
     });
+
+    await categoryStore.fetchAllCategories();
+    await authStore.fetchUser();
 });
 </script>
 
@@ -116,17 +115,26 @@ onMounted(() => {
                             <!-- Dropdown menu -->
                             <div id="dropdown" class="z-10 hidden bg-white divide-y divide-slate-100 rounded-lg shadow w-44 dark:bg-slate-700 overflow-hidden">
                                 <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="categories-dropdown">
-                                    <li>
-                                        <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">Series</p></RouterLink>
+                                    <li v-if="categoryStore.allCatLoading">
+                                        <div role="status" class="animate-pulse">
+                                            <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div role="status" class="animate-pulse">
+                                            <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div role="status" class="animate-pulse">
+                                            <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div role="status" class="animate-pulse">
+                                            <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full"></div>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </li>
-                                    <li>
-                                        <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">Movies</p></RouterLink>
-                                    </li>
-                                    <li>
-                                        <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">Anime Series</p></RouterLink>
-                                    </li>
-                                    <li>
-                                        <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">Anime Movies</p></RouterLink>
+                                    <li v-else v-for="category in categoryStore.getCategories" :key="category.id">
+                                        <RouterLink :to="`/category/${category.id}`" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">{{ category.category }}</p></RouterLink>
                                     </li>
                                 </ul>
                             </div>
@@ -162,17 +170,26 @@ onMounted(() => {
                                 <!-- Dropdown menu -->
                                 <div id="dropdown2" class="z-10 hidden bg-white divide-y divide-slate-100 rounded-lg shadow w-44 dark:bg-slate-700 overflow-hidden">
                                     <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="categories-dropdown-mobile">
-                                        <li>
-                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Series</p></RouterLink>
+                                        <li v-if="categoryStore.allCatLoading">
+                                            <div role="status" class="animate-pulse">
+                                                <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div role="status" class="animate-pulse">
+                                                <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div role="status" class="animate-pulse">
+                                                <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full border-b border-slate-500"></div>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div role="status" class="animate-pulse">
+                                                <div class="h-10 bg-slate-300 dark:bg-slate-900 w-full"></div>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </li>
-                                        <li>
-                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Movies</p></RouterLink>
-                                        </li>
-                                        <li>
-                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Series</p></RouterLink>
-                                        </li>
-                                        <li>
-                                            <RouterLink to="/category" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0 hover:text-slate-100"><p class="z-10 relative">Anime Movies</p></RouterLink>
+                                        <li v-else v-for="category in categoryStore.getCategories" :key="category.id">
+                                            <RouterLink :to="`/category/${category.id}`" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">{{ category.category }}</p></RouterLink>
                                         </li>
                                     </ul>
                                 </div>

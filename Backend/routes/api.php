@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\TrailerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +35,11 @@ Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 Route::post('/episode', [EpisodeController::class, 'store']);
 Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
 Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);
+
+Route::post('/trailer', [TrailerController::class, 'store']);
+Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
+Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
+
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{category}', [CategoryController::class, 'show']);
+

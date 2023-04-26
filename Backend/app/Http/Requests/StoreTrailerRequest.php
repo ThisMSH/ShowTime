@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Trailer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTrailerRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreTrailerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,16 @@ class StoreTrailerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'show_id' => ['required', 'integer'],
+            'title' => ['required', 'string'],
+            'trailer' => ['required', 'string', 'unique:'.Trailer::class]
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'trailer.unique' => 'This trailer already exist.',
         ];
     }
 }

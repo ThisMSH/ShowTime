@@ -7,6 +7,7 @@ use App\Http\Requests\StoreShowRequest;
 use App\Http\Requests\UpdateShowRequest;
 use App\Http\Resources\EpisodeResource;
 use App\Http\Resources\ShowResource;
+use App\Http\Resources\TrailerResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -72,9 +73,14 @@ class ShowController extends Controller
             ->orderBy('number')
             ->get();
 
+        $trailers = $show->trailers()
+            ->orderBy('trailer')
+            ->get();
+
         return $this->success([
             'show' => new ShowResource($show),
-            'episodes' => EpisodeResource::collection($episodes)
+            'episodes' => EpisodeResource::collection($episodes),
+            'trailers' => TrailerResource::collection($trailers)
         ]);
     }
 

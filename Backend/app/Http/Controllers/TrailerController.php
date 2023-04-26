@@ -5,23 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Trailer;
 use App\Http\Requests\StoreTrailerRequest;
 use App\Http\Requests\UpdateTrailerRequest;
+use App\Http\Resources\TrailerResource;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Auth;
 
 class TrailerController extends Controller
 {
+    use HttpResponses;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return $this->success(
+            TrailerResource::collection(
+                Trailer::orderBy('trailer')->get()
+            )
+        );
     }
 
     /**
@@ -29,7 +30,16 @@ class TrailerController extends Controller
      */
     public function store(StoreTrailerRequest $request)
     {
-        //
+        $request->validated();
+
+        $trailer = Trailer::create([
+            'user_id' => Auth::id(),
+            'show_id' => $request->show_id,
+            'title' => $request->title,
+            'trailer' => $request->trailer
+        ]);
+
+        return $this->success(new TrailerResource($trailer));
     }
 
     /**
@@ -41,19 +51,15 @@ class TrailerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Trailer $trailer)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateTrailerRequest $request, Trailer $trailer)
     {
-        //
+        $request->validated();
+
+        $trailer->update($request->all());
+
+        return $this->success(new TrailerResource($trailer));
     }
 
     /**
@@ -61,6 +67,6 @@ class TrailerController extends Controller
      */
     public function destroy(Trailer $trailer)
     {
-        //
+        $trailer->delete();
     }
 }
