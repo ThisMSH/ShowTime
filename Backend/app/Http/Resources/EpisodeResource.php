@@ -24,7 +24,8 @@ class EpisodeResource extends JsonResource
                 "premium" => (string)$this->episode_type,
                 "thumbnail" => asset(Storage::url($this->thumbnail)),
                 "video" => asset(Storage::url($this->video)),
-                "created" => $this->created_at
+                "created" => $this->created_at,
+                "comments_count" => (string)$this->comments_count ?? ""
             ],
             "relationships" => [
                 "show" => [

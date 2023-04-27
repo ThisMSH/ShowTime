@@ -24,7 +24,7 @@ class ShowResource extends JsonResource
                 "season" => $this->season,
                 "description" => $this->description,
                 "cover" => asset(Storage::url($this->cover)),
-                "wide-cover" => asset(Storage::url($this->wide_cover)),
+                "wide_cover" => asset(Storage::url($this->wide_cover)),
                 "created" => $this->created_at
             ],
             "relationships" => [
@@ -47,6 +47,9 @@ class ShowResource extends JsonResource
                 "category" => [
                     "id" => (string)$this->category->id,
                     "name" => $this->category->category
+                ],
+                "episodes" => [
+                    "count" => (string)$this->episodes_count ?? ""
                 ],
                 "creator" => [
                     "username" => $this->user->username

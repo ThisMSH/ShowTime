@@ -7,7 +7,7 @@ export const useCategoryStore = defineStore('category', {
         categories: null,
         shows: null,
         allCatLoading: false,
-        catShowsLoading: false
+        catShowsLoading: true
     }),
     getters: {
         getCategories: (state) => state.categories,
@@ -24,6 +24,7 @@ export const useCategoryStore = defineStore('category', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
+                    console.log(this.errors);
                 }
             } finally {
                 this.allCatLoading = false;
@@ -39,6 +40,7 @@ export const useCategoryStore = defineStore('category', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
+                    console.log(this.errors);
                 }
             } finally {
                 this.catShowsLoading = false;

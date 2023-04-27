@@ -3,6 +3,7 @@ const props = defineProps({
     toEpisode: String,
     image: String,
     title: String,
+    number: String,
     customClass: String,
     clamp: String,
     imageClass: String,
@@ -10,11 +11,11 @@ const props = defineProps({
 </script>
 
 <template>
-    <RouterLink class="max-sm:w-full" :to="toEpisode">
+    <RouterLink class="max-sm:w-full" :to="`../episode/${toEpisode}`">
         <picture class="">
             <img :class="imageClass" class="" :src="image" :alt="`Thumbnail of ${title}`">
         </picture>
-        <h6 :class="customClass" class="font-medium"><span :class="clamp">{{ title }}</span></h6>
+        <h6 :class="customClass" class="font-medium"><span :class="clamp">{{ number }} - {{ title }}</span></h6>
     </RouterLink>
 </template>
 

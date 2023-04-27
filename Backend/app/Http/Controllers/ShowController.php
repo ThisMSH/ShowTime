@@ -74,8 +74,10 @@ class ShowController extends Controller
             ->get();
 
         $trailers = $show->trailers()
-            ->orderBy('trailer')
+            ->orderBy('title')
             ->get();
+
+        $show->loadCount('episodes');
 
         return $this->success([
             'show' => new ShowResource($show),

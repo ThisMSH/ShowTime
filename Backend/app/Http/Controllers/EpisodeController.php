@@ -67,7 +67,11 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
-        $comments = $episode->comments()->get();
+        $comments = $episode->comments()
+            ->orderByDesc('id')
+            ->get();
+
+        $episode->loadCount('comments');
 
         return $this->success([
             'episode' => new EpisodeResource($episode),

@@ -6,6 +6,7 @@ import RectangularLogo from './utilities/RectangularLogo.vue';
 import CircleLogoDark from './utilities/CircleLogoDark.vue';
 import { useAuthStore } from '../stores/auth';
 import { useCategoryStore } from '../stores/category';
+import { initFlowbite } from 'flowbite';
 
 const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
@@ -24,7 +25,8 @@ onMounted(async () => {
     window.addEventListener("scroll", function() {
         navBar.value.classList.toggle("navbar", window.scrollY > 0);
     });
-
+    
+    initFlowbite();
     await categoryStore.fetchAllCategories();
     await authStore.fetchUser();
 });

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\TrailerController;
@@ -43,3 +44,6 @@ Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{category}', [CategoryController::class, 'show']);
 
+Route::post('/comment', [CommentController::class, 'store']);
+Route::patch('/comment/{comment}', [CommentController::class, 'update']);
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);

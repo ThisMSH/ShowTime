@@ -1,6 +1,19 @@
 <script setup>
 import { initDropdowns } from 'flowbite';
 import { onMounted } from 'vue';
+import { formatDistanceToNow } from 'date-fns';
+
+const props = defineProps({
+    id: String,
+    comment: String,
+    created: String,
+    username: String,
+    name: String,
+    avatar: String
+});
+
+const date = new Date(props.created);
+const formattedDate = formatDistanceToNow(date);
 
 onMounted (() => {
     initDropdowns();
@@ -14,13 +27,13 @@ onMounted (() => {
                 <p class="inline-flex items-center mr-3">
                     <img
                         class="mr-2 w-10 h-10 rounded-full"
-                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                        alt="Michael Gough">
+                        :src="avatar"
+                        :alt="`${name}'s avatar'`">
                 </p>
                 <div>
-                    <p class="text-sm md:text-base">Michael Gough</p>
+                    <p class="text-sm md:text-base">{{ username }}</p>
                     <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400"><time pubdate datetime="2022-02-08"
-                            title="February 8th, 2022">Feb. 8, 2022</time></p>
+                            title="February 8th, 2022">{{ formattedDate }} ago</time></p>
                 </div>
             </div>
             <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
@@ -44,15 +57,13 @@ onMounted (() => {
                             class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</a>
+                        <button type="button"
+                            class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
                     </li>
                 </ul>
             </div>
         </div>
-        <p class="text-slate-700 dark:text-slate-300">Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
-            instruments for the UX designers. The knowledge of the design tools are as important as the
-            creation of the design strategy.</p>
+        <p class="text-slate-700 dark:text-slate-300">{{ comment }}</p>
     </article>
 </template>
 

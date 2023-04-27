@@ -5,14 +5,14 @@ import Artplayer from 'artplayer';
 const props = defineProps({
     url: String,
     title: String,
-
 });
+console.log(props.url);
 
 const player = ref(null);
 const options = reactive({
     // container: '.artplayer-app',
-    url: '../src/assets/videos/[Mugi] Kimetsu no Yaiba - Katanakaji no Sato-hen - 02 [1080p].mkv',
-    title: 'Kimetsu no Yaiba - Katanakaji no Sato-hen - 02',
+    url: props.url,
+    title: props.title,
     // poster: '/assets/sample/poster.jpg',
     volume: 0.5,
     isLive: false,
@@ -129,16 +129,16 @@ const options = reactive({
         {
             default: true,
             html: 'FHD 1080P',
-            url: '/assets/sample/video.mp4',
+            url: props.url,
         },
-        {
-            html: 'HD 720P',
-            url: '/assets/sample/video.mp4',
-        },
-        {
-            html: 'SD 480P',
-            url: '/assets/sample/video.mp4',
-        },
+        // {
+        //     html: 'HD 720P',
+        //     url: '/assets/sample/video.mp4',
+        // },
+        // {
+        //     html: 'SD 480P',
+        //     url: '/assets/sample/video.mp4',
+        // },
     ],
     // thumbnails: {
     //     url: '/assets/sample/thumbnails.png',
