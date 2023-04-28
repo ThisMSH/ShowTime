@@ -6,7 +6,7 @@ import RectangularLogo from './utilities/RectangularLogo.vue';
 import CircleLogoDark from './utilities/CircleLogoDark.vue';
 import { useAuthStore } from '../stores/auth';
 import { useCategoryStore } from '../stores/category';
-import { initFlowbite } from 'flowbite';
+import { initDropdowns } from 'flowbite';
 
 const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
@@ -21,12 +21,17 @@ function closeSideHeader() {
     sideHeaderClasses.value = "-right-80";
 }
 
+const handleLogout = async () => {
+    await authStore.handleLogout();
+    initDropdowns();
+}
+
 onMounted(async () => {
     window.addEventListener("scroll", function() {
         navBar.value.classList.toggle("navbar", window.scrollY > 0);
     });
     
-    initFlowbite();
+    initDropdowns();
     await categoryStore.fetchAllCategories();
     await authStore.fetchUser();
 });
@@ -76,7 +81,7 @@ onMounted(async () => {
                                         <RouterLink to="/dashboard" class="block px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative">Dashboard</p></RouterLink>
                                     </li>
                                     <li>
-                                        <button @click="authStore.handleLogout" type="button" class="block w-full px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative text-left">Logout</p></button>
+                                        <button @click="handleLogout" type="button" class="block w-full px-4 py-2 overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="z-10 relative text-left">Logout</p></button>
                                     </li>
                                 </ul>
                             </div>

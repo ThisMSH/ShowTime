@@ -49,13 +49,13 @@ watch(() => thisShowID.value, async (showID) => {
         <section class="mt-5 col-span-3 flex flex-col gap-y-6">
             <!-- <VideoPlayer :title="episodeStore.getSingleEpisode.episode.attributes.title" :url="episodeStore.getSingleEpisode.episode.attributes.video" class="aspect-video" /> -->
             <template v-if="!authStore.getUser">
-                <p>
+                <p class="aspect-video flex justify-center items-center text-xl font-medium">
                     You need to be logged in in order to watch our shows
                 </p>
             </template>
             <template v-else>
                 <template v-if="authStore.getUser.user_type == 0 && episodeStore.getSingleEpisode.episode.attributes.premium != 0">
-                    <p>
+                    <p class="aspect-video flex justify-center items-center text-xl font-medium">
                         This episode is available for premium users only!
                     </p>
                 </template>
@@ -102,7 +102,7 @@ watch(() => thisShowID.value, async (showID) => {
             </div>
             <!-- Comments from database -->
             <div v-for="comment in episodeStore.getSingleEpisode.comments" :key="comment.id">
-                <CommentComponent :id="comment.id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" />
+                <CommentComponent :id="comment.id" :user_id="comment.relationships.creator.user_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" />
             </div>
         </section>
     </div>

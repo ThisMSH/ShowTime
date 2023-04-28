@@ -23,6 +23,7 @@ class CommentResource extends JsonResource
             ],
             "relationships" => [
                 "creator" => [
+                    "user_id" => $this->user->id,
                     "name" => $this->user->name,
                     "username" => $this->user->username,
                     "avatar" => asset(Storage::url($this->user->avatar))

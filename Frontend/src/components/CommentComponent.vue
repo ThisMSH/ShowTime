@@ -2,9 +2,13 @@
 import { initDropdowns } from 'flowbite';
 import { onMounted } from 'vue';
 import { formatDistanceToNow } from 'date-fns';
+import { useAuthStore } from '../stores/auth';
+import DeleteComment from './modals/DeleteComment.vue';
 
+const authStore = useAuthStore();
 const props = defineProps({
     id: String,
+    user_id: Number,
     comment: String,
     created: String,
     username: String,
@@ -36,32 +40,33 @@ onMounted (() => {
                             title="February 8th, 2022">{{ formattedDate }} ago</time></p>
                 </div>
             </div>
-            <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                class="inline-flex items-center p-2 text-sm font-medium text-center text-slate-400 bg-slate-300 rounded-lg hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:focus:ring-slate-600"
-                type="button">
-                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                    </path>
-                </svg>
-                <span class="sr-only">Comment settings</span>
-            </button>
-            <!-- Dropdown menu -->
-            <div id="dropdownComment1"
-                class="hidden z-10 w-36 bg-slate-300 rounded divide-y divide-slate-100 shadow dark:bg-slate-700 dark:divide-slate-600">
-                <ul class="py-1 text-sm text-slate-700 dark:text-slate-200"
-                    aria-labelledby="dropdownMenuIconHorizontalButton">
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</a>
-                    </li>
-                    <li>
-                        <button type="button"
-                            class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
-                    </li>
-                </ul>
-            </div>
+            <template v-if="authStore.getUser && authStore.getUser.id == user_id">
+                <button :data-dropdown-toggle="`dropdownComment-${id}`"
+                    class="inline-flex items-center p-2 text-sm font-medium text-center text-slate-400 bg-slate-300 rounded-lg hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:focus:ring-slate-600"
+                    type="button">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                        </path>
+                    </svg>
+                    <span class="sr-only">Comment settings</span>
+                </button>
+                <!-- Dropdown menu -->
+                <div :id="`dropdownComment-${id}`"
+                    class="hidden z-10 w-36 bg-slate-300 rounded divide-y divide-slate-100 shadow dark:bg-slate-700 dark:divide-slate-600">
+                    <ul class="py-1 text-sm text-slate-700 dark:text-slate-200"
+                        :aria-labelledby="`dropdownMenuIconHorizontalButton-${id}`">
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</a>
+                        </li>
+                        <li>
+                            <DeleteComment :comment_id="id" />
+                        </li>
+                    </ul>
+                </div>
+            </template>
         </div>
         <p class="text-slate-700 dark:text-slate-300">{{ comment }}</p>
     </article>

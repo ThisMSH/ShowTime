@@ -31,34 +31,7 @@ watch(() => props.id, async (categoryID) => {
         <H2 :title="categoryTitle" />
         <div class="my-40 grid gap-y-20 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
             <template v-if="categoryStore.catShowsLoading">
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
-                    <ShowSkeleton />
-                </div>
-                <div class="flex justify-center items-center">
+                <div v-for="i in 12" :key="i" class="flex justify-center items-center">
                     <ShowSkeleton />
                 </div>
             </template>

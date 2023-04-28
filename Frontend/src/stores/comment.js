@@ -6,14 +6,15 @@ export const useCommentStore = defineStore('comment', {
     state: () => ({
         errors: [],
         comment: null,
-        isLoading: false
+        isLoading: false,
+        addLoading: false,
     }),
     getters: {
         getComment: (state) => state.comment
     },
     actions: {
         async addComment(data) {
-            this.isLoading = true;
+            this.addLoading = true;
             this.errors = [];
 
             const episode = useEpisodeStore();
@@ -30,15 +31,15 @@ export const useCommentStore = defineStore('comment', {
                     console.log(this.errors);
                 }
             } finally {
-                this.isLoading = false;
+                this.addLoading = false;
             }
         },
-        async fetchEpisode(id) {
+        async updateComment(id) {
             this.episodeLoading = true;
             this.errors = [];
 
             try {
-                const singleEpisode = await axios.get(`/api/episode/${id}`);
+                const singleEpisode = await axios.patch(`/api/episode/${id}`);
                 this.episode = singleEpisode.data.data;
             } catch (error) {
                 if (error.response.status === 422) {
@@ -47,6 +48,21 @@ export const useCommentStore = defineStore('comment', {
                 }
             } finally {
                 this.episodeLoading = false;
+            }
+        },
+        async deleteComment(id) {
+            this.isLoading = true;
+            this.errors = [];
+
+            try {
+                await axios.delete(`/api/comment/${id}`);
+            } catch (error) {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors;
+                    console.log(this.errors);
+                }
+            } finally {
+                this.isLoading = false;
             }
         }
     }
