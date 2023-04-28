@@ -3,12 +3,14 @@ import { initDropdowns } from 'flowbite';
 import { onMounted } from 'vue';
 import { formatDistanceToNow } from 'date-fns';
 import { useAuthStore } from '../stores/auth';
-import DeleteComment from './modals/DeleteComment.vue';
+import { useCommentStore } from '../stores/comment';
 
 const authStore = useAuthStore();
+const commentStore = useCommentStore();
 const props = defineProps({
     id: String,
-    user_id: Number,
+    user_id: String,
+    episode_id: String,
     comment: String,
     created: String,
     username: String,
@@ -62,7 +64,7 @@ onMounted (() => {
                                 class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</a>
                         </li>
                         <li>
-                            <DeleteComment :comment_id="id" />
+                            <button @click="commentStore.deleteComment(id, episode_id)" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
                         </li>
                     </ul>
                 </div>

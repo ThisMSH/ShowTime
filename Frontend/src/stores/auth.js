@@ -4,16 +4,30 @@ import axios from 'axios';
 export const useAuthStore = defineStore("auth", {
     state: () => ({
         authUser: null,
+        allUsers: null,
         authErrors: [],
         isLoading: false
     }),
     getters: {
         getUser: (state) => state.authUser,
+        getAllUsers: (state) => state.allUsers,
         getErrors: (state) => state.authErrors
     },
     actions: {
         async fetchToken() {
             await axios.get("/sanctum/csrf-cookie");
+        },
+        async fetchAllUsers() {
+            this.authErrors = [];
+
+            try {
+                const userData = await axios.get("/api/users");
+                this.allUsers = userData.data.data;
+            } catch (error) {
+                if (error.response.status === 422) {
+                    this.authErrors = error.response.data.errors;
+                }
+            }
         },
         async fetchUser() {
             this.authErrors = [];

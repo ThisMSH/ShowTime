@@ -22,28 +22,39 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->group(function () {
     // User info
     Route::get('/user', [UserController::class, 'show']);
+    Route::get('/users', [UserController::class, 'index']);
+
+    // Shows
+    Route::post('/show', [ShowController::class, 'store']);
+    Route::patch('/show/{show}', [ShowController::class, 'update']);
+    Route::delete('/show/{show}', [ShowController::class, 'destroy']);
+
+    // Episodes
+    Route::post('/episode', [EpisodeController::class, 'store']);
+    Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
+    Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);
+
+
+    // Trailers
+    Route::post('/trailer', [TrailerController::class, 'store']);
+    Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
+    Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
+
+    // Comments
+    Route::post('/comment', [CommentController::class, 'store']);
+    Route::patch('/comment/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);
 });
 
+// Shows
 Route::get('/show', [ShowController::class, 'index']);
 Route::get('/show/{show}', [ShowController::class, 'show']);
 Route::get('/show/search/{search}', [ShowController::class, 'search']);
-Route::post('/show', [ShowController::class, 'store']);
-Route::patch('/show/{show}', [ShowController::class, 'update']);
-Route::delete('/show/{show}', [ShowController::class, 'destroy']);
 
+// Episodes
 Route::get('/episode', [EpisodeController::class, 'index']);
 Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
-Route::post('/episode', [EpisodeController::class, 'store']);
-Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
-Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);
 
-Route::post('/trailer', [TrailerController::class, 'store']);
-Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
-Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
-
+// Categories
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{category}', [CategoryController::class, 'show']);
-
-Route::post('/comment', [CommentController::class, 'store']);
-Route::patch('/comment/{comment}', [CommentController::class, 'update']);
-Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);

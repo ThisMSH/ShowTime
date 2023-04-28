@@ -23,60 +23,122 @@ const animeShowCardContents = [
     "color": "blue",
     },
 ];
-
 const animeShows = [
     {
-        "title": "Fate/stay night",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657556398090/113810l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Fate/stay night",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657556398090/113810l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "JJK Movie",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657350864916/119044l.jpg",
-        "show_type": "Movie",
+        "attributes": {
+            "title": "JJK Movie",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657350864916/119044l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "JJK S2",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657111806025/FLY4LfmacAExJK1.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "JJK S2",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657111806025/FLY4LfmacAExJK1.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Fate/Zero",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657795477534/117645l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Fate/Zero",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657795477534/117645l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "JJK S1",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658017759242/109222l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "JJK S1",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658017759242/109222l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Naruto",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658256850985/111305l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Naruto",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658256850985/111305l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "1.3/10"
     },
     {
-        "title": "One Piece",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658445578260/120243l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "One Piece",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658445578260/120243l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "3.3/10"
     },
     {
-        "title": "OPM",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658684670023/72533l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "OPM",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658684670023/72533l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "7.3/10"
     },
     {
-        "title": "Kimetsu no Yaiba",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658860814406/120036l.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Kimetsu no Yaiba",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658860814406/120036l.jpg",
+            "season": "S1",
+        },
+        "relationships": {
+            "category": {
+                "name": "Anime"
+            }
+        },
         "rating": "10/10"
     },
 ];
@@ -96,60 +158,122 @@ const liveShowCardContents = [
     "color": "gray",
     },
 ];
-
 const liveShows = [
     {
-        "title": "Show one",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563112779927/a2096c83decf5b1d32c414de10f5df11.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Show one",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563112779927/a2096c83decf5b1d32c414de10f5df11.jpg",
+            "show_type": "Series",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Show two",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563330875543/7516fd69b3eb14b8587a2911fd505e8f.jpg",
-        "show_type": "Movie",
+        "attributes": {
+            "title": "Show two",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563330875543/7516fd69b3eb14b8587a2911fd505e8f.jpg",
+            "show_type": "Movie",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Show aaa",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563548983356/7548d760c35b06029e4c9778065baa2a.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Show aaa",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563548983356/7548d760c35b06029e4c9778065baa2a.jpg",
+            "show_type": "Series",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Show zzz",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563775479818/8669af1522d2a280e79555f0e2d18b83.jpg",
-        "show_type": "Movie",
+        "attributes": {
+            "title": "Show zzz",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563775479818/8669af1522d2a280e79555f0e2d18b83.jpg",
+            "show_type": "Movie",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Show bbb",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564001964095/f4b55c684e533915648dc01986ea8f04.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Show bbb",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564001964095/f4b55c684e533915648dc01986ea8f04.jpg",
+            "show_type": "Series",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "9.3/10"
     },
     {
-        "title": "Show fff",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564203294851/f5c4d33040b5c0636a473a9fbe27749e.jpg",
-        "show_type": "Movie",
+        "attributes": {
+            "title": "Show fff",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564203294851/f5c4d33040b5c0636a473a9fbe27749e.jpg",
+            "show_type": "Movie",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "1.3/10"
     },
     {
-        "title": "Show 123",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564421402644/fa04a811f674e363cecd6f17d79c56be.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Show 123",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564421402644/fa04a811f674e363cecd6f17d79c56be.jpg",
+            "show_type": "Series",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "3.3/10"
     },
     {
-        "title": "Show final",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564769521774/43702135cdbad67e6efcde27547f7040.jpg",
-        "show_type": "Series",
+        "attributes": {
+            "title": "Show final",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564769521774/43702135cdbad67e6efcde27547f7040.jpg",
+            "show_type": "Series",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "7.3/10"
     },
     {
-        "title": "Show yes",
-        "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564983435377/a8bdfe222ec670a9244f30c301c33e52.jpg",
-        "show_type": "Movie",
+        "attributes": {
+            "title": "Show yes",
+            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564983435377/a8bdfe222ec670a9244f30c301c33e52.jpg",
+            "show_type": "Movie",
+        },
+        "relationships": {
+            "category": {
+                "name": "Series"
+            }
+        },
         "rating": "10/10"
     },
 ];

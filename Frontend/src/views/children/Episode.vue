@@ -102,7 +102,7 @@ watch(() => thisShowID.value, async (showID) => {
             </div>
             <!-- Comments from database -->
             <div v-for="comment in episodeStore.getSingleEpisode.comments" :key="comment.id">
-                <CommentComponent :id="comment.id" :user_id="comment.relationships.creator.user_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" />
+                <CommentComponent :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" />
             </div>
         </section>
     </div>

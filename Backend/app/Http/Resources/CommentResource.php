@@ -23,11 +23,14 @@ class CommentResource extends JsonResource
             ],
             "relationships" => [
                 "creator" => [
-                    "user_id" => $this->user->id,
+                    "user_id" => (string)$this->user->id,
                     "name" => $this->user->name,
                     "username" => $this->user->username,
                     "avatar" => asset(Storage::url($this->user->avatar))
                 ],
+                "episode" => [
+                    "episode_id" => (string)$this->episode->id
+                ]
             ]
         ];
     }

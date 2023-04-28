@@ -9,9 +9,10 @@ const props = defineProps({
     input: String,
     inputType: String,
     inputID: String,
-    error: String,
+    errors: { type: Array, default: [] },
     errorID: String,
     datalistID: String,
+    showsList: Array
 });
 const { label, input, inputType, inputID, error, errorID, datalistID } = toRefs(props);
 const inputComputed = computed({
@@ -26,16 +27,12 @@ const inputComputed = computed({
             <input v-model="inputComputed" :list="datalistID" :type="inputType" :id="inputID" :aria-describedby="errorID" :class="[error ? 'border-red-600' : '', error ? 'dark:border-red-500' : '', error ? 'focus:border-red-600' : '', error ? 'dark:focus:border-red-500' : '']" class="datalist block py-2.5 px-0 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " :readonly="isReadOnly" :autofocus="isFocused" />
             <label :for="inputID" :class="[error ? 'text-red-600' : '', error ? 'dark:text-red-500' : '']" class="absolute text-sm text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 left-0 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ label }}</label>
             <datalist :id="datalistID">
-                <option value="1">Kimetsu</option>
-                <option value="2">attack</option>
-                <option value="3">kaguya</option>
-                <option value="4">one_piece</option>
-                <option value="5">jujutsu</option>
-                <option value="6">something</option>
-                <option value="71">Fate</option>
+                <option v-for="show in showsList" :key="show.id" :value="show.id">{{ show.attributes.title }} - {{ show.attributes.season }}</option>
             </datalist>
         </div>
-        <p v-if="error" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">{{ error }}</p>
+        <div v-if="errors">
+            <p v-for="error in errors" :key="error" class="mt-2 text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+        </div>
     </div>
 </template>
 

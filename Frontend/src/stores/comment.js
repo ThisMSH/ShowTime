@@ -50,12 +50,15 @@ export const useCommentStore = defineStore('comment', {
                 this.episodeLoading = false;
             }
         },
-        async deleteComment(id) {
+        async deleteComment(id, epi) {
             this.isLoading = true;
             this.errors = [];
 
+            const episode = useEpisodeStore();
+
             try {
                 await axios.delete(`/api/comment/${id}`);
+                await episode.fetchEpisode(epi);
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;

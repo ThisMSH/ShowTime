@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateShowRequest;
 use App\Http\Resources\EpisodeResource;
 use App\Http\Resources\ShowResource;
 use App\Http\Resources\TrailerResource;
+use App\Models\Episode;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,11 +22,16 @@ class ShowController extends Controller
      */
     public function index()
     {
-        return $this->success(
-            ShowResource::collection(
-                Show::orderBy('title')->get()
-            )
-        );
+        $totalAnime = Show::whereIn('category_id', [3, 4])->count();
+        $totalLiveAction = Show::whereIn('category_id', [1, 2])->count();
+        $totalEpisodes = Episode::count();
+
+        return $this->success([
+            'shows' => ShowResource::collection(Show::orderBy('title')->get()),
+            'total_anime' => (string)$totalAnime,
+            'total_liveaction' => (string)$totalLiveAction,
+            'total_episodes' => (string)$totalEpisodes
+        ]);
     }
 
     /**

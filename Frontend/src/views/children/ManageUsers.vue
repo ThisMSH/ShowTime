@@ -4,252 +4,14 @@ import AdminUpdateUser from '../../components/modals/AdminUpdateUser.vue';
 import AdminDeleteUser from '../../components/modals/AdminDeleteUser.vue';
 import FooterRights from '../../components/utilities/FooterRights.vue';
 import { Icon } from '@iconify/vue';
+import { useAuthStore } from '../../stores/auth';
+import { onMounted } from 'vue';
 
-const people = [
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-]
+const authStore = useAuthStore();
+
+onMounted(async () => {
+    await authStore.fetchAllUsers();
+});
 </script>
 
 <template>
@@ -268,7 +30,7 @@ const people = [
                             Total Users
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold">
-                            78531
+                            {{ authStore.getAllUsers?.total_users }}
                         </dd>
                     </div>
                 </div>
@@ -282,7 +44,7 @@ const people = [
                             Total Regular Members
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold">
-                            78531
+                            {{ authStore.getAllUsers?.total_free }}
                         </dd>
                     </div>
                 </div>
@@ -296,7 +58,7 @@ const people = [
                             Total Premium Members
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold">
-                            78531
+                            {{ authStore.getAllUsers?.total_premium }}
                         </dd>
                     </div>
                 </div>
@@ -326,32 +88,41 @@ const people = [
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700">
-                                    <tr v-for="person in people" :key="person.email">
+                                    <tr v-if="authStore.getAllUsers" v-for="person in authStore.getAllUsers.users" :key="person.id">
                                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                             <div class="flex items-center">
                                                 <div class="h-10 w-10 flex-shrink-0">
-                                                    <img class="h-10 w-10 rounded-full" :src="person.image" alt="" />
+                                                    <img class="h-10 w-10 rounded-full" :src="person.attributes.avatar" :alt="`${person.attributes.name}'s avatar'`" />
                                                 </div>
                                                 <div class="ml-4">
-                                                    <div class="font-medium">{{ person.user }}</div>
+                                                    <div class="font-medium">{{ person.attributes.username }}</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.fullName }}</div>
+                                            <div class="">{{ person.attributes.name }}</div>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.email }}</div>
+                                            <div class="">{{ person.attributes.email }}</div>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.birthday }}</div>
+                                            <div class="">{{ person.attributes.birthday }}</div>
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            {{ person.role }}</td>
+                                            <p  v-if="person.attributes.user_type == 0">
+                                                Free
+                                            </p>
+                                            <p  v-else-if="person.attributes.user_type == 1">
+                                                Admin
+                                            </p>
+                                            <p  v-else-if="person.attributes.user_type == 2">
+                                                Premium
+                                            </p>
+                                        </td>
                                         <td
                                             class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <AdminUpdateUser />
-                                            <AdminDeleteUser userID="1" />
+                                            <!-- <AdminUpdateUser />
+                                            <AdminDeleteUser userID="1" /> -->
                                         </td>
                                     </tr>
                                 </tbody>

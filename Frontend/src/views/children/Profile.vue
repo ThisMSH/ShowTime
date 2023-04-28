@@ -79,7 +79,7 @@ onMounted(() => {
                     </template>
                 </div>
                 <div class="mb-10 mt-20 flex justify-center items-center">
-                    <UpdateUser />
+                    <!-- <UpdateUser /> -->
                 </div>
             </div>
         </div>

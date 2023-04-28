@@ -119,14 +119,14 @@ watch(() => props.id, async (showID) => {
                         <h3 class="text-xl sm:text-2xl lg:text-3xl text-center text-amber-500 font-medium sm:font-semibold">{{ showStore.getSingleShow.show.attributes.title }} - {{ showStore.getSingleShow.show.attributes.season }}</h3>
                         <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                         <div class="grid grid-cols-2 gap-x-5 gap-y-2 max-sm:text-sm">
-                            <h6>Average score:</h6>
-                            <p>8.8/10 <span>(3 users)</span></p>
+                            <!-- <h6>Average score:</h6>
+                            <p>8.8/10 <span>(3 users)</span></p> -->
                             <h6>Category:</h6>
                             <p>{{ showStore.getSingleShow.show.relationships.category.name }}</p>
                             <h6>Episodes:</h6>
                             <p>{{ showStore.getSingleShow.show.relationships.episodes.count }}</p>
                         </div>
-                        <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
+                        <!-- <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                         <div class="relative z-0 my-2">
                             <label for="underline_select" class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">My Rating</label>
                             <select id="underline_select" class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer">
@@ -142,7 +142,7 @@ watch(() => props.id, async (showID) => {
                                 <option value="2">2 - Horrible</option>
                                 <option value="1">1 - Appalling</option>
                             </select>
-                        </div>
+                        </div> -->
                         <template v-if="showStore.getSingleShow.show.relationships.prequel">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                             <div class="flex w-full">
