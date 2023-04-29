@@ -3,6 +3,7 @@ import ToggleBtn from '../components/utilities/ToggleBtn.vue';
 import RectangularLogo from '../components/utilities/RectangularLogo.vue';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
+import { useRoute } from 'vue-router';
 
 const sideDashboardMenu = ref(null);
 const toggleBtn = ref(null);
@@ -38,12 +39,15 @@ const toggleDashboardSections = function () {
             }
         });
     }
-}
+};
 const hideShowSideMenu = function () {
     sideDashboardMenu.value.classList.toggle("h-0");
     sideDashboardMenu.value.classList.toggle("overflow-hidden");
     sideMenuList.value.classList.toggle("opacity-0");
-}
+};
+const currentPath = ref("");
+const route = useRoute();
+currentPath.value = route.name;
 
 onMounted(() => {
     toggleDashboardSections();
@@ -74,7 +78,7 @@ onMounted(() => {
             </div>
             <!-- Side menu contents -->
             <ul ref="sideMenuList" class="mt-36 flex flex-col text-start w-full transition-all duration-500 child:relative child:w-full child:h-20 child:rounded-xl child:border-8 child:border-transparent child:transition-all child:duration-500 child:before:absolute child:before:w-5 child:before:h-5 child:before:rounded-br-3xl child:before:shadow-[6px_5px_0_5px] child:before:shadow-slate-100 child:before:dark:shadow-slate-950 child:before:-right-3 child:before:-top-7 child:before:opacity-0 child:before:scale-0 child:before:transition-all child:before:duration-500 child:before:origin-bottom-right child:after:absolute child:after:w-5 child:after:h-5 child:after:rounded-tr-3xl child:after:shadow-[6px_-5px_0_5px] child:after:shadow-slate-100 child:after:dark:shadow-slate-950 child:after:-right-3 child:after:-bottom-7 child:after:opacity-0 child:after:scale-0 child:after:transition-all child:after:duration-500 child:after:origin-bottom-right">
-                <li @click="toggleDashboardSections" class="dashboard-sections active">
+                <li @click="toggleDashboardSections" :class="[currentPath == 'profile' ? 'active' : '']" class="dashboard-sections">
                     <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/profile" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                          text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-red-500 after:dark:bg-red-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="ic:baseline-person" /></span>
@@ -88,7 +92,7 @@ onMounted(() => {
                         <span class="text text-lg font-medium pl-4 transition-all duration-500">My Favorites</span>
                     </RouterLink>
                 </li>
-                <li @click="toggleDashboardSections" class="dashboard-sections">
+                <li @click="toggleDashboardSections" :class="[currentPath == 'pricing' ? 'active' : '']" class="dashboard-sections">
                     <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/pricing" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                          text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-orange-400 after:dark:bg-orange-500 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" /></span>
@@ -105,21 +109,21 @@ onMounted(() => {
                             <div class="h-1 bg-gradient-to-r from-transparent via-slate-500 dark:via-slate-400 to-transparent"></div>
                         </div>
                     </li>
-                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_users' ? 'active' : '']" class="dashboard-sections">
                         <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_users" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                              text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-lime-400 after:dark:bg-lime-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-account-box-outline-rounded" /></span>
                             <span class="text text-lg font-medium pl-4 transition-all duration-500">Users Information</span>
                         </RouterLink>
                     </li>
-                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_shows' ? 'active' : '']" class="dashboard-sections">
                         <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_shows" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                              text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-violet-400 after:dark:bg-violet-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-cinematic-blur-outline-rounded" /></span>
                             <span class="text text-lg font-medium pl-4 transition-all duration-500">Shows Management</span>
                         </RouterLink>
                     </li>
-                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_episodes' ? 'active' : '']" class="dashboard-sections">
                         <RouterLink class="relative flex items-center w-full no-underline z-10" to="/dashboard/manage_episodes" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-lg
                              text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:bg-pink-400 after:dark:bg-pink-600 after:border-8 after:border-slate-100 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-video-camera-outline-rounded" /></span>

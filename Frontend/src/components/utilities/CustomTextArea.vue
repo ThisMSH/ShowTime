@@ -6,7 +6,7 @@ const props = defineProps({
     label: String,
     input: String,
     textareaID: String,
-    error: String,
+    errors: { type: Array, default: [] },
     errorID: String,
 });
 const { label, input, textareaID, error, errorID } = toRefs(props);
@@ -22,7 +22,9 @@ const inputComputed = computed({
             <textarea v-model="inputComputed" :id="textareaID" :aria-describedby="errorID" :class="[error ? 'border-red-600' : '', error ? 'dark:border-red-500' : '', error ? 'focus:border-red-600' : '', error ? 'dark:focus:border-red-500' : '']" class="block py-2.5 px-0 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none dark:border-slate-400 caret-orange-400 dark:caret-orange-500 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer" ></textarea>
             <label :for="textareaID" :class="[error ? 'text-red-600' : '', error ? 'dark:text-red-500' : '']" class="absolute text-sm text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 left-0 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ label }}</label>
         </div>
-        <p v-if="error" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">{{ error }}</p>
+        <div v-if="errors" :id="errorID">
+            <p v-for="error in errors" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+        </div>
     </div>
 </template>
 

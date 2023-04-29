@@ -14,14 +14,14 @@ const showStore = useShowStore();
 const categoryStore = useCategoryStore();
 
 const formData = ref({
-    title: null,
-    season: null,
-    description: null,
-    category: null,
+    title: "",
+    season: "",
+    description: "",
+    category: "",
     prequel: "",
     sequel: "",
-    cover: null,
-    wide_cover: null
+    cover: "",
+    wide_cover: ""
 });
 
 function getCover(file) {
@@ -34,7 +34,6 @@ function getWideCover(file) {
 
 onMounted(async () => {
     initModals();
-    await categoryStore.fetchAllCategories();
 });
 </script>
 

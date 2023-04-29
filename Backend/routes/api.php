@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::patch('/show/{show}', [ShowController::class, 'update']);
 Route::middleware(['auth:sanctum'])->group(function () {
     // User info
     Route::get('/user', [UserController::class, 'show']);
@@ -26,7 +27,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Shows
     Route::post('/show', [ShowController::class, 'store']);
-    Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
 
     // Episodes

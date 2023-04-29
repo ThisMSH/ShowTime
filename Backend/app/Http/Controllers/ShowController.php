@@ -117,10 +117,16 @@ class ShowController extends Controller
             $wide_cover = null;
         }
 
-        $request->cover = $cover;
-        $request->wide_cover = $wide_cover;
-
-        $show->update($request->all());
+        $show->update([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'season' => $request->season,
+            'description' => $request->description,
+            'cover' => $cover,
+            'wide_cover' => $wide_cover,
+            'sequel' => $request->sequel,
+            'prequel' => $request->prequel,
+        ]);
 
         return $this->success(new ShowResource($show));
     }

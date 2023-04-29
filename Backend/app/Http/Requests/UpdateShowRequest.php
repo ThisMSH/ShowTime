@@ -22,12 +22,12 @@ class UpdateShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['sometimes', 'string', 'max:500'],
-            'season' => ['sometimes', 'string'],
-            'description' => ['sometimes', 'string'],
-            'cover' => ['sometimes', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=7/10,min_width=420,min_height=600'],
-            'wide_cover' => ['sometimes', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=9/5,min_width=900,min_height=500'],
-            'category_id' => ['sometimes', 'integer'],
+            'title' => ['sometimes', 'nullable', 'string', 'max:500'],
+            'season' => ['sometimes', 'nullable', 'string'],
+            'description' => ['sometimes', 'nullable', 'string'],
+            'cover' => ['sometimes', 'nullable', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=7/10,min_width=420,min_height=600'],
+            'wide_cover' => ['sometimes', 'nullable', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=9/5,min_width=900,min_height=500'],
+            'category_id' => ['sometimes', 'nullable', 'integer'],
             'sequel' => ['sometimes', 'nullable', 'integer'],
             'prequel' => ['sometimes', 'nullable', 'integer'],
         ];

@@ -11,10 +11,13 @@ import AdminUpdateShow from '../../components/modals/AdminUpdateShow.vue';
 import AdminDeleteShow from '../../components/modals/AdminDeleteShow.vue';
 import { useShowStore } from '../../stores/show';
 import { onMounted } from 'vue';
+import { useCategoryStore } from '../../stores/category';
 
+const categoryStore = useCategoryStore();
 const showStore = useShowStore();
 
 onMounted(async () => {
+    await categoryStore.fetchAllCategories();
     await showStore.fetchAllShows();
 });
 </script>
@@ -127,7 +130,7 @@ onMounted(async () => {
                                             </td>
                                             <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                 <div class="flex items-center gap-x-5">
-                                                    <!-- <AdminUpdateShow /> -->
+                                                    <AdminUpdateShow :show="show" />
                                                     <AdminDeleteShow :showID="show.id" :show_title="show.attributes.title" :show_season="show.attributes.season" />
                                                 </div>
                                             </td>

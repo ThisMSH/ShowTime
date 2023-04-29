@@ -31,7 +31,7 @@ const inputComputed = computed({
             </datalist>
         </div>
         <div v-if="errors">
-            <p v-for="error in errors" :key="error" class="mt-2 text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+            <p v-for="error in errors" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
         </div>
     </div>
 </template>

@@ -92,6 +92,49 @@ export const useShowStore = defineStore('show', {
                 this.isLoading = false;
             }
         },
+        async updateShow(id, data) {
+            this.isLoading = true;
+            this.errors = [];
+
+            // const form = new FormData();
+            // data.title ? form.append("title", data.title) : null;
+            // data.season ? form.append("season", data.season) : null;
+            // data.description ? form.append("description", data.description) : null;
+            // data.category_id ? form.append("category_id", data.category_id) : null;
+            // data.prequel ? form.append("prequel", data.prequel) : null;
+            // data.sequel ? form.append("sequel", data.sequel) : null;
+            // data.cover ? form.append("cover", data.cover) : null;
+            // data.wide_cover ? form.append("wide_cover", data.wide_cover) : null;
+            // console.log(Array.from(form.entries()));
+
+            const form = {};
+            data.title ? form.title = data.title : null;  
+            data.season ? form.season = data.season : null; 
+            data.description ? form.description = data.description : null; 
+            data.category_id ? form.category_id = data.category_id : null; 
+            data.prequel ? form.prequel = data.prequel : null; 
+            data.sequel ? form.sequel = data.sequel : null; 
+            data.cover ? form.cover = data.cover : null; 
+            data.wide_cover ? form.wide_cover = data.wide_cover : null; 
+            console.log(form);
+
+            const header = {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            };
+
+            try {
+                await axios.patch(`/api/show/${id}`, form, header);
+                // await axios.patchForm(`/api/show/${id}`, form, header);
+                // const updateData = await axios.patch(`/api/show/${id}`, form);
+                // updateData.data.headers['Content-Type'];
+            } catch (error) {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors;
+                }
+            } finally {
+                this.isLoading = false;
+            }
+        },
         async deleteShow(id) {
             this.isLoading = true;
             this.errors = [];
