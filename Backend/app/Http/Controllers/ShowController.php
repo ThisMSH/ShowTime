@@ -106,27 +106,26 @@ class ShowController extends Controller
         if ($request->hasFile('cover')) {
             $cover = "shows/cover/{$cover_name}-cover.{$request->cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($cover, file_get_contents($request->cover));
-        } else {
-            $cover = null;
+            $request->cover = $cover;
         }
 
         if ($request->hasFile('wide_cover')) {
             $wide_cover = "shows/wide-cover/{$cover_name}-wide-cover.{$request->wide_cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($wide_cover, file_get_contents($request->wide_cover));
-        } else {
-            $wide_cover = null;
+            $request->wide_cover = $wide_cover;
         }
 
-        $show->update([
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'season' => $request->season,
-            'description' => $request->description,
-            'cover' => $cover,
-            'wide_cover' => $wide_cover,
-            'sequel' => $request->sequel,
-            'prequel' => $request->prequel,
-        ]);
+        // $show->update([
+        //     'category_id' => $request->category_id,
+        //     'title' => $request->title,
+        //     'season' => $request->season,
+        //     'description' => $request->description,
+        //     'cover' => $request->cover,
+        //     'wide_cover' => $request->wide_cover,
+        //     'sequel' => $request->sequel,
+        //     'prequel' => $request->prequel,
+        // ]);
+        $show->update($request->all());
 
         return $this->success(new ShowResource($show));
     }

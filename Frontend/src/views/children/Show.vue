@@ -83,7 +83,7 @@ watch(() => props.id, async (showID) => {
     </template>
     <template v-else>
         <!-- Top section -->
-        <section>
+        <section class="overflow-y-hidden">
             <div class="relative hidden md:flex justify-center items-center">
                 <div class="absolute w-full h-full overflow-hidden blur-md">
                     <img class="w-full relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :src="showStore.getSingleShow.show.attributes.wide_cover" :alt="`${showStore.getSingleShow.show.attributes.title} wide cover`">

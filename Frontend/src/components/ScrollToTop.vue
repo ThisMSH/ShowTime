@@ -1,20 +1,25 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const scrollBtn = ref();
 const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 };
+const scrollFunction = () => {
+    if (window.scrollY > 500) {
+        scrollBtn.value.classList.remove("hidden");
+    } else {
+        scrollBtn.value.classList.add("hidden");
+    }
+};
 
 onMounted(() => {
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 500) {
-            scrollBtn.value.classList.remove("hidden");
-        } else {
-            scrollBtn.value.classList.add("hidden");
-        }
-    });
-})
+    window.addEventListener("scroll", scrollFunction);
+});
+
+onUnmounted(() => {
+    window.removeEventListener("scroll", scrollFunction);
+});
 </script>
 
 <template>

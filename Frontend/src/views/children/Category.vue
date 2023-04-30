@@ -36,7 +36,7 @@ watch(() => props.id, async (categoryID) => {
                 </div>
             </template>
             <template v-else>
-                <div v-for="show in categoryStore.getShows.shows" :key="show.id" class="flex justify-center items-center">
+                <div v-for="show in categoryStore.getShows.shows" :key="show.id" class="flex justify-center">
                     <ShowComponent :show="show" />
                 </div>
             </template>

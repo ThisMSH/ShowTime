@@ -1,5 +1,6 @@
 <script setup>
 import DashboardSideMenu from '../components/DashboardSideMenu.vue';
+import ScrollToTop from '../components/ScrollToTop.vue';
 import { onMounted } from 'vue';
 import { useAuthStore } from '../stores/auth';
 import { initFlowbite } from 'flowbite';
@@ -13,6 +14,7 @@ onMounted(async () => {
 </script>
 
 <template>
+    <ScrollToTop />
     <main class="container mx-auto mt-4 grid grid-cols-[auto_1fr] gap-x-16">
         <DashboardSideMenu />
         <RouterView />

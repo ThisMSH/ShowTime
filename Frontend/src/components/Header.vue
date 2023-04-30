@@ -1,7 +1,7 @@
 <script setup>
 import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import RectangularLogo from './utilities/RectangularLogo.vue';
 import CircleLogoDark from './utilities/CircleLogoDark.vue';
 import { useAuthStore } from '../stores/auth';
@@ -26,14 +26,20 @@ const handleLogout = async () => {
     initDropdowns();
 }
 
+const headerFixedStyle = () => {
+    navBar.value.classList.toggle("navbar", window.scrollY > 0);
+}
+
 onMounted(async () => {
-    window.addEventListener("scroll", function() {
-        navBar.value.classList.toggle("navbar", window.scrollY > 0);
-    });
+    window.addEventListener("scroll", headerFixedStyle);
     
     initDropdowns();
     await categoryStore.fetchAllCategories();
     await authStore.fetchUser();
+});
+
+onUnmounted(() => {
+    window.removeEventListener("scroll", headerFixedStyle);
 });
 </script>
 
