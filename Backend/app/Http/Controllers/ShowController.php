@@ -150,4 +150,14 @@ class ShowController extends Controller
 
         return $this->success(ShowResource::collection($search));
     }
+
+    /**
+     * Fetch all the shows with their episodes
+     */
+    public function showsWithEpisodes()
+    {
+        $shows_episodes = Show::with('episodes')->get();
+        
+        return $this->success([ShowResource::collection($shows_episodes)]);
+    }
 }

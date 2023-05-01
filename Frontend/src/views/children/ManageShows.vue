@@ -1,12 +1,9 @@
 <script setup>
 import DashboardHeader from '../../components/DashboardHeader.vue';
 import FooterRights from '../../components/utilities/FooterRights.vue';
-import DefaultButton from '../../components/utilities/DefaultButton.vue';
 import H4 from '../../components/utilities/H4.vue';
 import { Icon } from '@iconify/vue';
 import AdminCreateShow from '../../components/modals/AdminCreateShow.vue';
-import AdminCreateEpisode from '../../components/modals/AdminCreateEpisode.vue';
-import AdminCreatePromo from '../../components/modals/AdminCreatePromo.vue';
 import AdminUpdateShow from '../../components/modals/AdminUpdateShow.vue';
 import AdminDeleteShow from '../../components/modals/AdminDeleteShow.vue';
 import { useShowStore } from '../../stores/show';

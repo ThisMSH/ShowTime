@@ -18,15 +18,16 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/shows', [ShowController::class, 'showsWithEpisodes']);
 
-Route::patch('/show/{show}', [ShowController::class, 'update']);
 Route::middleware(['auth:sanctum'])->group(function () {
     // User info
     Route::get('/user', [UserController::class, 'show']);
     Route::get('/users', [UserController::class, 'index']);
-
+    
     // Shows
     Route::post('/show', [ShowController::class, 'store']);
+    Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
 
     // Episodes

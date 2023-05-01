@@ -6,14 +6,35 @@ import { initFlowbite } from 'flowbite';
 import { onMounted, ref } from 'vue';
 import CustomTextArea from '../utilities/CustomTextArea.vue';
 import ListInput from '../utilities/ListInput.vue';
+import FileInput from '../utilities/FileInput.vue';
+import { useEpisodeStore } from '../../stores/episode';
+import { useShowStore } from '../../stores/show';
 
-let title = ref(null);
-let number = ref(null);
-// let membership = ref(null);
-let show = ref(null);
-let description = ref(null);
-let thumbnail = ref(null);
-let video = ref(null);
+const episodeStore = useEpisodeStore();
+const showStore = useShowStore();
+
+const formData = ref({
+    show_id: '',
+    membership: '',
+    title: '',
+    number: '',
+    description: '',
+    thumbnail: '',
+    video: ''
+});
+
+function getThumbnail(file) {
+    formData.value.thumbnail = file;
+}
+
+function getVideo(file) {
+    formData.value.video = file;
+}
+
+const addEpisode = async () => {
+    await episodeStore.addEpisode(formData.value);
+    // Object.keys(formData.value).forEach(key => formData.value[key] = "");
+};
 
 onMounted(() => {
     initFlowbite();
@@ -49,34 +70,33 @@ onMounted(() => {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="">
+                <form @submit.prevent="addEpisode">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <TextInput v-model:input="title" label="Title" inputType="text" inputID="epi-title" error=""
+                        <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="episodeStore.getErrors.title"
                             errorID="title-error" />
-                        <TextInput v-model:input="number" label="Number" inputType="text" inputID="epi-number" error=""
+                        <TextInput v-model:input="formData.number" label="Number" inputType="text" inputID="epi-number" :errors="episodeStore.getErrors.number"
                             errorID="number-error" />
                         <div>
                             <div class="relative z-0">
                                 <label for="memebership-select"
                                     class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Membership</label>
-                                <select id="memebership-select"
+                                <select v-model="formData.membership" id="memebership-select"
                                     class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer">
                                     <option disabled selected>Select</option>
                                     <option value="0">Free</option>
                                     <option value="1">Premium</option>
                                 </select>
                             </div>
-                            <p v-if="error" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">{{
-                                error }}</p>
+                            <div v-if="episodeStore.getErrors">
+                                <p v-for="error in episodeStore.getErrors.premium" :key="error" class="mt-2 text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+                            </div>
                         </div>
-                        <ListInput v-model:input="show" label="Show" inputType="" inputID="epi-show"
-                            datalistID="epi-show-list" error="" errorID="epi-show-error" />
-                        <CustomTextArea class="col-span-2" v-model:input="description" label="Description"
-                            textareaID="epi-description" error="" errorID="epi-description-error" />
-                        <TextInput class="lg:col-span-2" v-model:input="thumbnail" label="Thumbnail" inputType="file"
-                            inputID="thumbnail" error="" errorID="thumbnail-error" />
-                        <TextInput class="lg:col-span-2" v-model:input="video" label="Video" inputType="file"
-                            inputID="video" error="" errorID="video-error" />
+                        <ListInput v-model:input="formData.show_id" label="Show" inputType="" inputID="show-id"
+                            datalistID="shows-list" :showsList="showStore.getAllShows?.shows" :errors="episodeStore.getErrors.show_id" errorID="show-error" />
+                        <CustomTextArea class="col-span-2" v-model:input="formData.description" label="Description"
+                            textareaID="description" :errors="episodeStore.getErrors.description" errorID="description-error" />
+                        <FileInput @file-content="getThumbnail" class="lg:col-span-2"  label="Thumbnail" inputType="file" inputID="thumbnail" :errors="episodeStore.getErrors.thumbnail" errorID="thumbnail-error" />
+                        <FileInput @file-content="getVideo" class="lg:col-span-2"  label="Video" inputType="file" inputID="video" :errors="episodeStore.getErrors.video" errorID="video-error" />
                         <div class="lg:col-span-2 flex justify-center items-center">
                             <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
                         </div>

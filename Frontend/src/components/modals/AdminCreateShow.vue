@@ -34,7 +34,7 @@ function getWideCover(file) {
 
 const addShow = async () => {
     await showStore.addShow(formData.value);
-    // Object.keys(formData.value).forEach(key => formData.value[key] = "");
+    Object.keys(formData.value).forEach(key => formData.value[key] = "");
 };
 
 onMounted(async () => {
