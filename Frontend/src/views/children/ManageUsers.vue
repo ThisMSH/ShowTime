@@ -88,43 +88,87 @@ onMounted(async () => {
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700">
-                                    <tr v-if="authStore.getAllUsers" v-for="person in authStore.getAllUsers.users" :key="person.id">
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0">
-                                                    <img class="h-10 w-10 rounded-full" :src="person.attributes.avatar" :alt="`${person.attributes.name}'s avatar'`" />
+                                    <template v-if="authStore.getAllUsers">
+                                        <tr v-for="person in authStore.getAllUsers.users" :key="person.id">
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                        <img class="h-10 w-10 rounded-full" :src="person.attributes.avatar" :alt="`${person.attributes.name}'s avatar'`" />
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="font-medium">{{ person.attributes.username }}</div>
+                                                    </div>
                                                 </div>
-                                                <div class="ml-4">
-                                                    <div class="font-medium">{{ person.attributes.username }}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
+                                                <div class="">{{ person.attributes.name }}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
+                                                <div class="">{{ person.attributes.email }}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
+                                                <div class="">{{ person.attributes.birthday }}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
+                                                <p  v-if="person.attributes.user_type == 0">
+                                                    Free
+                                                </p>
+                                                <p  v-else-if="person.attributes.user_type == 1">
+                                                    Admin
+                                                </p>
+                                                <p  v-else-if="person.attributes.user_type == 2">
+                                                    Premium
+                                                </p>
+                                            </td>
+                                            <td
+                                                class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                <!-- <AdminUpdateUser />
+                                                <AdminDeleteUser userID="1" /> -->
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <template v-else>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.attributes.name }}</div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.attributes.email }}</div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <div class="">{{ person.attributes.birthday }}</div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <p  v-if="person.attributes.user_type == 0">
-                                                Free
-                                            </p>
-                                            <p  v-else-if="person.attributes.user_type == 1">
-                                                Admin
-                                            </p>
-                                            <p  v-else-if="person.attributes.user_type == 2">
-                                                Premium
-                                            </p>
-                                        </td>
-                                        <td
-                                            class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <!-- <AdminUpdateUser />
-                                            <AdminDeleteUser userID="1" /> -->
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
                                 </tbody>
                             </table>
                         </div>

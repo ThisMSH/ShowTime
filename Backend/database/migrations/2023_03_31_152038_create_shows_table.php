@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->string('title', 500);
-            $table->string('season');
+            $table->string('season')->nullable();
             $table->string('cover');
             $table->string('wide_cover');
             $table->text('description');
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->unsignedBigInteger('prequel')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
-            $table->foreign('sequel')->references('id')->on('shows')->onDelete('no action')->onUpdate('cascade');
-            $table->foreign('prequel')->references('id')->on('shows')->onDelete('no action')->onUpdate('cascade');
+            $table->foreign('sequel')->references('id')->on('shows')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('prequel')->references('id')->on('shows')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -41,8 +41,8 @@ class ShowController extends Controller
     {
         $request->validated();
 
-        $title_no_whitespace = str_replace(' ', '-', $request->title);
-        $season_no_whitespace = str_replace(' ', '-', $request->season);
+        $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title);
+        $season_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->season);
         $cover_name = $title_no_whitespace . "-" . $season_no_whitespace;
 
         if ($request->hasFile('cover')) {
@@ -98,21 +98,24 @@ class ShowController extends Controller
     public function update(UpdateShowRequest $request, Show $show)
     {
         $request->validated();
+        // dump($request);
 
-        $title_no_whitespace = str_replace(' ', '-', $request->title ?? $show->title);
-        $season_no_whitespace = str_replace(' ', '-', $request->season ?? $show->season);
+        $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $show->title);
+        $season_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->season ?? $show->season);
         $cover_name = "{$title_no_whitespace}-{$season_no_whitespace}";
 
         if ($request->hasFile('cover')) {
             $cover = "shows/cover/{$cover_name}-cover.{$request->cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($cover, file_get_contents($request->cover));
-            $request->cover = $cover;
+            $request->merge(['cover' => $cover]);
+            // $request->cover = $cover;
         }
 
         if ($request->hasFile('wide_cover')) {
             $wide_cover = "shows/wide-cover/{$cover_name}-wide-cover.{$request->wide_cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($wide_cover, file_get_contents($request->wide_cover));
-            $request->wide_cover = $wide_cover;
+            $request->merge(['wide_cover' => $wide_cover]);
+            // $request->wide_cover = $wide_cover;
         }
 
         // $show->update([

@@ -74,13 +74,21 @@ onMounted(async () => {
             <!-- Creating Shows -->
             <div class="mt-10 flex justify-between items-center gap-3 flex-wrap">
                 <H4 class="mb-0" title="List of all the shows" />
-                <div class="flex justify-center items-center gap-3 flex-wrap">
-                    <AdminCreateShow />
-                </div>
+                <template v-if="showStore.getAllShows">
+                    <div class="flex justify-center items-center gap-3 flex-wrap">
+                        <AdminCreateShow />
+                    </div>
+                </template>
+                <template v-else>
+                    <div role="status" class="animate-pulse">
+                        <div class="h-14 w-44 bg-slate-200 rounded-full dark:bg-slate-800"></div>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </template>
             </div>
             <!-- Shows Management -->
             <div class="mt-10 flex flex-col">
-                <div class="">
+                <div class="overflow-x-auto max-w-[1376px]">
                     <div class="inline-block min-w-full align-middle">
                         <div class="shadow ring-1 ring-black ring-opacity-5">
                             <table class="min-w-full divide-y divide-slate-400 border border-slate-400 dark:border-slate-500">
@@ -108,8 +116,8 @@ onMounted(async () => {
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                 <div class="flex items-center">
-                                                    <div class="flex-shrink-0">
-                                                        <img class="w-16 rounded-md" :src="show.attributes.cover" :alt="`${show.attributes.title}'s cover`" />
+                                                    <div class="">
+                                                        <img class="w-20 min-w-[60px] rounded-md" :src="show.attributes.cover" :alt="`${show.attributes.title}'s cover`" />
                                                     </div>
                                                 </div>
                                             </td>
@@ -132,6 +140,48 @@ onMounted(async () => {
                                                 <div class="flex items-center gap-x-5">
                                                     <AdminUpdateShow :show="show" />
                                                     <AdminDeleteShow :showID="show.id" :show_title="show.attributes.title" :show_season="show.attributes.season" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <template v-else>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div role="status" class="animate-pulse p-4">
+                                                    <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                                    <span class="sr-only">Loading...</span>
                                                 </div>
                                             </td>
                                         </tr>

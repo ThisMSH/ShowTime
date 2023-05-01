@@ -118,8 +118,8 @@ onMounted(() => {
                                                                 </td>
                                                                 <td
                                                                     class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                    <AdminUpdateShow />
-                                                                    <AdminDeleteShow showID="1" />
+                                                                    <!-- <AdminUpdateShow />
+                                                                    <AdminDeleteShow showID="1" /> -->
                                                                 </td>
                                                             </tr>
                                                         </template>
