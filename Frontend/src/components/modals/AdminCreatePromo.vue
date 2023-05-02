@@ -5,10 +5,20 @@ import DefaultButton from '../utilities/DefaultButton.vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted, ref } from 'vue';
 import ListInput from '../utilities/ListInput.vue';
+import { useShowStore } from '../../stores/show';
 
-let title = ref(null);
-let trailer = ref(null);
-let show = ref(null);
+const showStore = useShowStore();
+
+const formData = ref({
+    show_id: '',
+    title: '',
+    trailer: '',
+});
+
+const addTrailer = async () => {
+    await showStore.addTrailer(formData.value);
+    // Object.keys(formData.value).forEach(key => formData.value[key] = "");
+};
 
 onMounted(() => {
     initFlowbite();
@@ -43,13 +53,13 @@ onMounted(() => {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="">
+                <form @submit.prevent="addTrailer">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <TextInput v-model:input="title" label="Title" inputType="text" inputID="trailer-title" error=""
-                            errorID="trailer-title-error" />
+                        <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="showStore.getErrors.title"
+                            errorID="title-error" />
                         <div class="relative">
-                            <TextInput v-model:input="trailer" label="Promotion's ID" inputType="text" inputID="trailer"
-                                error="" errorID="trailer-error" />
+                            <TextInput v-model:input="formData.trailer" label="Promotion's ID" inputType="text" inputID="trailer" :errors="showStore.getErrors.trailer"
+                                errorID="trailer-error" />
 
                             <button class="absolute top-4 right-2" data-popover-target="popover-description"
                                 data-popover-placement="bottom-end" type="button"><svg
@@ -73,8 +83,8 @@ onMounted(() => {
                                 <div data-popper-arrow></div>
                             </div>
                         </div>
-                        <ListInput v-model:input="show" label="Show" inputType="" inputID="trailer-show"
-                            datalistID="trailer-show-list" error="" errorID="trailer-show-error" />
+                        <ListInput v-model:input="formData.show_id" label="Show" inputType="" inputID="show-id"
+                            datalistID="shows-list" :showsList="showStore.getAllShows?.shows" :errors="showStore.getErrors.show_id" errorID="show-error" />
                         <div class="lg:col-span-2 flex justify-center items-center">
                             <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
                         </div>

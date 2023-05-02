@@ -44,9 +44,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 Route::middleware(['auth:sanctum'])->group(function () {
     // User info
     Route::get('/user', [UserController::class, 'show']);
-    
-    // Episodes
-    Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 
     // Comments
     Route::post('/comment', [CommentController::class, 'store']);
@@ -58,6 +55,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/show', [ShowController::class, 'index']);
 Route::get('/show/{show}', [ShowController::class, 'show']);
 Route::get('/show/search/{search}', [ShowController::class, 'search']);
+Route::get('/shows/latest_anime', [ShowController::class, 'latestAnime']);
+Route::get('/shows/latest_live_action', [ShowController::class, 'latestLiveAction']);
+
+// Episodes
+Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 
 // Categories
 Route::get('/category', [CategoryController::class, 'index']);

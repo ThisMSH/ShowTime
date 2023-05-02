@@ -19,29 +19,6 @@ const episodeStore = useEpisodeStore();
 
 let epiShows = ref([]);
 
-const people = [
-    {
-        id: '2',
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: '3',
-        user: 'Lind88ton',
-        fullName: 'Lindsay Walton',
-        email: 'lindsay.walton@example.com',
-        birthday: '22-01-1998',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-];
-
 onMounted(async () => {
     await showStore.fetchAllShows();
     const shows = showStore.getAllShows;
@@ -66,6 +43,7 @@ onMounted(async () => {
                 <template v-if="showStore.getAllShows">
                     <div class="flex justify-center items-center gap-3 flex-wrap">
                         <AdminCreateEpisode />
+                        <AdminCreatePromo />
                     </div>
                 </template>
                 <template v-else>
@@ -132,7 +110,7 @@ onMounted(async () => {
                                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                                     <div class="font-medium">{{ episode.attributes.title }}</div>
                                                                 </td>
-                                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-neutral-900 dark:text-neutral-200">
+                                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-neutral-900 dark:text-neutral-200">
                                                                     <div class="">{{ episode.attributes.number }}</div>
                                                                 </td>
                                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-neutral-900 dark:text-neutral-200">

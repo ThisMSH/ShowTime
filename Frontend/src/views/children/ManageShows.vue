@@ -85,7 +85,7 @@ onMounted(async () => {
             </div>
             <!-- Shows Management -->
             <div class="mt-10 flex flex-col">
-                <div class="overflow-x-auto max-w-[1376px]">
+                <div class="overflow-x-auto max-w-[1200px]">
                     <div class="inline-block min-w-full align-middle">
                         <div class="shadow ring-1 ring-black ring-opacity-5">
                             <table class="min-w-full divide-y divide-slate-400 border border-slate-400 dark:border-slate-500">

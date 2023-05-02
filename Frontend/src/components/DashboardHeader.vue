@@ -3,9 +3,16 @@ import Breadcrumb from './utilities/Breadcrumb.vue';
 import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
 import { useAuthStore } from '../stores/auth';
+import { onMounted } from 'vue';
+import { initDropdowns } from 'flowbite';
+
 
 const authStore = useAuthStore();
 const props = defineProps(["tabName"]);
+
+onMounted(() => {
+    initDropdowns();
+});
 </script>
 
 <template>

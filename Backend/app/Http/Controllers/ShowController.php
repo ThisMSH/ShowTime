@@ -160,4 +160,30 @@ class ShowController extends Controller
         
         return $this->success([ShowResource::collection($shows_episodes)]);
     }
+
+    /**
+     * Fetch the latest 9 live action shows
+     */
+    public function latestLiveAction()
+    {
+        $shows = Show::whereIn('category_id', [1, 2])
+            ->latest()
+            ->take(9)
+            ->get();
+
+        return $this->success(ShowResource::collection($shows));
+    }
+
+    /**
+     * Fetch the latest 9 anime shows
+     */
+    public function latestAnime()
+    {
+        $shows = Show::whereIn('category_id', [3, 4])
+            ->latest()
+            ->take(9)
+            ->get();
+
+        return $this->success(ShowResource::collection($shows));
+    }
 }

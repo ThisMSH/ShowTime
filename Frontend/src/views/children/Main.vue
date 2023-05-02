@@ -1,11 +1,15 @@
 <script setup>
-import { Icon } from '@iconify/vue';
 import ScrollDown from '../../components/utilities/ScrollDown.vue';
 import ShowCard from '../../components/ShowCard.vue';
 import ShowsSlider from '../../components/ShowsSlider.vue';
 import H2 from '../../components/utilities/H2.vue';
+import ShowsSliderSkeleton from '../../components/skeleton/ShowsSliderSkeleton.vue';
+import { Icon } from '@iconify/vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
+import { useShowStore } from '../../stores/show';
+
+const showStore = useShowStore();
 
 const animeShowCardContents = [
     {
@@ -21,125 +25,6 @@ const animeShowCardContents = [
     "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511735132041288/Shingeki_no_Kyojin_anime_Logo.png",
     "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511734687436810/Eren-Jaeger-PNG-Image.png",
     "color": "blue",
-    },
-];
-const animeShows = [
-    {
-        "attributes": {
-            "title": "Fate/stay night",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657556398090/113810l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "JJK Movie",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657350864916/119044l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "JJK S2",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657111806025/FLY4LfmacAExJK1.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Fate/Zero",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517657795477534/117645l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "JJK S1",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658017759242/109222l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Naruto",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658256850985/111305l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "1.3/10"
-    },
-    {
-        "attributes": {
-            "title": "One Piece",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658445578260/120243l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "3.3/10"
-    },
-    {
-        "attributes": {
-            "title": "OPM",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658684670023/72533l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "7.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Kimetsu no Yaiba",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093517658860814406/120036l.jpg",
-            "season": "S1",
-        },
-        "relationships": {
-            "category": {
-                "name": "Anime"
-            }
-        },
-        "rating": "10/10"
     },
 ];
 const liveShowCardContents = [
@@ -158,128 +43,10 @@ const liveShowCardContents = [
     "color": "gray",
     },
 ];
-const liveShows = [
-    {
-        "attributes": {
-            "title": "Show one",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563112779927/a2096c83decf5b1d32c414de10f5df11.jpg",
-            "show_type": "Series",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show two",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563330875543/7516fd69b3eb14b8587a2911fd505e8f.jpg",
-            "show_type": "Movie",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show aaa",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563548983356/7548d760c35b06029e4c9778065baa2a.jpg",
-            "show_type": "Series",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show zzz",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569563775479818/8669af1522d2a280e79555f0e2d18b83.jpg",
-            "show_type": "Movie",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show bbb",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564001964095/f4b55c684e533915648dc01986ea8f04.jpg",
-            "show_type": "Series",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "9.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show fff",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564203294851/f5c4d33040b5c0636a473a9fbe27749e.jpg",
-            "show_type": "Movie",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "1.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show 123",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564421402644/fa04a811f674e363cecd6f17d79c56be.jpg",
-            "show_type": "Series",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "3.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show final",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564769521774/43702135cdbad67e6efcde27547f7040.jpg",
-            "show_type": "Series",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "7.3/10"
-    },
-    {
-        "attributes": {
-            "title": "Show yes",
-            "cover": "https://cdn.discordapp.com/attachments/1093229006402375680/1093569564983435377/a8bdfe222ec670a9244f30c301c33e52.jpg",
-            "show_type": "Movie",
-        },
-        "relationships": {
-            "category": {
-                "name": "Series"
-            }
-        },
-        "rating": "10/10"
-    },
-];
 
-onMounted(() => {
+onMounted(async () => {
     initFlowbite();
+    await showStore.latestShows();
 });
 </script>
 
@@ -341,7 +108,8 @@ onMounted(() => {
     <section>
         <H2 title="Our Latest Anime" />
         <div class="my-40">
-            <ShowsSlider :shows="animeShows" />
+            <ShowsSlider v-if="!showStore.latestLoading" :shows="showStore.getLatestAnime" />
+            <ShowsSliderSkeleton v-else />
         </div>
     </section>
     <section>
@@ -357,7 +125,8 @@ onMounted(() => {
     <section>
         <H2 title="Our Latest Shows" />
         <div class="my-40">
-            <ShowsSlider :shows="liveShows" />
+            <ShowsSlider v-if="!showStore.latestLoading" :shows="showStore.getLatestLiveAction" />
+            <ShowsSliderSkeleton v-else />
         </div>
     </section>
     <section>
