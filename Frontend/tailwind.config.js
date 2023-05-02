@@ -87,6 +87,20 @@ module.exports = {
             height: {
                 'home-desktop': 'calc(100vh - 92px)',
                 'home-tablet': 'calc(100vh - 70px)',
+            },
+            textStroke: {
+                'white-1': '1px rgb(255 255 255)',
+                'white-2': '2px rgb(255 255 255)',
+                'black-1': '1px rgb(0 0 0)',
+                'black-2': '2px rgb(0 0 0)',
+                'orange-1': '1px rgb(255 165 0)',
+                'orange-2': '2px rgb(255 165 0)',
+                'amber-1': '1px rgb(245 158 11)',
+                'amber-2': '2px rgb(245 158 11)'
+            },
+            textShadow: {
+                'slate-950-30': '0 0 30px rgb(2 6 23)',
+                'slate-100-30': '0 0 30px rgb(241 245 249)'
             }
         },
     },
@@ -96,6 +110,30 @@ module.exports = {
         plugin(function({ addVariant }) {
             addVariant('child', '&>*');
             addVariant('child-hover', '&>*:hover');
+        }),
+        plugin(function ({matchUtilities, theme}) {
+            matchUtilities(
+                {
+                    'text-stroke': (value) => ({
+                        '-webkit-text-stroke': value,
+                    })
+                },
+                { values:
+                    theme('textStroke')
+                }
+            )
+        }),
+        plugin(function ({matchUtilities, theme}) {
+            matchUtilities(
+                {
+                    'text-shadow': (value) => ({
+                        textShadow: value,
+                    })
+                },
+                { values:
+                    theme('textShadow')
+                }
+            )
         })
     ],
 }

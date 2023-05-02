@@ -18,28 +18,35 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/shows', [ShowController::class, 'showsWithEpisodes']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    // User info
-    Route::get('/user', [UserController::class, 'show']);
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    // Users
     Route::get('/users', [UserController::class, 'index']);
-    
+
     // Shows
     Route::post('/show', [ShowController::class, 'store']);
     Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
+    Route::get('/shows', [ShowController::class, 'showsWithEpisodes']);
 
     // Episodes
+    Route::get('/episode', [EpisodeController::class, 'index']);
     Route::post('/episode', [EpisodeController::class, 'store']);
     Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
     Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);
-
 
     // Trailers
     Route::post('/trailer', [TrailerController::class, 'store']);
     Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
     Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    // User info
+    Route::get('/user', [UserController::class, 'show']);
+    
+    // Episodes
+    Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 
     // Comments
     Route::post('/comment', [CommentController::class, 'store']);
@@ -51,10 +58,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/show', [ShowController::class, 'index']);
 Route::get('/show/{show}', [ShowController::class, 'show']);
 Route::get('/show/search/{search}', [ShowController::class, 'search']);
-
-// Episodes
-Route::get('/episode', [EpisodeController::class, 'index']);
-Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 
 // Categories
 Route::get('/category', [CategoryController::class, 'index']);
