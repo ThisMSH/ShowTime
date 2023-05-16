@@ -34,7 +34,7 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        if (Auth::user()->id != $comment->user_id) {
+        if (Auth::user()->id != $comment->user_id && Auth::user()->user_type != 1) {
             return $this->error('', 'You are not authorized to update this comment.', 403);
         }
 
@@ -50,7 +50,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if (Auth::user()->id != $comment->user_id) {
+        if (Auth::user()->id != $comment->user_id && Auth::user()->user_type != 1) {
             return $this->error('', 'You are not authorized to update this comment.', 403);
         }
 

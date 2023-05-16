@@ -57,10 +57,11 @@ onMounted(async () => {
             <video class="w-full h-full object-cover" autoplay loop muted poster="../../assets/images/other/covers.jpg">
                 <source src="../../assets/videos/index.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-gradient-to-l from-black from-0% via-black via-100% md:via-60% lg:via-40% to-transparent to-100%"></div>
-            <div class="p-10 absolute top-0 right-0 w-full md:w-3/5 lg:w-2/5 h-full flex flex-col items-center justify-evenly text-3xl lg:text-4xl 2xl:text-5xl text-center text-slate-100 font-medium">
+            <div class="absolute top-0 left-0 w-full h-full opacity-90 bg-gradient-to-l from-black from-0% via-black via-100% md:via-60% to-transparent to-100%"></div>
+            <div class="p-10 absolute top-0 right-0 w-full md:w-3/5 h-full flex flex-col items-center justify-evenly text-3xl lg:text-4xl 2xl:text-5xl text-center text-slate-100 font-medium">
                 <p>Welcome to</p>
-                <h1 class="bg-gradient-to-l from-red-500 to-orange-500 bg-clip-text text-transparent font-bold font-lobster text-6xl lg:text-7xl 2xl:text-8xl">ShowTime</h1>
+                <!-- <h1 class="bg-gradient-to-l from-red-500 to-orange-500 bg-clip-text text-transparent font-logo text-7xl lg:text-8xl 2xl:text-9xl">ShowTime</h1> -->
+                <h1 class="bg-orange-500 bg-clip-text text-transparent text-shadow-slate-950-10 lg:text-shadow-slate-950-15 2xl:text-shadow-slate-950-20 text-stroke-orange-500-1 2xl:text-stroke-orange-500-2 font-logo text-6xl sm:text-7xl lg:text-8xl 2xl:text-9xl">ShowTime</h1>
                 <p>Join today and discover our library of Series, Movies and Anime.</p>
                 <RouterLink to="" class="relative flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-slate-100 rounded-l-full rounded-r-full group bg-gradient-to-br from-red-500 to-orange-400 group-hover:from-red-500 group-hover:to-orange-400 hover:text-slate-950 focus:ring-4 focus:outline-none focus:ring-red-800">
                     <span class="relative px-4 py-2 lg:px-5 lg:py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-l-full rounded-r-full group-hover:bg-opacity-0 text-xl">

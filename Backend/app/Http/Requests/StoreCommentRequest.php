@@ -23,7 +23,7 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             'episode_id' => ['required', 'integer'],
-            'comment' => ['required', 'string', 'max:500']
+            'comment' => ['required', 'string', 'max:500', 'min:10']
         ];
     }
 }

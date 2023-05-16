@@ -5,6 +5,8 @@ import NoBlackBgButton from '../../components/utilities/NoBlackBgButton.vue';
 import CommentComponent from '../../components/CommentComponent.vue';
 import EpisodeComponentHori from '../../components/EpisodeComponentHori.vue';
 import EpisodeComponent from '../../components/EpisodeComponent.vue';
+import CommentSkeleton from '../../components/skeleton/CommentSkeleton.vue';
+import EpisodeSkeleton from '../../components/skeleton/EpisodeSkeleton.vue';
 import { onMounted, watch, ref } from 'vue';
 import { useEpisodeStore } from '../../stores/episode';
 import { useShowStore } from '../../stores/show';
@@ -17,6 +19,11 @@ const authStore = useAuthStore();
 const commentStore = useCommentStore();
 const props = defineProps(["id"]);
 let thisShowID = ref(null);
+let comments = ref([]);
+let fetchedComments = ref(null);
+let fetchedEpisode = ref(null);
+
+// if (commentStore.getComment) comments.value.unshift(commentStore.getComment);
 
 const data = ref({
     comment: null,
@@ -28,6 +35,22 @@ const addComment = async () => {
     data.value.comment = null;
 };
 
+function addCommentOnEnter(event) {
+    if (!event.shiftKey) {
+        addComment();
+    }
+}
+
+const deleteComment = async (id) => {
+    await commentStore.deleteComment(id);
+    comments.value = [];
+    await episodeStore.fetchEpisode(props.id);
+};
+
+const updateComment = () => {
+    console.log("deez nuts : " + id);
+};
+
 onMounted(async () => {
     await episodeStore.fetchEpisode(props.id);
     thisShowID.value = episodeStore.getSingleEpisode?.episode.relationships.show.id;
@@ -35,6 +58,7 @@ onMounted(async () => {
 });
 
 watch(() => props.id, async (episodeID) => {
+    fetchedEpisode.value = null;
     await episodeStore.fetchEpisode(episodeID);
 });
 
@@ -45,41 +69,58 @@ watch(() => thisShowID.value, async (showID) => {
 watch(() => props.id, (newEpisodeID) => {
     data.value.episode_id = newEpisodeID;
 });
+
+watch(() => commentStore.getComment, (newComment) => {
+    comments.value.unshift(newComment);
+});
+
+watch (() => episodeStore.getSingleEpisode?.comments, () => {
+    fetchedComments.value = episodeStore.getSingleEpisode.comments;
+});
+
+watch (() => episodeStore.getSingleEpisode?.episode, () => {
+    fetchedEpisode.value = episodeStore.getSingleEpisode.episode;
+});
 </script>
 
 <template>
     <div class="container px-3 mx-auto grid grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 mb-20">
         <!-- Video section -->
-        <template v-if="!episodeStore.getSingleEpisode || episodeStore.episodeLoading">
-            <div role="status" class="mt-5 col-span-3 flex justify-center items-center gap-y-6 aspect-video bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700">
-                <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 384 512"><path d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/></svg>
-                <span class="sr-only">Loading...</span>
-            </div>
+        <template v-if="!fetchedEpisode">
+            <section class="col-span-3">
+                <div role="status" class="my-5 flex justify-center items-center gap-y-6 aspect-video bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700">
+                    <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 384 512"><path d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/></svg>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div role="status" class="animate-pulse">
+                    <div class="h-3 w-56 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+                    <div class="h-6 w-72 bg-gray-200 rounded-full dark:bg-gray-700 mb-6"></div>
+                    <div class="w-full h-20 bg-gray-200 rounded-xl dark:bg-gray-700"></div>
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </section>
         </template>
         <template v-else>
             <section class="mt-5 col-span-3 flex flex-col gap-y-6">
-                <!-- <VideoPlayer :title="episodeStore.getSingleEpisode.episode.attributes.title" :url="episodeStore.getSingleEpisode.episode.attributes.video" class="aspect-video" /> -->
                 <template v-if="!authStore.getUser">
                     <p class="aspect-video flex justify-center items-center text-xl font-medium">
                         You need to be logged in in order to watch our shows
                     </p>
                 </template>
                 <template v-else>
-                    <template v-if="authStore.getUser.user_type == 0 && episodeStore.getSingleEpisode.episode.attributes.premium != 0">
+                    <template v-if="authStore.getUser.user_type == 0 && fetchedEpisode.attributes.premium != 0">
                         <p class="aspect-video flex justify-center items-center text-xl font-medium">
                             This episode is available for premium users only!
                         </p>
                     </template>
                     <template v-else>
-                        <video class="aspect-video" controls>
-                            <source :src="episodeStore.getSingleEpisode.episode.attributes.video">
-                        </video>
+                        <VideoPlayer :title="fetchedEpisode.attributes.title" :url="fetchedEpisode.attributes.video" class="aspect-video" />
                     </template>
                 </template>
-                <h6 class="text-orange-500 dark:text-orange-400">{{ episodeStore.getSingleEpisode.episode.relationships.show.title }} - {{ episodeStore.getSingleEpisode.episode.relationships.show.season }}</h6>
-                <h3 class="text-xl sm:text-2xl lg:text-3xl font-semibold">{{ episodeStore.getSingleEpisode.episode.attributes.number }} - {{ episodeStore.getSingleEpisode.episode.attributes.title }}</h3>
+                <h6 class="text-orange-500 dark:text-orange-400">{{ fetchedEpisode.relationships.show.title }} - {{ fetchedEpisode.relationships.show.season }}</h6>
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-semibold">{{ fetchedEpisode.attributes.number }} - {{ fetchedEpisode.attributes.title }}</h3>
                 <div class="px-10 text-justify">
-                    <p>{{ episodeStore.getSingleEpisode.episode.attributes.description }}</p>
+                    <p>{{ fetchedEpisode.attributes.description }}</p>
                 </div>
             </section>
         </template>
@@ -91,73 +132,45 @@ watch(() => props.id, (newEpisodeID) => {
                     <div class="hidden sm:block lg:hidden xl:block rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden transition-all duration-300" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id" :class="[episode.id == id ? 'drop-shadow-black-sm dark:drop-shadow-white-sm' : '']">
                         <EpisodeComponentHori :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" />
                     </div>
-                    <div class="block sm:hidden lg:block xl:hidden rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id">
+                    <div class="block sm:hidden lg:block xl:hidden rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden transition-all duration-300" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id" :class="[episode.id == id ? 'drop-shadow-black-sm dark:drop-shadow-white-sm' : '']">
                         <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" imageClass="max-sm:w-full" />
+                    </div>
+                </template>
+                <template v-else>
+                    <div>
+                        <EpisodeSkeleton v-for="i in 12" :key="i" class="mb-4" />
                     </div>
                 </template>
             </div>
         </section>
         <!-- Comments section -->
-        <template v-if="!episodeStore.getSingleEpisode || episodeStore.episodeLoading">    
-            <div role="status" class="col-span-3 p-4 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
-                <div class="w-full flex items-center space-x-3">
-                    <svg class="text-gray-200 w-14 h-14 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-                    <div class="w-full">
-                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                        <div class="w-full h-20 bg-gray-200 rounded-xl dark:bg-gray-700"></div>
-                    </div>
-                </div>
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div role="status" class="col-span-3 p-4 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
-                <div class="w-full flex items-center space-x-3">
-                    <svg class="text-gray-200 w-14 h-14 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-                    <div class="w-full">
-                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                        <div class="w-full h-20 bg-gray-200 rounded-xl dark:bg-gray-700"></div>
-                    </div>
-                </div>
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div role="status" class="col-span-3 p-4 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
-                <div class="w-full flex items-center space-x-3">
-                    <svg class="text-gray-200 w-14 h-14 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-                    <div class="w-full">
-                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                        <div class="w-full h-20 bg-gray-200 rounded-xl dark:bg-gray-700"></div>
-                    </div>
-                </div>
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div role="status" class="col-span-3 p-4 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
-                <div class="w-full flex items-center space-x-3">
-                    <svg class="text-gray-200 w-14 h-14 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-                    <div class="w-full">
-                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                        <div class="w-full h-20 bg-gray-200 rounded-xl dark:bg-gray-700"></div>
-                    </div>
-                </div>
-                <span class="sr-only">Loading...</span>
-            </div>
+        <template v-if="!fetchedEpisode">
+            <section class="col-span-3">
+                <CommentSkeleton v-for="i in 5" class="mb-6" />
+            </section>
         </template>
         <template v-else>
             <section class="col-span-3 flex flex-col gap-y-10">
                 <div class="w-full h-1 bg-gradient-to-r from-transparent via-slate-900 dark:via-slate-100 to-transparent"></div>
-                <H4 :title="`${episodeStore.getSingleEpisode.episode.attributes.comments_count} Comments`" />
+                <H4 :title="`${parseInt(fetchedEpisode.attributes.comments_count) + comments.length} Comments`" />
                 <div v-if="authStore.getUser" class="flex justify-evenly items-center gap-x-10">
                     <div class="max-sm:hidden">
-                        <img class="min-w-[64px] w-16 rounded-full ring-4 ring-slate-400 dark:ring-slate-600" :src="authStore.getUser.avatar" :alt="`${authStore.getUser.name}'s avatar'`">
+                        <img class="min-w-[64px] w-16 h-16 object-cover rounded-full ring-4 ring-slate-400 dark:ring-slate-600" :src="authStore.getUser.avatar" :alt="`${authStore.getUser.name}'s avatar'`">
                     </div>
                     <form class="w-11/12" @submit.prevent="addComment">
                         <div class="w-full flex flex-col items-end gap-y-5">
-                            <textarea v-model="data.comment" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
+                            <textarea v-model="data.comment" @keydown.enter="addCommentOnEnter" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
+                            <div class="self-start" v-if="commentStore.getErrors">
+                                <p v-for="error in commentStore.getErrors.comment" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+                            </div>
                             <NoBlackBgButton name="Comment" iconName="carbon:send-alt" />
                         </div>
                     </form>
                 </div>
                 <!-- Comments from database -->
-                <div v-for="comment in episodeStore.getSingleEpisode.comments" :key="comment.id">
-                    <CommentComponent :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" />
+                <div>
+                    <CommentComponent v-if="comments" v-for="comment in comments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" @update-comment="updateComment" />
+                    <CommentComponent v-for="comment in fetchedComments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" @update-comment="updateComment" />
                 </div>
             </section>
         </template>

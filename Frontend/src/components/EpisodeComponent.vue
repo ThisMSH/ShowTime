@@ -15,7 +15,7 @@ const props = defineProps({
         <picture class="">
             <img :class="imageClass" class="" :src="image" :alt="`Thumbnail of ${title}`">
         </picture>
-        <h6 :class="customClass" class="font-medium"><span :class="clamp">{{ number }} - {{ title }}</span></h6>
+        <h6 :class="customClass" :title="`${number} - ${title}`" class="font-medium"><span :class="clamp">{{ number }} - {{ title }}</span></h6>
     </RouterLink>
 </template>
 

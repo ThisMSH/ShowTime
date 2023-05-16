@@ -1,7 +1,8 @@
 <script setup>
 import DarkMode from '../components/utilities/DarkMode.vue';
 import HexagonalRow from '../components/utilities/HexagonalRow.vue';
-import RectangularLogo from '../components/utilities/RectangularLogo.vue';
+import RectangularLogoDark from '../components/utilities/RectangularLogoDark.vue';
+import RectangularLogoLight from '../components/utilities/RectangularLogoLight.vue';
 import TextInput from '../components/utilities/TextInput.vue';
 import SubmitBtn from '../components/utilities/SubmitBtn.vue';
 import { ref } from 'vue';
@@ -37,8 +38,9 @@ const formData = ref({
                 <div class="w-80 md:w-[400px] xl:w-[500px] h-[600px] xl:h-[700px] px-2 md:px-5 py-5 md:py-10 flex flex-col items-center justify-between">
                     <div class="w-full">
                         <div class="flex justify-between items-center mb-8">
-                            <RouterLink to="/">
-                                <RectangularLogo class="h-5 md:h-8" />
+                            <RouterLink to="/" class="max-md:pl-2">
+                                <RectangularLogoDark class="hidden dark:flex" text-class="text-3xl xl:text-4xl" logo-class="w-12 xl:w-16" />
+                                <RectangularLogoLight class="flex dark:hidden" text-class="text-3xl xl:text-4xl" logo-class="w-12 xl:w-16" />
                             </RouterLink>
                             <DarkMode class="max-md:scale-75" />
                         </div>

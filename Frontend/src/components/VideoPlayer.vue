@@ -6,7 +6,6 @@ const props = defineProps({
     url: String,
     title: String,
 });
-console.log(props.url);
 
 const player = ref(null);
 const options = reactive({
@@ -39,9 +38,9 @@ const options = reactive({
     theme: '#23ade5',
     lang: navigator.language.toLowerCase(),
     whitelist: ['*'],
-    moreVideoAttr: {
-        crossOrigin: 'anonymous',
-    },
+    // moreVideoAttr: {
+    //     crossOrigin: 'anonymous',
+    // },
     // settings: [
     //     {
     //         width: 200,

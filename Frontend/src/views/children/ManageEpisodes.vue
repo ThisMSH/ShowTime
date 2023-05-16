@@ -121,8 +121,14 @@ onMounted(async () => {
                                                                 </td>
                                                                 <td
                                                                     class="relative flex gap-x-5 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                    <!-- <AdminUpdateShow />
-                                                                    <AdminDeleteShow showID="1" /> -->
+                                                                    <button :id="`delete-btn-${showID}`" type="button" class="flex items-center gap-x-3 px-4 py-1 bg-red-400 dark:bg-red-600 text-black dark:text-white rounded-md hover:bg-red-500 hover:dark:bg-red-700" :data-modal-target="`delete-show-${showID}`" :data-modal-toggle="`delete-show-${showID}`">
+                                                                        <Icon class="text-lg" icon="material-symbols:delete-outline-rounded" />
+                                                                        <span>Delete</span>
+                                                                    </button>
+                                                                    <button type="button" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700" :data-modal-toggle="`show-${show.id}`">
+                                                                        <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
+                                                                        <span>Edit</span>
+                                                                    </button>
                                                                 </td>
                                                             </tr>
                                                         </template>

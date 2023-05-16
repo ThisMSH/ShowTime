@@ -1,6 +1,6 @@
 <script setup>
 import DarkMode from '../components/utilities/DarkMode.vue';
-import RectangularLogo from '../components/utilities/RectangularLogo.vue';
+// import RectangularLogo from '../components/utilities/RectangularLogo.vue';
 </script>
 
 <template>

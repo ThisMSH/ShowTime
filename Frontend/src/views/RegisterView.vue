@@ -1,6 +1,7 @@
 <script setup>
 import DarkMode from '../components/utilities/DarkMode.vue'
-import RectangularLogo from '../components/utilities/RectangularLogo.vue';
+import RectangularLogoDark from '../components/utilities/RectangularLogoDark.vue';
+import RectangularLogoLight from '../components/utilities/RectangularLogoLight.vue';
 import TextInput from '../components/utilities/TextInput.vue';
 import FileInput from '../components/utilities/FileInput.vue';
 import DateInput from '../components/utilities/DateInput.vue';
@@ -42,8 +43,9 @@ function getAvatar(data) {
                 <div class="relative w-full lg:w-[800px] min-h-[980px] lg:min-h-[700px] bg-white/20 dark:bg-white/10 rounded-xl flex justify-center items-center backdrop-blur shadow-xl shadow-black/10 dark:shadow-white/40 border border-slate-100/50 border-b-slate-100/10 border-r-slate-100/10">
                     <div class="relative w-full h-full p-10">
                         <div class="grid grid-cols-2 gap-8 mb-10">
-                            <RouterLink to="/">
-                                <RectangularLogo class="h-5 sm:h-8" />
+                            <RouterLink to="/" class="justify-self-start">
+                                <RectangularLogoDark class="hidden dark:flex" text-class="text-2xl sm:text-3xl xl:text-4xl" logo-class="w-10 sm:w-12 xl:w-16" />
+                                <RectangularLogoLight class="flex dark:hidden" text-class="text-2xl sm:text-3xl xl:text-4xl" logo-class="w-10 sm:w-12 xl:w-16" />
                             </RouterLink>
                             <div class="relative">
                                 <DarkMode class="absolute right-0 max-md:scale-75" />

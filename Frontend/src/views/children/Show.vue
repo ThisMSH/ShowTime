@@ -109,7 +109,7 @@ watch(() => props.id, async (showID) => {
         </section>
         <!-- Episodes section -->
         <section>
-            <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[repeat(2,_minmax(0,_auto))] lg:gap-10 xl:gap-20">
+            <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[auto,_1fr] lg:gap-10 xl:gap-20">
                 <!-- Side information -->
                 <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-9 z-[31] transition-all duration-300 lg:hidden">
                     <ToggleBtn ref="toggleBtn" />

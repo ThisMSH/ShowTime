@@ -30,6 +30,9 @@ module.exports = {
                     '0 0px 10px rgb(255 0 0)',
                     '0 0px 60px rgb(255 0 0)'
                 ],
+                'red-sm': [
+                    '0 0 4px rgb(255 0 0)'
+                ],
                 'blue': [
                     '0 0px 10px rgb(0 0 255)',
                     '0 0px 60px rgb(0 0 255)'
@@ -46,6 +49,9 @@ module.exports = {
                     '0 0px 10px rgb(255, 95, 21)',
                     '0 0px 60px rgb(255, 95, 21)'
                 ],
+                'orange-sm': [
+                    '0 0 4px rgb(255, 95, 21)'
+                ],
                 'green': [
                     '0 0px 10px rgb(80, 200, 120)',
                     '0 0px 60px rgb(80, 200, 120)'
@@ -54,9 +60,24 @@ module.exports = {
                     '0 0px 10px rgb(148, 0, 211)',
                     '0 0px 60px rgb(148, 0, 211)'
                 ],
+                'violet-sm': [
+                    '0 0 4px rgb(148, 0, 211)'
+                ],
                 'pink': [
                     '0 0px 10px rgb(255, 20, 147)',
                     '0 0px 60px rgb(255, 20, 147)'
+                ],
+                'pink-sm': [
+                    '0 0 4px rgb(255, 20, 147)'
+                ],
+                'sky-sm': [
+                    '0 0 4px rgb(135, 206, 235)'
+                ],
+                'lime-sm': [
+                    '0 0 4px rgb(191, 255, 0)'
+                ],
+                'amber-sm': [
+                    '0 0 4px rgb(255, 191, 0)'
                 ],
             },
             boxShadow: {
@@ -82,11 +103,13 @@ module.exports = {
                 '10': '10px'
             },
             fontFamily: {
-                'lobster': '"Lobster Two", cursive'
+                'saira-stencil-one': '"Saira Stencil One", cursive',
+                'coiny': '"Coiny", cursive',
+                'logo': '"Saira Stencil One", "Coiny", cursive',
             },
             height: {
-                'home-desktop': 'calc(100vh - 92px)',
-                'home-tablet': 'calc(100vh - 70px)',
+                'home-desktop': 'calc(100vh - 111px)',
+                'home-tablet': 'calc(100vh - 87px)',
             },
             textStroke: {
                 'white-1': '1px rgb(255 255 255)',
@@ -96,11 +119,33 @@ module.exports = {
                 'orange-1': '1px rgb(255 165 0)',
                 'orange-2': '2px rgb(255 165 0)',
                 'amber-1': '1px rgb(245 158 11)',
-                'amber-2': '2px rgb(245 158 11)'
+                'amber-2': '2px rgb(245 158 11)',
+                'orange-600-0\.5': '.5px rgb(234 88 12)',
+                'orange-500-0\.5': '.5px rgb(249 115 22)',
+                'orange-400-0\.5': '.5px rgb(251 146 60)',
+                'orange-300-0\.5': '.5px rgb(253 186 116)',
+                'orange-600-1': '1px rgb(234 88 12)',
+                'orange-500-1': '1px rgb(249 115 22)',
+                'orange-400-1': '1px rgb(251 146 60)',
+                'orange-300-1': '1px rgb(253 186 116)',
+                'orange-600-2': '2px rgb(234 88 12)',
+                'orange-500-2': '2px rgb(249 115 22)',
+                'orange-400-2': '2px rgb(251 146 60)',
+                'orange-300-2': '2px rgb(253 186 116)',
             },
             textShadow: {
+                'slate-950-5': '0 0 5px rgb(2 6 23)',
+                'slate-950-10': '0 0 10px rgb(2 6 23)',
+                'slate-950-15': '0 0 15px rgb(2 6 23)',
+                'slate-950-20': '0 0 20px rgb(2 6 23)',
+                'slate-950-25': '0 0 25px rgb(2 6 23)',
                 'slate-950-30': '0 0 30px rgb(2 6 23)',
-                'slate-100-30': '0 0 30px rgb(241 245 249)'
+                'slate-100-5': '0 0 5px rgb(241 245 249)',
+                'slate-100-10': '0 0 10px rgb(241 245 249)',
+                'slate-100-15': '0 0 15px rgb(241 245 249)',
+                'slate-100-20': '0 0 20px rgb(241 245 249)',
+                'slate-100-25': '0 0 25px rgb(241 245 249)',
+                'slate-100-30': '0 0 30px rgb(241 245 249)',
             }
         },
     },

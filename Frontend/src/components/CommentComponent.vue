@@ -17,6 +17,15 @@ const props = defineProps({
     name: String,
     avatar: String
 });
+const emit = defineEmits(['delete-comment', 'update-comment']);
+
+const deleteBtnClicked = () => {
+    emit('delete-comment');
+};
+
+const editBtnClicked = () => {
+    emit('update-comment');
+};
 
 const date = new Date(props.created);
 const formattedDate = formatDistanceToNow(date);
@@ -32,7 +41,7 @@ onMounted (() => {
             <div class="flex items-center">
                 <p class="inline-flex items-center mr-3">
                     <img
-                        class="mr-2 w-10 h-10 rounded-full"
+                        class="mr-2 w-10 h-10 rounded-full object-cover"
                         :src="avatar"
                         :alt="`${name}'s avatar'`">
                 </p>
@@ -42,7 +51,7 @@ onMounted (() => {
                             title="February 8th, 2022">{{ formattedDate }} ago</time></p>
                 </div>
             </div>
-            <template v-if="authStore.getUser && authStore.getUser.id == user_id">
+            <template v-if="authStore.getUser && (authStore.getUser.id == user_id || authStore.getUser.user_type == 1)">
                 <button :data-dropdown-toggle="`dropdownComment-${id}`"
                     class="inline-flex items-center p-2 text-sm font-medium text-center text-slate-400 bg-slate-300 rounded-lg hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:focus:ring-slate-600"
                     type="button">
@@ -60,11 +69,10 @@ onMounted (() => {
                     <ul class="py-1 text-sm text-slate-700 dark:text-slate-200"
                         :aria-labelledby="`dropdownMenuIconHorizontalButton-${id}`">
                         <li>
-                            <a href="#"
-                                class="block py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</a>
+                            <button @click="editBtnClicked" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</button>
                         </li>
                         <li>
-                            <button @click="commentStore.deleteComment(id, episode_id)" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
+                            <button @click="deleteBtnClicked" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
                         </li>
                     </ul>
                 </div>

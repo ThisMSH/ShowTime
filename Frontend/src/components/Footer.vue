@@ -1,6 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue';
-import CircleLogo from './utilities/CircleLogo.vue';
+import SquareLogoDark from './utilities/SquareLogoDark.vue';
+import SquareLogoLight from './utilities/SquareLogoLight.vue';
 import FooterRights from './utilities/FooterRights.vue';
 import H4 from './utilities/H4.vue';
 </script>
@@ -11,7 +12,8 @@ import H4 from './utilities/H4.vue';
             class="max-sm:px-3 md:px-20 grid sm:max-lg:grid-cols-[repeat(3,_minmax(0,_auto))] lg:grid-cols-[repeat(5,_minmax(0,_auto))] max-sm:gap-y-6 gap-2 lg:gap-0">
             <div class="flex justify-center p-5 sm:max-lg:row-start-1 sm:max-lg:row-span-2">
                 <RouterLink class="" to="/">
-                    <CircleLogo class="w-32 xl:w-40" />
+                    <SquareLogoDark class="hidden dark:flex" :text-class="'text-4xl 2xl:text-5xl'" :logo-class="'w-32 2xl:w-36'" />
+                    <SquareLogoLight class="flex dark:hidden" :text-class="'text-5xl'" :logo-class="'w-36'" />
                 </RouterLink>
             </div>
             <div>

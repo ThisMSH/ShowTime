@@ -16,7 +16,7 @@ onMounted(async () => {
 
 <template>
     <Header />
-    <main class="mt-[70px] lg:mt-[92px]">
+    <main class="mt-[87px] lg:mt-[111px]">
         <RouterView />
     </main>
     <ScrollToTop />

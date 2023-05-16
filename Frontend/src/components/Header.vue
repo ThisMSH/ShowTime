@@ -2,8 +2,9 @@
 import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
 import { ref, onMounted, onUnmounted } from 'vue';
-import RectangularLogo from './utilities/RectangularLogo.vue';
-import CircleLogoDark from './utilities/CircleLogoDark.vue';
+import RectangularLogoDark from './utilities/RectangularLogoDark.vue';
+import RectangularLogoLight from './utilities/RectangularLogoLight.vue';
+import SquareLogoBlack from './utilities/SquareLogoBlack.vue';
 import { useAuthStore } from '../stores/auth';
 import { useCategoryStore } from '../stores/category';
 import { initDropdowns } from 'flowbite';
@@ -12,6 +13,7 @@ const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
 const sideHeaderClasses = ref("-right-80");
 const navBar = ref(null);
+const orangeBg = ref(null);
 
 function openSideHeader() {
     sideHeaderClasses.value = "right-0";
@@ -28,6 +30,7 @@ const handleLogout = async () => {
 
 const headerFixedStyle = () => {
     navBar.value.classList.toggle("navbar", window.scrollY > 0);
+    orangeBg.value.classList.toggle("orange-bg", window.scrollY > 0);
 }
 
 onMounted(async () => {
@@ -46,23 +49,24 @@ onUnmounted(() => {
 <template>
     <header class="fixed top-0 left-0 w-full z-30 backdrop-blur">
         <nav ref="navBar" class="bg-slate-100 px-4 py-3 lg:p-6 dark:bg-slate-950 bg-opacity-30 dark:bg-opacity-40 border-slate-400 dark:border-slate-600 transition-all duration-300">
-            <div class="absolute h-full w-32 sm:w-2/5 lg:w-2/5 right-0 top-0 bg-orange-500 bg-opacity-70 dark:bg-opacity-70 rounded-l-full transition-all"></div>
+            <!-- <div class="absolute h-full w-32 sm:w-2/5 lg:w-2/5 right-0 top-0 bg-orange-500 bg-opacity-70 dark:bg-opacity-70 rounded-l-full transition-all"></div> -->
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <!-- Logo -->
                 <RouterLink class="mr-3" to="/">
-                    <RectangularLogo class="h-6 sm:h-9" />
+                    <RectangularLogoDark class="hidden dark:flex" :text-class="'text-[0px] sm:text-3xl lg:text-[40px]'" :logo-class="'w-12 lg:w-16'" />
+                    <RectangularLogoLight class="flex dark:hidden" :text-class="'text-[0px] sm:text-3xl lg:text-[40px]'" :logo-class="'w-12 lg:w-16'" />
                 </RouterLink>
-                <div class="flex items-center gap-x-2 sm:gap-x-6 lg:order-2 lg:gap-x-3">
-                    <!-- Search bar -->
-                    <form class="hidden lg:flex items-center">   
+                <div class="relative flex items-center gap-x-2 sm:gap-x-6 lg:order-2 lg:gap-x-3">
+                    <div ref="orangeBg" class="absolute h-[70px] lg:h-[105px] w-[9999px] -left-12 top-1/2 -translate-y-1/2 bg-orange-500 bg-opacity-60 dark:bg-opacity-60 rounded-l-full transition-all duration-500"></div>
+                    <!-- Search button -->
+                    <div class="flex items-center">   
                         <label for="search-1" class="sr-only">Search</label>
                         <div class="relative w-full">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <div class="flex items-center justify-center bg-slate-100 border border-slate-300 text-slate-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 w-11 h-11 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <svg aria-hidden="true" class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <input type="text" id="search-1" class="bg-slate-100 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 pr-4 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
                         </div>
-                    </form>
+                    </div>
                     <template v-if="authStore.isLoading">
                         <div role="status" class="animate-pulse">
                             <svg class="text-gray-200 w-8 h-8 md:w-10 md:h-10 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
@@ -162,21 +166,13 @@ onUnmounted(() => {
                         </button>
                         <!-- Dark mode button -->
                         <DarkMode class="absolute left-5 top-8 block sm:hidden scale-75" />
-                        <div class="">
-                            <!-- Search bar -->
-                            <form class="flex items-center">
-                                <label for="search-1" class="sr-only">Search</label>
-                                <div class="relative w-full">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <svg aria-hidden="true" class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-                                    </div>
-                                    <input type="text" id="search-1" class="bg-slate-100 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 pr-4 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
-                                </div>
-                            </form>
-                        </div>
+                        <!-- ######### -->
                         <ul class="flex flex-col mt-4 font-medium justify-between items-center">
                             <li>
                                 <RouterLink to="/" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0"><p class="transition-all group-hover:scale-125">Home</p></RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="/" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0"><p class="transition-all group-hover:scale-125">Search</p></RouterLink>
                             </li>
                             <li>
                                 <button id="categories-dropdown-mobile" data-dropdown-toggle="dropdown2" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0" type="button"><p class="flex items-center transition-all group-hover:scale-125">Categories <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></p></button>
@@ -211,7 +207,7 @@ onUnmounted(() => {
                     </div>
                     <div class="">
                         <RouterLink class="" to="/">
-                            <CircleLogoDark class="w-52" />
+                            <SquareLogoBlack text-class="text-5xl" />
                         </RouterLink>
                     </div>
                 </div>
@@ -222,14 +218,20 @@ onUnmounted(() => {
 
 <style>
 .navbar {
-    padding: 10px 24px !important;
+    padding: 6px 24px !important;
     border-bottom: 1px solid;
+}
+.orange-bg {
+    height: 69px !important;
 }
 
 @media (max-width: 1024px) {
     .navbar {
-        padding: 6px 16px !important;
+        padding: 3px 16px !important;
         border-bottom: 1px solid;
-    }   
+    }
+    .orange-bg {
+        height: 52px !important;
+    }
 }
 </style>

@@ -13,6 +13,7 @@ import ManageUsers from '../views/children/ManageUsers.vue';
 import ManageShows from '../views/children/ManageShows.vue';
 import ManageEpisodes from '../views/children/ManageEpisodes.vue';
 import PageNotFound from '../views/PageNotFound.vue';
+import test from '../views/test.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -95,7 +96,12 @@ const router = createRouter({
             path: '/:catchAll(.*)',
             name: 'PageNotFound',
             component: PageNotFound
-        }
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: test
+        },
     ]
 })
 
