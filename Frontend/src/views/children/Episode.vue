@@ -35,12 +35,6 @@ const addComment = async () => {
     data.value.comment = null;
 };
 
-function addCommentOnEnter(event) {
-    if (!event.shiftKey) {
-        addComment();
-    }
-}
-
 const deleteComment = async (id) => {
     await commentStore.deleteComment(id);
     comments.value = [];
@@ -159,7 +153,7 @@ watch (() => episodeStore.getSingleEpisode?.episode, () => {
                     </div>
                     <form class="w-11/12" @submit.prevent="addComment">
                         <div class="w-full flex flex-col items-end gap-y-5">
-                            <textarea v-model="data.comment" @keydown.enter="addCommentOnEnter" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
+                            <textarea v-model="data.comment" @keydown.enter.prevent="addComment" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
                             <div class="self-start" v-if="commentStore.getErrors">
                                 <p v-for="error in commentStore.getErrors.comment" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
                             </div>
