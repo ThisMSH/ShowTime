@@ -1,6 +1,6 @@
 <script setup>
 import DarkMode from '../components/utilities/DarkMode.vue';
-import HexagonalRow from '../components/utilities/HexagonalRow.vue';
+import GradientHexaRow from '../components/utilities/GradientHexaRow.vue';
 import RectangularLogoDark from '../components/utilities/RectangularLogoDark.vue';
 import RectangularLogoLight from '../components/utilities/RectangularLogoLight.vue';
 import TextInput from '../components/utilities/TextInput.vue';
@@ -17,21 +17,21 @@ const formData = ref({
 </script>
 
 <template>
-    <main>
+    <main class="bg-gradient-to-b from-transparent via-orange-500 dark:via-orange-400 to-transparent to-30% dark:to-30%">
         <div class="relative h-screen min-h-[700px] xl:min-h-[800px] w-full overflow-hidden">
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
-            <HexagonalRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
+            <GradientHexaRow />
         </div>
         <div class="absolute top-0 left-0 min-h-full  w-full flex justify-center items-center pointer-events-none">
             <div class="backdrop-blur-md rounded-2xl border border-slate-400 dark:border-slate-700 shadow-lg shadow-slate-400 dark:shadow-slate-700 pointer-events-auto">
@@ -70,4 +70,17 @@ const formData = ref({
 </template>
 
 <style scoped>
+main {
+    animation: background-slide 9s linear infinite;
+}
+
+@keyframes background-slide {
+    0% {
+        background-position-y: -50vh;
+
+    }
+    100% {
+        background-position-y: 150vh;
+    }
+}
 </style>

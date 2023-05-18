@@ -96,20 +96,22 @@ onUpdated(() => {
             <p class="text-slate-700 dark:text-slate-300">{{ comment }}</p>
         </div>
         <div v-else>
-            <form class="w-11/12" @submit.prevent="updateComment">
-                <div class="w-full flex flex-col items-end gap-y-5">
+            <form @submit.prevent="updateComment">
+                <div class="w-full flex flex-col items-end gap-y-2">
                     <textarea v-model="data.comment" @keydown.enter="updateComment" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
                     <div class="self-start" v-if="commentStore.getUpdateErrors">
                         <p v-for="error in commentStore.getUpdateErrors.comment" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
                     </div>
-                    <button type="submit" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700">
-                        <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
-                        <span>Edit</span>
-                    </button>
-                    <button @click="displayUpdate = !displayUpdate" type="button" class="flex items-center gap-x-3 px-4 py-1 bg-gray-400 dark:bg-gray-600 text-black dark:text-white rounded-md hover:bg-gray-300 hover:dark:bg-gray-700">
-                        <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
-                        <span>Edit</span>
-                    </button>
+                    <div class="flex gap-x-2">
+                        <button type="submit" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700">
+                            <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
+                            <span>Update</span>
+                        </button>
+                        <button @click="displayUpdate = !displayUpdate" type="button" class="flex items-center gap-x-3 px-4 py-1 bg-gray-400 dark:bg-gray-600 text-black dark:text-white rounded-md hover:bg-gray-300 hover:dark:bg-gray-700">
+                            <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
+                            <span>Cancel</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
