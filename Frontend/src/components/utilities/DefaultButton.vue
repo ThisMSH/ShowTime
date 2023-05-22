@@ -15,7 +15,3 @@ const props = defineProps({
         </span>
     </button>
 </template>
-
-<style>
-
-</style>

@@ -7,12 +7,14 @@ export const useCommentStore = defineStore('comment', {
         errors: [],
         updateErrors: [],
         comment: null,
+        updatedComment: null,
         isLoading: false,
         addLoading: false,
         commentDeleted: false,
     }),
     getters: {
         getComment: (state) => state.comment,
+        getUpdatedComment: (state) => state.updatedComment,
         getCommentState: (state) => state.commentDeleted,
         getErrors: (state) => state.errors,
         getUpdateErrors: (state) => state.updateErrors,
@@ -22,7 +24,6 @@ export const useCommentStore = defineStore('comment', {
             this.addLoading = true;
             this.errors = [];
 
-            const episode = useEpisodeStore();
             const form = new FormData();
             form.append("comment", data.comment);
             form.append("episode_id", data.episode_id);
@@ -39,20 +40,22 @@ export const useCommentStore = defineStore('comment', {
                 this.addLoading = false;
             }
         },
-        async updateComment(id) {
-            this.episodeLoading = true;
+        async updateComment(data) {
+            this.isLoading = true;
             this.updateErrors = [];
 
+            const form = {"comment": data.comment};
+
             try {
-                const singleEpisode = await axios.patch(`/api/episode/${id}`);
-                this.episode = singleEpisode.data.data;
+                const editedComment = await axios.patch(`/api/comment/${data.episode_id}`, form);
+                this.updatedComment = editedComment.data.data;
             } catch (error) {
                 if (error.response.status === 422) {
                     this.updateErrors = error.response.data.errors;
                     console.log(this.updateErrors);
                 }
             } finally {
-                this.episodeLoading = false;
+                this.isLoading = false;
             }
         },
         async deleteComment(id) {

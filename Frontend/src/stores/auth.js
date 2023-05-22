@@ -93,9 +93,19 @@ export const useAuthStore = defineStore("auth", {
             }
         },
         async handleLogout() {
-            await axios.post("/logout");
-            this.authUser = null;
-            this.router.push("/");
+            this.isLoading = true;
+
+            try {
+                await axios.post("/logout");
+                this.authUser = null;
+                this.router.push("/");
+            } catch (error) {
+                if(error.response.status === 422) {
+                    this.authErrors = error.response.data.errors;
+                }
+            } finally {
+                this.isLoading = false;
+            }
         },
     }
 });

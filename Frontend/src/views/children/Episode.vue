@@ -23,8 +23,6 @@ let comments = ref([]);
 let fetchedComments = ref(null);
 let fetchedEpisode = ref(null);
 
-// if (commentStore.getComment) comments.value.unshift(commentStore.getComment);
-
 const data = ref({
     comment: null,
     episode_id: props.id
@@ -41,23 +39,28 @@ const deleteComment = async (id) => {
     await episodeStore.fetchEpisode(props.id);
 };
 
-const updateComment = () => {
-    console.log("deez nuts : " + id);
-};
-
 onMounted(async () => {
     await episodeStore.fetchEpisode(props.id);
     thisShowID.value = episodeStore.getSingleEpisode?.episode.relationships.show.id;
-    await showStore.fetchShow(thisShowID.value);
+
+    document.title = `${episodeStore.getSingleEpisode?.episode.attributes.title + ' - '}ShowTime`;
+
+    if (episodeStore.getErrors[0] !== 404) {
+        await showStore.fetchShow(thisShowID.value);
+    }
 });
 
 watch(() => props.id, async (episodeID) => {
     fetchedEpisode.value = null;
     await episodeStore.fetchEpisode(episodeID);
+
+    document.title = `${episodeStore.getSingleEpisode?.episode.attributes.title + ' - '}ShowTime`;
 });
 
 watch(() => thisShowID.value, async (showID) => {
-    await showStore.fetchShow(showID);
+    if (episodeStore.getErrors[0] !== 404) {
+        await showStore.fetchShow(showID);
+    }
 });
 
 watch(() => props.id, (newEpisodeID) => {
@@ -111,7 +114,9 @@ watch (() => episodeStore.getSingleEpisode?.episode, () => {
                         <VideoPlayer :title="fetchedEpisode.attributes.title" :url="fetchedEpisode.attributes.video" class="aspect-video" />
                     </template>
                 </template>
-                <h6 class="text-orange-500 dark:text-orange-400">{{ fetchedEpisode.relationships.show.title }} - {{ fetchedEpisode.relationships.show.season }}</h6>
+                <RouterLink :to="`/show/${showStore.getSingleShow?.show.id}`">
+                    <h6 class="text-orange-500 dark:text-orange-400">{{ fetchedEpisode.relationships.show.title }}{{ fetchedEpisode.relationships.show.season ? ' - ' + fetchedEpisode.relationships.show.season : '' }}</h6>
+                </RouterLink>
                 <h3 class="text-xl sm:text-2xl lg:text-3xl font-semibold">{{ fetchedEpisode.attributes.number }} - {{ fetchedEpisode.attributes.title }}</h3>
                 <div class="px-10 text-justify">
                     <p>{{ fetchedEpisode.attributes.description }}</p>
@@ -163,8 +168,8 @@ watch (() => episodeStore.getSingleEpisode?.episode, () => {
                 </div>
                 <!-- Comments from database -->
                 <div>
-                    <CommentComponent v-if="comments" v-for="comment in comments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" @update-comment="updateComment" />
-                    <CommentComponent v-for="comment in fetchedComments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" @update-comment="updateComment" />
+                    <CommentComponent v-if="comments" v-for="comment in comments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" />
+                    <CommentComponent v-for="comment in fetchedComments" :key="comment.id" :id="comment.id" :user_id="comment.relationships.creator.user_id" :episode_id="comment.relationships.episode.episode_id" :comment="comment.attributes.comment" :created="comment.attributes.created" :username="comment.relationships.creator.username" :name="comment.relationships.creator.name" :avatar="comment.relationships.creator.avatar" @delete-comment="deleteComment(comment.id)" />
                 </div>
             </section>
         </template>

@@ -16,6 +16,8 @@ const categoryTitles = {
 
 let categoryTitle = categoryTitles[props.id];
 
+document.title = `${categoryTitle} - ShowTime`;
+
 onMounted(async () => {
     await categoryStore.fetchCategoryShows(props.id);
 });
@@ -23,6 +25,8 @@ onMounted(async () => {
 watch(() => props.id, async (categoryID) => {
     categoryTitle = categoryTitles[categoryID];
     await categoryStore.fetchCategoryShows(categoryID);
+
+    document.title = `${categoryTitle} - ShowTime`;
 });
 </script>
 
@@ -43,7 +47,3 @@ watch(() => props.id, async (categoryID) => {
         </div>
     </div>
 </template>
-
-<style>
-
-</style>

@@ -18,7 +18,3 @@ const props = defineProps({
         <h6 :class="customClass" :title="`${number} - ${title}`" class="font-medium"><span :class="clamp">{{ number }} - {{ title }}</span></h6>
     </RouterLink>
 </template>
-
-<style>
-
-</style>

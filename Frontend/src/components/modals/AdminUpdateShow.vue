@@ -54,7 +54,7 @@ onMounted(async () => {
                 <!-- Modal header -->
                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-slate-600">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-                        Updating {{ props.show.attributes.title }} - {{ props.show.attributes.season }}.
+                        Updating {{ props.show.attributes.title }}{{ props.show.attributes.season ? ' - ' + props.show.attributes.season : '' }}.
                     </h3>
                     <button type="button"
                         class="text-slate-400 bg-transparent hover:bg-slate-200 hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-slate-600 dark:hover:text-white"

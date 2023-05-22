@@ -3,21 +3,35 @@ import Breadcrumb from './utilities/Breadcrumb.vue';
 import DarkMode from './utilities/DarkMode.vue';
 import { Icon } from '@iconify/vue';
 import { useAuthStore } from '../stores/auth';
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { initDropdowns } from 'flowbite';
+import { useRoute } from 'vue-router';
 
 
 const authStore = useAuthStore();
 const props = defineProps(["tabName"]);
+const route = useRoute();
+let currentPathName = ref(route.name);
+const routeNames = ref({
+    "profile": "Personal Information",
+    "pricing": "Pricing",
+    "manage_shows": "Shows Management",
+    "manage_users": "Users Information",
+    "manage_episodes": "Episodes Management"
+});
 
 onMounted(() => {
     initDropdowns();
+});
+
+watch(() => route.name, (currentRouteName) => {
+    currentPathName.value = currentRouteName;
 });
 </script>
 
 <template>
     <div class="flex items-center justify-between">
-        <Breadcrumb :tabName="tabName" />
+        <Breadcrumb :tabName="routeNames[currentPathName]" />
         <h6 class="text-lg font-medium flex justify-center items-center gap-x-2">
             <Icon class="text-3xl" icon="ic:outline-waving-hand" :rotate="3" />
             Welcome back {{ authStore.getUser?.name }}
@@ -33,15 +47,15 @@ onMounted(() => {
                 <template v-else >
                     <template v-if="authStore.getUser">
                         <!-- User avatar -->
-                        <button type="button" class="flex text-sm bg-slate-800 border-2 border-slate-500 rounded-full focus:ring-4 focus:ring-slate-300 dark:focus:ring-slate-600 z-[1]" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                        <button type="button" class="w-8 h-8 md:w-10 md:h-10 flex text-sm bg-slate-800 border-2 border-slate-500 rounded-full focus:ring-4 focus:ring-slate-300 dark:focus:ring-slate-600 z-[1]" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" :src="authStore.getUser.avatar" alt="user photo">
+                            <img class="rounded-full object-cover" :src="authStore.getUser.avatar" alt="user photo">
                         </button>
                         <!-- User dropdown menu -->
                         <div class="z-10 hidden my-4 text-base list-none bg-white divide-y divide-slate-100 rounded-lg shadow dark:bg-slate-700 dark:divide-slate-600 overflow-hidden" id="user-dropdown">
                             <div class="px-4 py-3">
                                 <span class="block text-sm text-slate-900 dark:text-white">{{ authStore.getUser.name }}</span>
-                                <span class="block text-sm text-slate-500 truncate dark:text-slate-400">{{ authStore.getUser.username }}</span>
+                                <span class="block text-sm text-slate-500 truncate dark:text-slate-400">u/{{ authStore.getUser.username }}</span>
                             </div>
                             <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="user-menu-button">
                                 <li>
@@ -78,7 +92,3 @@ onMounted(() => {
         </div>
     </div>
 </template>
-
-<style>
-
-</style>

@@ -43,7 +43,3 @@ const props = defineProps(["tabName"]);
         </ol>
     </nav>
 </template>
-
-<style>
-
-</style>

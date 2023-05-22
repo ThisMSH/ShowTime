@@ -22,7 +22,7 @@ const options = reactive({
     autoMini: true,
     screenshot: true,
     setting: true,
-    loop: true,
+    loop: false,
     flip: true,
     playbackRate: true,
     aspectRatio: true,
@@ -190,8 +190,8 @@ const options = reactive({
     //     },
     // ],
     icons: {
-        loading: '<img src="../src/assets/images/ArtPlayer/loading.gif">',
-        state: '<img width="150" heigth="150" src="../src/assets/images/Logo/circle-logo-no-background.png">',
+        loading: '<img src="../src/assets/images/ArtPlayer/Loading-logo.svg">',
+        state: '<img width="150" heigth="150" src="../src/assets/images/ArtPlayer/logo.png">',
         indicator: '<img width="16" heigth="16" src="../src/assets/images/ArtPlayer/indicator.svg">',
     },
 });
@@ -214,7 +214,3 @@ defineExpose({
 <template>
     <div ref="player"></div>
 </template>
-
-<style>
-
-</style>

@@ -9,7 +9,3 @@ const props = defineProps({
         <p class="transition-all duration-500 ease-in-out group-hover:scale-125">{{ name }}</p>
     </button>
 </template>
-
-<style>
-
-</style>

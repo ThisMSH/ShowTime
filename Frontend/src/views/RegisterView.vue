@@ -23,7 +23,9 @@ const formData = ref({
 
 function getAvatar(data) {
     formData.value.image = data;
-} 
+}
+
+document.title = "Sign-up - ShowTime";
 </script>
 
 <template>

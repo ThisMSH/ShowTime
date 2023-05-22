@@ -28,7 +28,3 @@ onUnmounted(() => {
         <p class="font-coiny text-slate-900 dark:text-slate-100">To Top</p>
     </button>
 </template>
-
-<style>
-
-</style>

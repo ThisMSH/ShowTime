@@ -108,8 +108,8 @@ module.exports = {
                 'logo': '"Saira Stencil One", "Coiny", cursive',
             },
             height: {
-                'home-desktop': 'calc(100vh - 111px)',
-                'home-tablet': 'calc(100vh - 87px)',
+                'home-desktop': 'calc(100vh - 105px)',
+                'home-tablet': 'calc(100vh - 70px)',
             },
             textStroke: {
                 'white-1': '1px rgb(255 255 255)',

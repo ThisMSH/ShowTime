@@ -14,6 +14,8 @@ const formData = ref({
     email: "",
     password: "",
 });
+
+document.title = "Sign-in - ShowTime";
 </script>
 
 <template>

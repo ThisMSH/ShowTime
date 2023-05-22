@@ -42,7 +42,3 @@ onMounted(() => {
         <p v-if="error" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">{{ error }}</p>
     </div>
 </template>
-
-<style>
-
-</style>

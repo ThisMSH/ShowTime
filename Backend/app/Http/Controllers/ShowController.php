@@ -98,7 +98,6 @@ class ShowController extends Controller
     public function update(UpdateShowRequest $request, Show $show)
     {
         $request->validated();
-        // dump($request);
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $show->title);
         $season_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->season ?? $show->season);
@@ -107,28 +106,16 @@ class ShowController extends Controller
         if ($request->hasFile('cover')) {
             $cover = "shows/cover/{$cover_name}-cover.{$request->cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($cover, file_get_contents($request->cover));
-            $request->merge(['cover' => $cover]);
-            // $request->cover = $cover;
+            $show->update(['cover' => $cover]);
         }
 
         if ($request->hasFile('wide_cover')) {
             $wide_cover = "shows/wide-cover/{$cover_name}-wide-cover.{$request->wide_cover->getClientOriginalExtension()}";
             Storage::disk('public')->put($wide_cover, file_get_contents($request->wide_cover));
-            $request->merge(['wide_cover' => $wide_cover]);
-            // $request->wide_cover = $wide_cover;
+            $show->update(['wide_cover' => $wide_cover]);
         }
 
-        // $show->update([
-        //     'category_id' => $request->category_id,
-        //     'title' => $request->title,
-        //     'season' => $request->season,
-        //     'description' => $request->description,
-        //     'cover' => $request->cover,
-        //     'wide_cover' => $request->wide_cover,
-        //     'sequel' => $request->sequel,
-        //     'prequel' => $request->prequel,
-        // ]);
-        $show->update($request->all());
+        $show->update($request->except(['cover', 'wide_cover']));
 
         return $this->success(new ShowResource($show));
     }
@@ -157,7 +144,7 @@ class ShowController extends Controller
     public function showsWithEpisodes()
     {
         $shows_episodes = Show::with('episodes')->get();
-        
+
         return $this->success([ShowResource::collection($shows_episodes)]);
     }
 

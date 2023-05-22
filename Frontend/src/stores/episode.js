@@ -36,9 +36,9 @@ export const useEpisodeStore = defineStore('episode', {
                 const singleEpisode = await axios.get(`/api/episode/${id}`);
                 this.episode = singleEpisode.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                    console.log(this.errors);
+                if (error.response.status === 404) {
+                    this.errors = [404];
+                    this.router.push("/episode-not-found");
                 }
             } finally {
                 this.episodeLoading = false;

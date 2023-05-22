@@ -38,7 +38,6 @@ onMounted(async () => {
     
     initDropdowns();
     await categoryStore.fetchAllCategories();
-    await authStore.fetchUser();
 });
 
 onUnmounted(() => {
@@ -84,7 +83,7 @@ onUnmounted(() => {
                             <div class="z-10 hidden my-4 text-base list-none bg-white divide-y divide-slate-100 rounded-lg shadow dark:bg-slate-700 dark:divide-slate-600 overflow-hidden" id="user-dropdown">
                                 <div class="px-4 py-3">
                                     <span class="block text-sm text-slate-900 dark:text-white">{{ authStore.getUser.name }}</span>
-                                    <span class="block text-sm text-slate-500 truncate dark:text-slate-400">{{ authStore.getUser.username }}</span>
+                                    <span class="block text-sm text-slate-500 truncate dark:text-slate-400">u/{{ authStore.getUser.username }}</span>
                                 </div>
                                 <ul class="text-slate-700 dark:text-slate-200 font-medium" aria-labelledby="user-menu-button">
                                     <li>
