@@ -33,7 +33,7 @@ watch(() => props.id, async (categoryID) => {
 <template>
     <div class="container mx-auto">
         <H2 :title="categoryTitle" />
-        <div class="my-40 grid gap-y-20 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
+        <div class="my-40 grid gap-y-20 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
             <template v-if="categoryStore.catShowsLoading">
                 <div v-for="i in 12" :key="i" class="flex justify-center items-center">
                     <ShowSkeleton />

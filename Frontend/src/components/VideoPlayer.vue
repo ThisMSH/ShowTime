@@ -190,7 +190,7 @@ const options = reactive({
     //     },
     // ],
     icons: {
-        loading: '<img src="../src/assets/images/ArtPlayer/Loading-logo.svg">',
+        loading: '<img src="../src/assets/images/ArtPlayer/Loading.gif">',
         state: '<img width="150" heigth="150" src="../src/assets/images/ArtPlayer/logo.png">',
         indicator: '<img width="16" heigth="16" src="../src/assets/images/ArtPlayer/indicator.svg">',
     },

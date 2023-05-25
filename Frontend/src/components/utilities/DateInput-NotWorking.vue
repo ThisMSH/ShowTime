@@ -1,15 +1,15 @@
 <script setup>
-import { toRefs, computed } from 'vue';
-import { format } from 'date-fns';
+import { toRefs, computed, onMounted, ref } from 'vue';
+import Datepicker from 'flowbite-datepicker/Datepicker';
 
+const datePick = ref(null);
 const emit = defineEmits(['update:input']);
 const props = defineProps({
     label: String,
     isReadOnly: { type: Boolean, default: false },
-    isRequired: { type: Boolean, default: false },
     input: String,
     inputID: String,
-    errors: { type: Array, default: []},
+    errors: String,
     errorID: String,
 });
 const { label, input, inputID, errors, errorID } = toRefs(props);
@@ -18,7 +18,16 @@ const inputComputed = computed({
     set: (val) => emit("update:input", val)
 });
 
-const currentDate = format(new Date(), "yyyy-MM-dd");
+onMounted(() => {
+    new Datepicker(datePick.value, {
+        clearBtn: true,
+        todayBtn: true,
+        autohide: true,
+        orientation: 'bottom',
+        format: 'dd-mm-yyyy',
+        maxDate: new Date(),
+    });
+});
 </script>
 
 <template>
@@ -34,16 +43,12 @@ const currentDate = format(new Date(), "yyyy-MM-dd");
             </div>
             <input :id="inputID" v-model="inputComputed"
                 :class="[errors.length > 0 ? 'border-red-600' : 'border-slate-600', errors.length > 0 ? 'dark:border-red-500' : 'dark:border-slate-400', errors.length > 0 ? 'focus:border-red-600' : 'focus:border-slate-600', errors.length > 0 ? 'dark:focus:border-red-500' : 'dark:focus:border-slate-400']"
-                class="block py-2.5 px-0 w-full max-md:text-sm text-transparent bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 peer 
-                valid:text-slate-950 valid:dark:text-slate-100
-                transition-colors duration-300"
-                type="date" :readonly="isReadOnly" :required="isRequired" :max="currentDate">
+                ref="datePick" datepicker type="text"
+                class="block py-2.5 px-0 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 peer"
+                placeholder=" " :readonly="isReadOnly">
             <label :for="inputID"
                 :class="[errors.length > 0 ? 'text-red-600' : 'text-slate-600', errors.length > 0 ? 'dark:text-red-500' : 'dark:text-slate-400']"
-                class="absolute text-sm duration-300 transform left-0 top-3 -z-10 origin-[0]
-                peer-focus:left-0 peer-focus:scale-75 peer-focus:-translate-y-6
-                peer-valid:left-0 peer-valid:scale-75 peer-valid:-translate-y-6"
-                >{{
+                class="absolute text-sm duration-300 transform -translate-y-6 scale-75 left-0 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{
                     label }}</label>
         </div>
         <div v-if="errors" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">

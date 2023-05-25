@@ -85,7 +85,7 @@ export const useShowStore = defineStore('show', {
             form.append("cover", data.cover);
             form.append("wide_cover", data.wide_cover);
 
-            const closeButton = document.querySelector('#create-show [data-modal-toggle]');
+            const closeButton = document.querySelector('#create-show');
 
             try {
                 await axios.post("/api/show", form);
@@ -119,12 +119,12 @@ export const useShowStore = defineStore('show', {
             try {
                 await axios.post(`/api/show/${id}`, form);
                 await this.fetchAllShows();
+                closeUpdateBtn.click();
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
             } finally {
-                closeUpdateBtn.click();
                 this.isLoading = false;
             }
         },
@@ -136,13 +136,13 @@ export const useShowStore = defineStore('show', {
             try {
                 await axios.delete(`/api/show/${id}`);
                 await this.fetchAllShows();
+                closeDeleteBtn.click();
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                     console.log(this.errors);
                 }
             } finally {
-                closeDeleteBtn.click();
                 this.isLoading = false;
             }
         },

@@ -59,8 +59,7 @@ document.title = "Sign-up - ShowTime";
                                 <TextInput v-model:input="formData.name" label="Full name" inputType="text" inputID="name" :errors="authStore.getErrors.name" errorID="name-error" :isRequired="true" />
                                 <TextInput v-model:input="formData.username" label="Username" inputType="text" inputID="username" :errors="authStore.getErrors.username" errorID="username-error" :isRequired="true" />
                                 <TextInput v-model:input="formData.email" label="E-mail" inputType="email" inputID="email" :errors="authStore.getErrors.email" errorID="email-error" :isRequired="true" />
-                                <TextInput v-model:input="formData.birthday" label="Birthday" inputType="date" inputID="birthday" :errors="authStore.getErrors.birthday" errorID="birthday-error" :isRequired="true" />
-                                <!-- <DateInput v-model:input="formData.birthday" label="Birthday" inputID="birthday" errors="" errorID="birthday-error" /> -->
+                                <DateInput v-model:input="formData.birthday" label="Birthday" inputID="birthday" :errors="authStore.getErrors.birthday" errorID="birthday-error" :isRequired="true" />
                                 <TextInput v-model:input="formData.password" label="Password" inputType="password" inputID="pwd" :errors="authStore.getErrors.password" errorID="pwd-error" :isRequired="true" />
                                 <TextInput v-model:input="formData.confirm_password" label="Confirm password" inputType="password" inputID="c_pwd" :isRequired="true" />
                                 <FileInput @file-content="getAvatar" class="lg:col-span-2"  label="Avatar (optional)" inputType="file" inputID="avatar" :errors="authStore.getErrors.avatar" errorID="avatar-error" />

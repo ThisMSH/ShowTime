@@ -12,6 +12,7 @@ use App\Models\Episode;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Telescope\Telescope;
 
 class ShowController extends Controller
 {
@@ -22,6 +23,8 @@ class ShowController extends Controller
      */
     public function index()
     {
+        Telescope::stopRecording();
+
         $totalAnime = Show::whereIn('category_id', [3, 4])->count();
         $totalLiveAction = Show::whereIn('category_id', [1, 2])->count();
         $totalEpisodes = Episode::count();
@@ -39,6 +42,8 @@ class ShowController extends Controller
      */
     public function store(StoreShowRequest $request)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title);
@@ -75,6 +80,8 @@ class ShowController extends Controller
      */
     public function show(Show $show)
     {
+        Telescope::stopRecording();
+
         $episodes = $show->episodes()
             ->orderBy('number')
             ->get();
@@ -97,6 +104,8 @@ class ShowController extends Controller
      */
     public function update(UpdateShowRequest $request, Show $show)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $show->title);
@@ -125,6 +134,8 @@ class ShowController extends Controller
      */
     public function destroy(Show $show)
     {
+        Telescope::stopRecording();
+
         return $show->delete();
     }
 
@@ -133,9 +144,21 @@ class ShowController extends Controller
      */
     public function search($search)
     {
-        $search = Show::where('title', 'LIKE', '%' . $search . '%')->get();
+        Telescope::stopRecording();
 
-        return $this->success(ShowResource::collection($search));
+        $terms = explode(' ', $search);
+        $query = Show::query();
+
+        foreach ($terms as $term) {
+            $query->where(function ($q) use ($term) {
+                $q->where('title', 'LIKE', '%' . $term . '%')
+                    ->orWhere('season', 'LIKE', '%' . $term . '%');
+            });
+        }
+
+        $result = $query->get();
+
+        return $this->success(ShowResource::collection($result));
     }
 
     /**
@@ -143,9 +166,14 @@ class ShowController extends Controller
      */
     public function showsWithEpisodes()
     {
-        $shows_episodes = Show::with('episodes')->get();
+        $shows = Show::with(['episodes' => function ($query) {
+            $query->orderBy('number');
+        }])->get();
 
-        return $this->success([ShowResource::collection($shows_episodes)]);
+        return $this->success(ShowResource::collection($shows));
+        // $shows_episodes = Show::with('episodes')->get();
+
+        // return $this->success([ShowResource::collection($shows_episodes)]);
     }
 
     /**
@@ -153,6 +181,8 @@ class ShowController extends Controller
      */
     public function latestLiveAction()
     {
+        Telescope::stopRecording();
+
         $shows = Show::whereIn('category_id', [1, 2])
             ->latest()
             ->take(9)
@@ -166,6 +196,8 @@ class ShowController extends Controller
      */
     public function latestAnime()
     {
+        Telescope::stopRecording();
+
         $shows = Show::whereIn('category_id', [3, 4])
             ->latest()
             ->take(9)

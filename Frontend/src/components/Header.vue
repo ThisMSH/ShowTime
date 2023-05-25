@@ -58,14 +58,14 @@ onUnmounted(() => {
                 <div class="relative flex items-center gap-x-2 sm:gap-x-6 lg:order-2 lg:gap-x-3">
                     <div ref="orangeBg" class="absolute h-[70px] lg:h-[105px] w-[9999px] -left-12 top-1/2 -translate-y-1/2 bg-orange-500 bg-opacity-60 dark:bg-opacity-60 rounded-l-full transition-all duration-500"></div>
                     <!-- Search button -->
-                    <div class="flex items-center">   
+                    <RouterLink to="/search" class="flex items-center">   
                         <label for="search-1" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="flex items-center justify-center bg-slate-100 border border-slate-300 text-slate-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 w-11 h-11 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <svg aria-hidden="true" class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                             </div>
                         </div>
-                    </div>
+                    </RouterLink>
                     <template v-if="authStore.isLoading">
                         <div role="status" class="animate-pulse">
                             <svg class="text-gray-200 w-8 h-8 md:w-10 md:h-10 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
@@ -171,7 +171,7 @@ onUnmounted(() => {
                                 <RouterLink to="/" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0"><p class="transition-all group-hover:scale-125">Home</p></RouterLink>
                             </li>
                             <li>
-                                <RouterLink to="/" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0"><p class="transition-all group-hover:scale-125">Search</p></RouterLink>
+                                <RouterLink to="/search" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0"><p class="transition-all group-hover:scale-125">Search</p></RouterLink>
                             </li>
                             <li>
                                 <button id="categories-dropdown-mobile" data-dropdown-toggle="dropdown2" class="group inline-block py-2 px-6 text-center text-lg font-semibold rounded-lg overflow-hidden relative transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-slate-900 before:transition-all before:duration-300 hover:shadow-header-icons-slate hover:text-slate-100 before:hover:shadow-header-icons-inner-slate hover:before:w-full hover:before:left-0" type="button"><p class="flex items-center transition-all group-hover:scale-125">Categories <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></p></button>

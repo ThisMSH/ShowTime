@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTrailerRequest;
 use App\Http\Resources\TrailerResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Telescope\Telescope;
 
 class TrailerController extends Controller
 {
@@ -18,6 +19,8 @@ class TrailerController extends Controller
      */
     public function index()
     {
+        Telescope::stopRecording();
+
         return $this->success(
             TrailerResource::collection(
                 Trailer::orderBy('trailer')->get()
@@ -30,6 +33,8 @@ class TrailerController extends Controller
      */
     public function store(StoreTrailerRequest $request)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
         $trailer = Trailer::create([
@@ -55,6 +60,8 @@ class TrailerController extends Controller
      */
     public function update(UpdateTrailerRequest $request, Trailer $trailer)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
         $trailer->update($request->all());
@@ -67,6 +74,8 @@ class TrailerController extends Controller
      */
     public function destroy(Trailer $trailer)
     {
-        $trailer->delete();
+        Telescope::stopRecording();
+        
+        return $trailer->delete();
     }
 }

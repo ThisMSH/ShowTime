@@ -10,6 +10,7 @@ use App\Http\Resources\EpisodeResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Telescope\Telescope;
 
 class EpisodeController extends Controller
 {
@@ -20,6 +21,8 @@ class EpisodeController extends Controller
      */
     public function index()
     {
+        Telescope::stopRecording();
+
         return $this->success(
             EpisodeResource::collection(
                 Episode::orderBy('number')->get()
@@ -32,6 +35,8 @@ class EpisodeController extends Controller
      */
     public function store(StoreEpisodeRequest $request)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
         $title_no_whitespace = str_replace(' ', '-', $request->title);
@@ -67,6 +72,8 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
+        Telescope::stopRecording();
+
         $comments = $episode->comments()
             ->orderByDesc('id')
             ->get();
@@ -84,30 +91,27 @@ class EpisodeController extends Controller
      */
     public function update(UpdateEpisodeRequest $request, Episode $episode)
     {
+        Telescope::stopRecording();
+
         $request->validated();
 
-        $title_no_whitespace = str_replace(' ', '-', $request->title ?? $episode->title);
-        $number_no_whitespace = str_replace(' ', '-', $request->number ?? $episode->number);
+        $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $episode->title);
+        $number_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->number ?? $episode->number);
         $file_name = "{$number_no_whitespace}-{$title_no_whitespace}";
 
         if ($request->hasFile('thumbnail')) {
             $thumbnail = "episodes/thumbnail/" . time() . "-{$file_name}.{$request->thumbnail->getClientOriginalExtension()}";
             Storage::disk('public')->put($thumbnail, file_get_contents($request->thumbnail));
-        } else {
-            $thumbnail = null;
+            $episode->update(['thumbnail' => $thumbnail]);
         }
 
         if ($request->hasFile('video')) {
             $video = "episodes/videos/" . time() . "-{$file_name}.{$request->video->getClientOriginalExtension()}";
             Storage::disk('public')->put($video, file_get_contents($request->video));
-        } else {
-            $video = null;
+            $episode->update(['video' => $video]);
         }
 
-        $request->thumbnail = $thumbnail;
-        $request->video = $video;
-
-        $episode->update($request->all());
+        $episode->update($request->except(['thumbnail', 'video']));
 
         return $this->success(new EpisodeResource($episode));
     }
@@ -117,6 +121,8 @@ class EpisodeController extends Controller
      */
     public function destroy(Episode $episode)
     {
+        Telescope::stopRecording();
+        
         return $episode->delete();
     }
 }

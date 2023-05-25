@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Telescope\Telescope;
 
 class UserController extends Controller
 {
@@ -29,6 +30,8 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
+        Telescope::stopRecording();
+
         $request->user()->avatar = asset(Storage::url($request->user()->avatar));
 
         return $this->success($request->user());

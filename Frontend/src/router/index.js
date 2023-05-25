@@ -13,6 +13,7 @@ import ManageUsers from '../views/children/ManageUsers.vue';
 import ManageShows from '../views/children/ManageShows.vue';
 import ManageEpisodes from '../views/children/ManageEpisodes.vue';
 import PageNotFound from '../views/PageNotFound.vue';
+import Search from '../views/children/Search.vue';
 import test from '../views/test.vue';
 
 const router = createRouter({
@@ -46,6 +47,11 @@ const router = createRouter({
                     component: Episode,
                     props: true
                 },
+                {
+                    path: 'search',
+                    name: 'search',
+                    component: Search
+                }
             ]
         },
         {
