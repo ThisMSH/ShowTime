@@ -129,10 +129,10 @@ watch (() => episodeStore.getSingleEpisode?.episode, () => {
                 <h3 class="text-xl sm:text-2xl lg:text-3xl text-orange-500 dark:text-amber-500 font-medium sm:font-semibold">Episodes</h3>
                 <template v-if="showStore.getSingleShow">
                     <div class="hidden sm:block lg:hidden xl:block rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden transition-all duration-300" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id" :class="[episode.id == id ? 'drop-shadow-black-sm dark:drop-shadow-white-sm' : '']">
-                        <EpisodeComponentHori :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" />
+                        <EpisodeComponentHori :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" imageClass="rounded-l-xl" :epiType="episode.attributes.premium" />
                     </div>
                     <div class="block sm:hidden lg:block xl:hidden rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden transition-all duration-300" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id" :class="[episode.id == id ? 'drop-shadow-black-sm dark:drop-shadow-white-sm' : '']">
-                        <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" imageClass="max-sm:w-full" />
+                        <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="px-3 py-2.5" clamp="line-clamp-2" imageClass="max-sm:w-full rounded-t-xl" :epiType="episode.attributes.premium" />
                     </div>
                 </template>
                 <template v-else>

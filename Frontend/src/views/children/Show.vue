@@ -116,7 +116,7 @@ watch(() => props.id, async (showID) => {
                     <ToggleBtn ref="toggleBtn" />
                 </div>
                 <div ref="sideShowInfo" id="side-show-info" class="lg:block max-lg:fixed max-lg:top-0 max-lg:-left-[400px] max-lg:z-30 max-lg:overflow-y-auto max-lg:h-full max-lg:transition-all max-lg:duration-300">
-                    <div class="relative w-96 px-2 py-12 flex flex-col items-center gap-y-5 bg-slate-300 dark:bg-slate-700 rounded-2xl max-lg:rounded-none  max-lg:pt-28">
+                    <div class="relative w-96 px-2 py-12 flex flex-col items-center gap-y-5 bg-slate-300 dark:bg-slate-700 rounded-2xl max-lg:rounded-none max-lg:rounded-r-lg  max-lg:pt-28">
                         <h3 class="text-xl sm:text-2xl lg:text-3xl text-center text-amber-500 font-medium sm:font-semibold">{{ showStore.getSingleShow.show.attributes.title }}{{ showStore.getSingleShow.show.attributes.season ? ' - ' + showStore.getSingleShow.show.attributes.season : '' }}</h3>
                         <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                         <div class="grid grid-cols-2 gap-x-5 gap-y-2 max-sm:text-sm">
@@ -207,7 +207,7 @@ watch(() => props.id, async (showID) => {
                     <div ref="episodesContainer">
                         <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-5 gap-y-8 justify-center items-start">
                             <div class="max-sm:w-[80vw] flex items-center justify-center" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id">
-                                <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="w-full sm:w-60 mt-3" imageClass="w-full sm:w-60" />
+                                <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="w-full sm:w-60 mt-3" imageClass="w-full sm:w-60" :epiType="episode.attributes.premium" />
                             </div>
                         </div>
                     </div>
