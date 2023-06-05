@@ -110,9 +110,9 @@ watch(() => props.id, async (showID) => {
         </section>
         <!-- Episodes section -->
         <section>
-            <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-[auto,_1fr] lg:gap-10 xl:gap-20">
+            <div class="my-20 mx-auto container px-3 sm:px-5 grid grid-cols-1 lg:grid-cols-[auto,_1fr] lg:gap-10 xl:gap-20">
                 <!-- Side information -->
-                <div ref="toggleSideShowInfoBtn"  @click="toggleSideShowInfo" class="fixed top-24 -left-9 z-[31] transition-all duration-300 lg:hidden">
+                <div ref="toggleSideShowInfoBtn" @click="toggleSideShowInfo" class="fixed top-24 -left-9 z-[31] transition-all duration-300 lg:hidden">
                     <ToggleBtn ref="toggleBtn" />
                 </div>
                 <div ref="sideShowInfo" id="side-show-info" class="lg:block max-lg:fixed max-lg:top-0 max-lg:-left-[400px] max-lg:z-30 max-lg:overflow-y-auto max-lg:h-full max-lg:transition-all max-lg:duration-300">
@@ -205,7 +205,7 @@ watch(() => props.id, async (showID) => {
                     </div>
                     <!-- Episodes tab -->
                     <div ref="episodesContainer">
-                        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-5 gap-y-8 justify-center items-start">
+                        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:gap-x-5 gap-y-8 justify-center items-start">
                             <div class="max-sm:w-[80vw] flex items-center justify-center" v-for="episode in showStore.getSingleShow.episodes" :key="episode.id">
                                 <EpisodeComponent :number="episode.attributes.number" :title="episode.attributes.title" :image="episode.attributes.thumbnail" :toEpisode="episode.id" customClass="w-full sm:w-60 mt-3" imageClass="w-full sm:w-60" :epiType="episode.attributes.premium" />
                             </div>

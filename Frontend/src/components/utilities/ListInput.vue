@@ -32,8 +32,7 @@ const inputComputed = computed({
                 class="absolute text-sm duration-300 transform -translate-y-6 scale-75 left-0 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{
                     label }}</label>
             <datalist :id="datalistID">
-                <option v-for="show in showsList" :key="show.id" :value="show.id">{{ show.attributes.title }} - {{
-                    show.attributes.season }}</option>
+                <option v-for="show in showsList" :key="show.id" :value="show.id">{{ show.attributes.title }}{{ show.attributes.season ? ' - ' + show.attributes.season : '' }}</option>
             </datalist>
         </div>
         <div v-if="errors">

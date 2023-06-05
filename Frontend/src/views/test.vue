@@ -9,7 +9,7 @@ import SquareLogoLight from '../components/utilities/SquareLogoLight.vue';
 
 <template>
     <DarkMode class="absolute top-2 right-2"/>
-    <div class="mt-60 flex justify-center gap-x-20">
+    <div class="flex justify-center mt-60 gap-x-20">
         <RectangularLogoDark class="hidden" :logo-class="'w-20'" :text-class="'text-5xl'" />
         <RectangularLogoLight class="hidden" :logo-class="'w-20'" :text-class="'text-5xl'" />
         <SquareLogoDark class="hidden" :logo-class="'w-40'" :text-class="'text-5xl'" />

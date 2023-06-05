@@ -15,10 +15,10 @@ document.title = 'Search - ShowTime';
 <template>
     <section class="container mx-auto">
         <H2 title="Search" class="mb-20" />
-        <input v-model="searchingFor" @keyup="showStore.searchForShow(searchingFor)" type="text" class="relative p-4 left-1/2 text-lg font-medium w-5/6 bg-transparent border-0 border-b-2 border-slate-500 rounded-t-lg -translate-x-1/2 focus:outline-none focus:ring-0 focus:border-slate-900 focus:dark:border-slate-200 focus:bg-slate-300 focus:dark:bg-slate-800" autofocus>
-        <div class="my-40 grid gap-y-20 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
+        <input v-model="searchingFor" @keyup="showStore.searchForShow(searchingFor)" type="text" class="relative w-5/6 p-4 text-lg font-medium -translate-x-1/2 bg-transparent border-0 border-b-2 rounded-t-lg left-1/2 border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-900 focus:dark:border-slate-200 focus:bg-slate-300 focus:dark:bg-slate-800" placeholder="" autofocus>
+        <div class="grid grid-cols-2 my-40 gap-y-20 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3">
             <template v-if="showStore.searchLoading">
-                <div v-for="i in 12" :key="i" class="flex justify-center items-center">
+                <div v-for="i in 12" :key="i" class="flex items-center justify-center">
                     <ShowSkeleton />
                 </div>
             </template>

@@ -50,10 +50,13 @@ class ShowResource extends JsonResource
                 ],
                 "episodes" => [
                     "count" => (string)$this->episodes_count ?? "",
-                    "list" => EpisodeResource::collection($this->whenLoaded('episodes'))
+                    "list" => EpisodeResource::collection($this->whenLoaded('episodes')),
                 ],
                 "creator" => [
                     "username" => $this->user->username
+                ],
+                "trailers" => [
+                    "list" => TrailerResource::collection($this->whenLoaded('trailers'))
                 ]
             ]
         ];

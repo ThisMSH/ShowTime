@@ -1,6 +1,6 @@
 <script setup>
 import H4 from '../../components/utilities/H4.vue';
-import AdminCreateEpisode from '../../components/modals/AdminCreateEpisode.vue';
+import AdminCreatePromo from '../../components/modals/AdminCreatePromo.vue';
 import AdminUpdateEpisode from '../../components/modals/AdminUpdateEpisode.vue';
 import AdminDeleteEpisode from '../../components/modals/AdminDeleteEpisode.vue';
 import { initFlowbite } from 'flowbite';
@@ -11,7 +11,7 @@ import { useEpisodeStore } from '../../stores/episode';
 const showStore = useShowStore();
 const episodeStore = useEpisodeStore();
 
-document.title = "Dashboard - Episodes Management - ShowTime";
+document.title = "Dashboard - Trailers Management - ShowTime";
 
 onMounted(async () => {
     await episodeStore.fetchAllEpisodes();
@@ -23,10 +23,10 @@ onMounted(async () => {
     <div class="mt-16">
         <!-- Creating Episodes -->
         <div class="flex flex-wrap items-center justify-between gap-3 mt-10">
-            <H4 class="mb-0" title="List of all the shows with their episodes" />
+            <H4 class="mb-0" title="List of all the shows with their trailers" />
             <template v-if="episodeStore.getAllEpisodes">
                 <div class="flex flex-wrap items-center justify-center gap-3">
-                    <AdminCreateEpisode />
+                    <AdminCreatePromo />
                 </div>
             </template>
             <template v-else>

@@ -1,22 +1,23 @@
 <script setup>
 import TextInput from '../utilities/TextInput.vue';
 import NoBlackBgButton from '../utilities/NoBlackBgButton.vue';
-import DefaultButton from '../utilities/DefaultButton.vue';
-import { initFlowbite } from 'flowbite';
-import { onMounted, ref } from 'vue';
 import CustomTextArea from '../utilities/CustomTextArea.vue';
 import ListInput from '../utilities/ListInput.vue';
 import FileInput from '../utilities/FileInput.vue';
+import { initFlowbite } from 'flowbite';
+import { onMounted, ref } from 'vue';
+import { Icon } from '@iconify/vue';
 import { useEpisodeStore } from '../../stores/episode';
 
 const episodeStore = useEpisodeStore();
+const props = defineProps(["episode"]);
 
 const formData = ref({
-    show_id: '',
-    membership: '',
-    title: '',
-    number: '',
-    description: '',
+    show_id: props.episode.relationships.show.id,
+    membership: props.episode.attributes.premium,
+    title: props.episode.attributes.title,
+    number: props.episode.attributes.number,
+    description: props.episode.attributes.description,
     thumbnail: '',
     video: ''
 });
@@ -29,8 +30,8 @@ function getVideo(file) {
     formData.value.video = file;
 }
 
-const addEpisode = async () => {
-    await episodeStore.addEpisode(formData.value);
+const updateEpisode = async () => {
+    await episodeStore.updateEpisode(props.episode.id, formData.value);
 };
 
 onMounted(() => {
@@ -40,11 +41,13 @@ onMounted(() => {
 
 <template>
     <!-- Modal toggle -->
-    <DefaultButton type="button" name="New episode" icon-name="iconoir:add-media-video"
-        data-modal-toggle="create-episode" />
+    <button type="button" class="flex items-center px-4 py-1 text-black rounded-md gap-x-3 bg-sky-400 dark:bg-sky-600 dark:text-white hover:bg-sky-300 hover:dark:bg-sky-700" :data-modal-toggle="`update-episode-${episode.id}`">
+        <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
+        <span>Edit</span>
+    </button>
 
     <!-- Main modal -->
-    <div id="create-episode" tabindex="-1" aria-hidden="true"
+    <div :id="`update-episode-${episode.id}`" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="relative w-full h-full max-w-2xl p-4 md:h-auto">
             <!-- Modal content -->
@@ -52,11 +55,11 @@ onMounted(() => {
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-                        Create a new episode.
+                        Update {{ episode.attributes.number }} - {{ episode.attributes.title }}
                     </h3>
                     <button type="button"
                         class="text-slate-400 bg-transparent hover:bg-slate-200 hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-slate-600 dark:hover:text-white"
-                        data-modal-toggle="create-episode">
+                        :data-modal-toggle="`update-episode-${episode.id}`">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -67,7 +70,7 @@ onMounted(() => {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form @submit.prevent="addEpisode">
+                <form @submit.prevent="updateEpisode">
                     <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
                         <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="episodeStore.getErrors.title"
                             errorID="title-error" />
@@ -76,10 +79,9 @@ onMounted(() => {
                         <div>
                             <div class="relative z-0">
                                 <label for="memebership-select"
-                                    class="absolute duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" :class="[episodeStore.getErrors.premium?.length > 0 ? 'text-red-600 dark:text-red-500' : 'text-slate-600 dark:text-slate-400']">Membership</label>
+                                    class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" :class="[episodeStore.getErrors.premium?.length > 0 ? 'text-red-600 dark:text-red-500' : 'text-slate-600 dark:text-slate-400']">Membership</label>
                                 <select v-model="formData.membership" id="memebership-select"
-                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950 focus:outline-none focus:ring-0 peer" :class="[episodeStore.getErrors.premium?.length > 0 ? 'border-red-600 dark:border-red-500 focus:border-red-600 dark:focus:border-red-500' : 'border-slate-600 dark:border-slate-400 focus:border-slate-600 dark:focus:border-slate-400']">
-                                    <option disabled selected>Select</option>
+                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer" :class="[episodeStore.getErrors.premium?.length > 0 ? 'border-red-600 dark:border-red-500 focus:border-red-600 dark:focus:border-red-500' : 'border-slate-600 dark:border-slate-400 focus:border-slate-600 dark:focus:border-slate-400']">
                                     <option value="0">Free</option>
                                     <option value="1">Premium</option>
                                 </select>

@@ -168,12 +168,25 @@ class ShowController extends Controller
     {
         $shows = Show::with(['episodes' => function ($query) {
             $query->orderBy('number');
-        }])->get();
+        }])
+            ->orderBy('title')
+            ->get();
 
         return $this->success(ShowResource::collection($shows));
-        // $shows_episodes = Show::with('episodes')->get();
+    }
 
-        // return $this->success([ShowResource::collection($shows_episodes)]);
+    /**
+     * Fetch all the shows with their trailers
+     */
+    public function showsWithTrailers()
+    {
+        $shows = Show::with(['trailers' => function ($query) {
+            $query->orderBy('number');
+        }])
+            ->orderBy('title')
+            ->get();
+
+        return $this->success(ShowResource::collection($shows));
     }
 
     /**

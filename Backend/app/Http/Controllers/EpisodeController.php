@@ -91,7 +91,7 @@ class EpisodeController extends Controller
      */
     public function update(UpdateEpisodeRequest $request, Episode $episode)
     {
-        Telescope::stopRecording();
+        // Telescope::stopRecording();
 
         $request->validated();
 
@@ -122,7 +122,7 @@ class EpisodeController extends Controller
     public function destroy(Episode $episode)
     {
         Telescope::stopRecording();
-        
+
         return $episode->delete();
     }
 }

@@ -12,6 +12,7 @@ import Pricing from '../views/children/Pricing.vue';
 import ManageUsers from '../views/children/ManageUsers.vue';
 import ManageShows from '../views/children/ManageShows.vue';
 import ManageEpisodes from '../views/children/ManageEpisodes.vue';
+import ManageTrailers from '../views/children/ManageTrailers.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Search from '../views/children/Search.vue';
 import test from '../views/test.vue';
@@ -95,6 +96,11 @@ const router = createRouter({
                     name: 'manage_episodes',
                     component: ManageEpisodes
                 },
+                {
+                    path: 'manage_trailers',
+                    name: 'manage_trailers',
+                    component: ManageTrailers
+                }
             ]
         },
         // 404 Page not found

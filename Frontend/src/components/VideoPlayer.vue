@@ -17,7 +17,7 @@ const options = reactive({
     isLive: false,
     muted: false,
     autoplay: false,
-    pip: true,
+    pip: false,
     autoSize: true,
     autoMini: true,
     screenshot: true,
@@ -30,7 +30,7 @@ const options = reactive({
     fullscreenWeb: true,
     subtitleOffset: false,
     miniProgressBar: true,
-    mutex: true,
+    mutex: false,
     backdrop: true,
     playsInline: true,
     autoPlayback: true,
@@ -124,21 +124,21 @@ const options = reactive({
     //         },
     //     },
     // ],
-    quality: [
-        {
-            default: true,
-            html: 'FHD 1080P',
-            url: props.url,
-        },
-        // {
-        //     html: 'HD 720P',
-        //     url: '/assets/sample/video.mp4',
-        // },
-        // {
-        //     html: 'SD 480P',
-        //     url: '/assets/sample/video.mp4',
-        // },
-    ],
+    // quality: [
+    //     {
+    //         default: true,
+    //         html: 'FHD 1080P',
+    //         url: props.url,
+    //     },
+    //     {
+    //         html: 'HD 720P',
+    //         url: '/assets/sample/video.mp4',
+    //     },
+    //     {
+    //         html: 'SD 480P',
+    //         url: '/assets/sample/video.mp4',
+    //     },
+    // ],
     // thumbnails: {
     //     url: '/assets/sample/thumbnails.png',
     //     number: 60,
