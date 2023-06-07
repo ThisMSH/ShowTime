@@ -33,7 +33,7 @@ function getWideCover(file) {
     formData.value.wide_cover = file;
 }
 
-onMounted(async () => {
+onMounted(() => {
     initFlowbite();
 });
 </script>
@@ -41,7 +41,7 @@ onMounted(async () => {
 <template>
     <!-- Update modal toggle -->
     <button type="button"
-        class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700"
+        class="flex items-center px-4 py-1 text-black rounded-md gap-x-3 bg-sky-400 dark:bg-sky-600 dark:text-white hover:bg-sky-300 hover:dark:bg-sky-700"
         :data-modal-toggle="`show-${show.id}`">
         <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
         <span>Edit</span>
@@ -49,12 +49,12 @@ onMounted(async () => {
 
     <!-- Main modal -->
     <div :id="`show-${show.id}`" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-2xl p-4 md:h-auto">
             <!-- Modal content -->
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-slate-800 sm:p-5">
                 <!-- Modal header -->
-                <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-slate-600">
+                <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
                         Updating {{ props.show.attributes.title }}{{ props.show.attributes.season ? ' - ' +
                             props.show.attributes.season : '' }}.
@@ -73,7 +73,7 @@ onMounted(async () => {
                 </div>
                 <!-- Modal body -->
                 <form @submit.prevent="showStore.updateShow(show.id, formData)">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
                         <TextInput v-model:input="formData.title" label="Title" inputType="text"
                             :inputID="`title-${show.id}`" :errors="showStore.getErrors.title"
                             :errorID="`title-error-${show.id}`" />
@@ -96,7 +96,7 @@ onMounted(async () => {
                             </div>
                             <div v-if="showStore.getErrors">
                                 <p v-for="error in showStore.getErrors.category_id" :key="error"
-                                    class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">
+                                    class="mt-2 text-sm font-medium text-left text-red-600 dark:text-red-400 dark:drop-shadow-black-sm">
                                     {{ error }}</p>
                             </div>
                         </div>
@@ -117,13 +117,13 @@ onMounted(async () => {
                         <FileInput @file-content="getWideCover" class="lg:col-span-2" label="Wide Cover" inputType="file"
                             :inputID="`wide-cover-${show.id}`" :errors="showStore.getErrors.wide_cover"
                             :errorID="`wide-cover-error-${show.id}`" />
-                        <div class="lg:col-span-2 flex justify-center items-center">
+                        <div class="flex items-center justify-center lg:col-span-2">
                             <NoBlackBgButton name="Update" iconName="ic:round-system-update-alt" />
                         </div>
                     </div>
                 </form>
                 <div v-if="showStore.isLoading" role="status"
-                    class="flex justify-center items-center absolute w-full h-full left-0 top-0 bg-black/40 rounded-lg z-10">
+                    class="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full rounded-lg bg-black/40">
                     <svg aria-hidden="true"
                         class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
                         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

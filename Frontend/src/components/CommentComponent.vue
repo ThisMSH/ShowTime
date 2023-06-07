@@ -52,13 +52,13 @@ onUpdated(() => {
 </script>
 
 <template>
-    <article class="p-6 mb-6 text-base bg-slate-300 rounded-lg dark:bg-slate-800">
+    <article class="p-6 mb-6 text-base rounded-lg bg-slate-300 dark:bg-slate-800">
         <div v-if="!displayUpdate">
-            <div class="flex justify-between items-center mb-2">
+            <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center">
                     <p class="inline-flex items-center mr-3">
                         <img
-                            class="mr-2 w-10 h-10 rounded-full object-cover"
+                            class="object-cover w-10 h-10 mr-2 rounded-full"
                             :src="avatar"
                             :alt="`${name}'s avatar'`">
                     </p>
@@ -70,7 +70,7 @@ onUpdated(() => {
                 </div>
                 <template v-if="authStore.getUser && (authStore.getUser.id == user_id || authStore.getUser.user_type == 1)">
                     <button :data-dropdown-toggle="`dropdownComment-${id}`"
-                        class="inline-flex items-center p-2 text-sm font-medium text-center text-slate-400 bg-slate-200 rounded-lg hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:focus:ring-slate-600"
+                        class="inline-flex items-center p-2 text-sm font-medium text-center rounded-lg text-slate-400 bg-slate-200 hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 dark:focus:ring-slate-600"
                         type="button">
                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -82,15 +82,14 @@ onUpdated(() => {
                     </button>
                     <!-- Dropdown menu -->
                     <div :id="`dropdownComment-${id}`"
-                        class="hidden z-10 w-36 bg-slate-300 rounded divide-y divide-slate-100 shadow dark:bg-slate-700 dark:divide-slate-600">
+                        class="z-10 hidden divide-y rounded shadow w-36 bg-slate-300 divide-slate-100 dark:bg-slate-700 dark:divide-slate-600">
                         <ul class="py-1 text-sm text-slate-700 dark:text-slate-200"
                             :aria-labelledby="`dropdownMenuIconHorizontalButton-${id}`">
                             <li>
-                                <!-- <button @click="editBtnClicked" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</button> -->
-                                <button @click="displayUpdate = !displayUpdate" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</button>
+                                <button @click="displayUpdate = !displayUpdate" type="button" class="block w-full px-4 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Edit</button>
                             </li>
                             <li>
-                                <button @click="deleteBtnClicked" type="button" class="block w-full text-left py-2 px-4 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
+                                <button @click="deleteBtnClicked" type="button" class="block w-full px-4 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Remove</button>
                             </li>
                         </ul>
                     </div>
@@ -100,13 +99,13 @@ onUpdated(() => {
         </div>
         <div v-else>
             <form @submit.prevent="updateComment">
-                <div class="w-full flex flex-col items-end gap-y-2">
-                    <textarea v-model="data.comment" @keydown.enter.prevent="updateComment" id="comment-area" class="w-full bg-slate-200 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-br-none border border-slate-300 dark:border-slate-600 resize-y caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
+                <div class="flex flex-col items-end w-full gap-y-2">
+                    <textarea v-model="data.comment" @keydown.enter.prevent="updateComment" id="comment-area" class="w-full px-5 py-4 border rounded-br-none resize-y bg-slate-200 dark:bg-slate-800 rounded-2xl border-slate-300 dark:border-slate-600 caret-orange-400 focus:ring-orange-400 focus:border-orange-400 dark:caret-orange-500 focus:dark:ring-orange-500 focus:dark:border-orange-500"></textarea>
                     <div class="self-start" v-if="commentStore.getUpdateErrors">
-                        <p v-for="error in commentStore.getUpdateErrors.comment" :key="error" class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error }}</p>
+                        <p v-for="error in commentStore.getUpdateErrors.comment" :key="error" class="mt-2 text-sm font-medium text-left text-red-600 dark:text-red-400 dark:drop-shadow-black-sm">{{ error }}</p>
                     </div>
                     <div class="flex gap-x-2">
-                        <button type="submit" class="flex items-center gap-x-3 px-4 py-1 bg-sky-400 dark:bg-sky-600 text-black dark:text-white rounded-md hover:bg-sky-300 hover:dark:bg-sky-700">
+                        <button type="submit" class="flex items-center px-4 py-1 text-black rounded-md gap-x-3 bg-sky-400 dark:bg-sky-600 dark:text-white hover:bg-sky-300 hover:dark:bg-sky-700">
                             <Icon v-if="!commentStore.isLoading" class="text-lg mr-0.5" icon="material-symbols:edit-outline-rounded" />
                             <div v-else role="status">
                                 <svg aria-hidden="true" class="w-5 h-5 text-slate-200 animate-spin dark:text-slate-800 fill-slate-950 dark:fill-slate-100" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +116,7 @@ onUpdated(() => {
                             </div>
                             <span>Update</span>
                         </button>
-                        <button ref="closeBtn" @click="displayUpdate = !displayUpdate" type="button" class="flex items-center gap-x-3 px-4 py-1 bg-gray-400 dark:bg-gray-600 text-black dark:text-white rounded-md hover:bg-gray-200 hover:dark:bg-gray-700">
+                        <button ref="closeBtn" @click="displayUpdate = !displayUpdate" type="button" class="flex items-center px-4 py-1 text-black bg-gray-400 rounded-md gap-x-3 dark:bg-gray-600 dark:text-white hover:bg-gray-200 hover:dark:bg-gray-700">
                             <Icon class="text-lg" icon="material-symbols:cancel-outline-rounded" />
                             <span>Cancel</span>
                         </button>

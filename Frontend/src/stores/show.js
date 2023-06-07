@@ -165,27 +165,5 @@ export const useShowStore = defineStore('show', {
                 this.latestLoading = false;
             }
         },
-        async addTrailer(data) {
-            this.isLoading = true;
-            this.errors = [];
-
-            const form = new FormData();
-            form.append("show_id", data.show_id);
-            form.append("title", data.title);
-            form.append("trailer", data.trailer);
-
-            const closeButton = document.querySelector('#create-trailer [data-modal-toggle]');
-
-            try {
-                await axios.post("/api/trailer", form);
-                closeButton.click();
-            } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
-            } finally {
-                this.isLoading = false;
-            }
-        },
     }
 });

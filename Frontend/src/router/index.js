@@ -8,6 +8,7 @@ import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DashboardView from '../views/DashboardView.vue';
 import Profile from '../views/children/Profile.vue';
+import MySpace from '../views/children/MySpace.vue';
 import Pricing from '../views/children/Pricing.vue';
 import ManageUsers from '../views/children/ManageUsers.vue';
 import ManageShows from '../views/children/ManageShows.vue';
@@ -75,6 +76,11 @@ const router = createRouter({
                     path: 'profile',
                     name: 'profile',
                     component: Profile
+                },
+                {
+                    path: 'my_space',
+                    name: 'my_space',
+                    component: MySpace
                 },
                 {
                     path: 'pricing',

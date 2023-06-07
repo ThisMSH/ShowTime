@@ -104,8 +104,8 @@ onMounted(async () => {
                                                             </td>
                                                             <td
                                                                 class="relative flex py-4 pl-3 pr-4 text-sm font-medium text-right gap-x-5 whitespace-nowrap sm:pr-6">
-                                                                <AdminDeleteEpisode :epiID="episode.id" :episode_title="episode.attributes.title" />
                                                                 <AdminUpdateEpisode :episode="episode" />
+                                                                <AdminDeleteEpisode :epiID="episode.id" :episodeTitle="episode.attributes.title" />
                                                             </td>
                                                         </tr>
                                                     </template>

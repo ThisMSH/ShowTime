@@ -1,30 +1,28 @@
 <script setup>
 import H4 from '../../components/utilities/H4.vue';
 import AdminCreatePromo from '../../components/modals/AdminCreatePromo.vue';
-import AdminUpdateEpisode from '../../components/modals/AdminUpdateEpisode.vue';
-import AdminDeleteEpisode from '../../components/modals/AdminDeleteEpisode.vue';
+import AdminUpdatePromo from '../../components/modals/AdminUpdatePromo.vue';
+import AdminDeletePromo from '../../components/modals/AdminDeletePromo.vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
-import { useShowStore } from '../../stores/show';
-import { useEpisodeStore } from '../../stores/episode';
+import { useTrailerStore } from '../../stores/trailer';
 
-const showStore = useShowStore();
-const episodeStore = useEpisodeStore();
+const trailerStore = useTrailerStore();
 
 document.title = "Dashboard - Trailers Management - ShowTime";
 
 onMounted(async () => {
-    await episodeStore.fetchAllEpisodes();
+    await trailerStore.fetchAllTrailers();
     initFlowbite();
 });
 </script>
 
 <template>
     <div class="mt-16">
-        <!-- Creating Episodes -->
+        <!-- Creating Trailers -->
         <div class="flex flex-wrap items-center justify-between gap-3 mt-10">
             <H4 class="mb-0" title="List of all the shows with their trailers" />
-            <template v-if="episodeStore.getAllEpisodes">
+            <template v-if="trailerStore.getAllTrailers">
                 <div class="flex flex-wrap items-center justify-center gap-3">
                     <AdminCreatePromo />
                 </div>
@@ -52,7 +50,7 @@ onMounted(async () => {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700" data-accordion="collapse" data-inactive-classes="bg-slate-200 dark:bg-slate-800" data-active-classes="bg-slate-300 dark:bg-slate-700">
-                                <template v-if="episodeStore.getAllEpisodes" v-for="show in episodeStore.getAllEpisodes" :key="show.id">
+                                <template v-if="trailerStore.getAllTrailers" v-for="show in trailerStore.getAllTrailers" :key="show.id">
                                     <tr class="bg-slate-200 dark:bg-slate-800" :id="`show-name-${show.id}`" :data-accordion-target="`#show-episodes-${show.id}`" aria-expanded="false" :aria-controls="`show-episodes-${show.id}`">
                                         <td class="py-4 pl-4 pr-3 text-sm whitespace-nowrap sm:pl-6">
                                             <div class="flex items-center">
@@ -76,9 +74,7 @@ onMounted(async () => {
                                                     <tr>
                                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Title
                                                         </th>
-                                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Number
-                                                        </th>
-                                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Membership
+                                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">YouTube ID
                                                         </th>
                                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Show
                                                         </th>
@@ -88,24 +84,21 @@ onMounted(async () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-neutral-700 dark:divide-neutral-200 bg-neutral-300 dark:bg-neutral-800">
-                                                    <template v-for="episode in show.relationships.episodes.list" :key="episode.id">
+                                                    <template v-for="trailer in show.relationships.trailers.list" :key="trailer.id">
                                                         <tr>
                                                             <td class="py-4 pl-4 pr-3 text-sm whitespace-nowrap sm:pl-6">
-                                                                <div class="font-medium">{{ episode.attributes.title }}</div>
+                                                                <div class="font-medium">{{ trailer.attributes.title }}</div>
                                                             </td>
                                                             <td class="px-3 py-4 text-sm whitespace-nowrap text-neutral-900 dark:text-neutral-200">
-                                                                <div class="">{{ episode.attributes.number }}</div>
+                                                                <div class="">{{ trailer.attributes.trailer }}</div>
                                                             </td>
                                                             <td class="px-3 py-4 text-sm whitespace-nowrap text-neutral-900 dark:text-neutral-200">
-                                                                <div class="">{{ episode.attributes.premium == 0 ? "Free" : "Premium" }}</div>
-                                                            </td>
-                                                            <td class="px-3 py-4 text-sm whitespace-nowrap text-neutral-900 dark:text-neutral-200">
-                                                                <div class="">{{ episode.relationships.show.title }}{{ episode.relationships.show.season ? ' - ' + episode.relationships.show.season : '' }}</div>
+                                                                <div class="">{{ trailer.relationships.show.title }}{{ trailer.relationships.show.season ? ' - ' + trailer.relationships.show.season : '' }}</div>
                                                             </td>
                                                             <td
                                                                 class="relative flex py-4 pl-3 pr-4 text-sm font-medium text-right gap-x-5 whitespace-nowrap sm:pr-6">
-                                                                <AdminDeleteEpisode :epiID="episode.id" :episode_title="episode.attributes.title" />
-                                                                <AdminUpdateEpisode :episode="episode" />
+                                                                <AdminUpdatePromo :trailer="trailer" />
+                                                                <AdminDeletePromo :trailer="trailer" />
                                                             </td>
                                                         </tr>
                                                     </template>

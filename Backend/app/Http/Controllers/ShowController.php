@@ -181,7 +181,7 @@ class ShowController extends Controller
     public function showsWithTrailers()
     {
         $shows = Show::with(['trailers' => function ($query) {
-            $query->orderBy('number');
+            $query->orderBy('title');
         }])
             ->orderBy('title')
             ->get();

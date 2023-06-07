@@ -22,14 +22,14 @@ onMounted(async () => {
 <template>
     <div class="mt-16">
         <!-- Statistics -->
-        <dl class="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <dl class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-3">
             <div
-                class="px-4 py-5 flex items-center gap-x-3 bg-slate-200 dark:bg-slate-800 shadow rounded-lg overflow-hidden sm:p-6">
-                <div class="text-white text-4xl p-2 rounded-lg bg-gradient-to-tl from-blue-700 to-sky-400">
+                class="flex items-center px-4 py-5 overflow-hidden rounded-lg shadow gap-x-3 bg-slate-200 dark:bg-slate-800 sm:p-6">
+                <div class="p-2 text-4xl text-white rounded-lg bg-gradient-to-tl from-blue-700 to-sky-400">
                     <Icon class="stroke-2" icon="arcticons:anilib" />
                 </div>
                 <div>
-                    <dt class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">
+                    <dt class="text-sm font-medium truncate text-slate-700 dark:text-slate-300">
                         Total Anime
                     </dt>
                     <dd class="mt-1 text-3xl font-semibold">
@@ -38,12 +38,12 @@ onMounted(async () => {
                 </div>
             </div>
             <div
-                class="px-4 py-5 flex items-center gap-x-3 bg-slate-200 dark:bg-slate-800 shadow rounded-lg overflow-hidden sm:p-6">
-                <div class="text-white text-4xl p-2 rounded-lg bg-gradient-to-tl from-red-900 to-orange-500">
+                class="flex items-center px-4 py-5 overflow-hidden rounded-lg shadow gap-x-3 bg-slate-200 dark:bg-slate-800 sm:p-6">
+                <div class="p-2 text-4xl text-white rounded-lg bg-gradient-to-tl from-red-900 to-orange-500">
                     <Icon icon="fluent:movies-and-tv-24-filled" />
                 </div>
                 <div>
-                    <dt class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">
+                    <dt class="text-sm font-medium truncate text-slate-700 dark:text-slate-300">
                         Total Live Action
                     </dt>
                     <dd class="mt-1 text-3xl font-semibold">
@@ -52,12 +52,12 @@ onMounted(async () => {
                 </div>
             </div>
             <div
-                class="px-4 py-5 flex items-center gap-x-3 bg-slate-200 dark:bg-slate-800 shadow rounded-lg overflow-hidden sm:p-6">
-                <div class="text-white text-4xl p-2 rounded-lg bg-gradient-to-tl from-green-700 to-lime-400">
+                class="flex items-center px-4 py-5 overflow-hidden rounded-lg shadow gap-x-3 bg-slate-200 dark:bg-slate-800 sm:p-6">
+                <div class="p-2 text-4xl text-white rounded-lg bg-gradient-to-tl from-green-700 to-lime-400">
                     <Icon icon="system-uicons:episodes" />
                 </div>
                 <div>
-                    <dt class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">
+                    <dt class="text-sm font-medium truncate text-slate-700 dark:text-slate-300">
                         Total Episodes
                     </dt>
                     <dd class="mt-1 text-3xl font-semibold">
@@ -67,27 +67,27 @@ onMounted(async () => {
             </div>
         </dl>
         <!-- Creating Shows -->
-        <div class="mt-10 flex justify-between items-center gap-3 flex-wrap">
+        <div class="flex flex-wrap items-center justify-between gap-3 mt-10">
             <H4 class="mb-0" title="List of all the shows" />
             <template v-if="showStore.getAllShows">
-                <div class="flex justify-center items-center gap-3 flex-wrap">
+                <div class="flex flex-wrap items-center justify-center gap-3">
                     <AdminCreateShow />
                 </div>
             </template>
             <template v-else>
                 <div role="status" class="animate-pulse">
-                    <div class="h-14 w-44 bg-slate-200 rounded-full dark:bg-slate-800"></div>
+                    <div class="rounded-full h-14 w-44 bg-slate-200 dark:bg-slate-800"></div>
                     <span class="sr-only">Loading...</span>
                 </div>
             </template>
         </div>
         <!-- Shows Management -->
-        <div class="mt-10 flex flex-col">
+        <div class="flex flex-col mt-10">
             <!-- <div class="overflow-x-auto max-w-[1200px]"> -->
             <div class="">
                 <div class="inline-block min-w-full align-middle">
                     <div class="shadow ring-1 ring-black ring-opacity-5">
-                        <table class="min-w-full divide-y divide-slate-400 border border-slate-400 dark:border-slate-500">
+                        <table class="min-w-full border divide-y divide-slate-400 border-slate-400 dark:border-slate-500">
                             <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-800">
                                 <tr>
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Cover
@@ -118,7 +118,7 @@ onMounted(async () => {
                                             </div>
                                         </td>
                                         <td class="px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
-                                            <p :title="show.attributes.title" class="line-clamp-3 font-medium">{{ show.attributes.title }}</p>
+                                            <p :title="show.attributes.title" class="font-medium line-clamp-3">{{ show.attributes.title }}</p>
                                         </td>
                                         <td class="px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
                                             <p :title="show.attributes.season" class="line-clamp-3">{{ show.attributes.season }}</p>
@@ -132,10 +132,10 @@ onMounted(async () => {
                                         <td class="px-3 py-4 text-sm text-slate-700 dark:text-slate-300">
                                             <p :title="`${show.relationships.sequel.title}${show.relationships.sequel.season ? ' - ' + show.relationships.sequel.season : ''}`" class="line-clamp-3">{{ show.relationships.sequel.title }}{{ show.relationships.sequel.season ? ' - ' + show.relationships.sequel.season : '' }}</p>
                                         </td>
-                                        <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <td class="py-4 pl-3 pr-4 text-sm font-medium text-right sm:pr-6">
                                             <div class="flex items-center gap-x-5">
                                                 <AdminUpdateShow :show="show" />
-                                                <AdminDeleteShow :showID="show.id" :show_title="show.attributes.title" :show_season="show.attributes.season" />
+                                                <AdminDeleteShow :showID="show.id" :showTitle="show.attributes.title" :showSeason="show.attributes.season" />
                                             </div>
                                         </td>
                                     </tr>
@@ -143,40 +143,40 @@ onMounted(async () => {
                                 <template v-else>
                                     <tr>
                                         <td colspan="7">
-                                            <div role="status" class="animate-pulse p-4">
-                                                <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                            <div role="status" class="p-4 animate-pulse">
+                                                <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="7">
-                                            <div role="status" class="animate-pulse p-4">
-                                                <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                            <div role="status" class="p-4 animate-pulse">
+                                                <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="7">
-                                            <div role="status" class="animate-pulse p-4">
-                                                <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                            <div role="status" class="p-4 animate-pulse">
+                                                <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="7">
-                                            <div role="status" class="animate-pulse p-4">
-                                                <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                            <div role="status" class="p-4 animate-pulse">
+                                                <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="7">
-                                            <div role="status" class="animate-pulse p-4">
-                                                <div class="h-20 bg-slate-200 rounded-md dark:bg-slate-800"></div>
+                                            <div role="status" class="p-4 animate-pulse">
+                                                <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </td>

@@ -4,14 +4,9 @@ import Footer from '../components/Footer.vue';
 import ScrollToTop from '../components/ScrollToTop.vue';
 import PageLoading from '../components/skeleton/PageLoading.vue';
 import { onMounted } from 'vue';
-import { initFlowbite } from 'flowbite';
 import { useAuthStore } from '../stores/auth';
 
 const authStore = useAuthStore();
-
-onMounted(() => {
-    initFlowbite();
-});
 </script>
 
 <template>

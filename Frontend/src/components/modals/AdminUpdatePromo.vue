@@ -1,22 +1,23 @@
 <script setup>
 import TextInput from '../utilities/TextInput.vue';
 import NoBlackBgButton from '../utilities/NoBlackBgButton.vue';
-import DefaultButton from '../utilities/DefaultButton.vue';
+import ListInput from '../utilities/ListInput.vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted, ref } from 'vue';
-import ListInput from '../utilities/ListInput.vue';
+import { Icon } from '@iconify/vue';
 import { useTrailerStore } from '../../stores/trailer';
 
 const trailerStore = useTrailerStore();
+const props = defineProps(["trailer"]);
 
 const formData = ref({
-    show_id: '',
-    title: '',
-    trailer: '',
+    show_id: props.trailer.relationships.show.id,
+    title: props.trailer.attributes.title,
+    trailer: "",
 });
 
-const addTrailer = async () => {
-    await trailerStore.addTrailer(formData.value);
+const updateTrailer = async () => {
+    await trailerStore.updateTrailer(props.trailer.id, formData.value);
 };
 
 onMounted(() => {
@@ -26,22 +27,25 @@ onMounted(() => {
 
 <template>
     <!-- Modal toggle -->
-    <DefaultButton type="button" name="New promotion" icon-name="bi:collection-play" data-modal-toggle="create-trailer" />
+    <button type="button" class="flex items-center px-4 py-1 text-black rounded-md gap-x-3 bg-sky-400 dark:bg-sky-600 dark:text-white hover:bg-sky-300 hover:dark:bg-sky-700" :data-modal-toggle="`update-trailer-${trailer.id}`">
+        <Icon class="text-lg" icon="material-symbols:edit-outline-rounded" />
+        <span>Edit</span>
+    </button>
 
     <!-- Main modal -->
-    <div id="create-trailer" tabindex="-1" aria-hidden="true"
+    <div :id="`update-trailer-${trailer.id}`" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="relative w-full h-full max-w-2xl p-4 md:h-auto">
             <!-- Modal content -->
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-slate-800 sm:p-5">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
-                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-                        Add a new promotional video.
+                    <h3 class="text-lg font-semibold text-left whitespace-normal text-slate-900 dark:text-white">
+                        Update the promotional video " <span class="font-bold text-slate-600 dark:text-slate-300">{{ trailer.attributes.title }}</span> " from <span class="font-bold text-slate-600 dark:text-slate-300">{{ trailer.relationships.show.title }}{{ trailer.relationships.show.season ? ' - ' + trailer.relationships.show.season : '' }}</span>.
                     </h3>
                     <button type="button"
                         class="text-slate-400 bg-transparent hover:bg-slate-200 hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-slate-600 dark:hover:text-white"
-                        data-modal-toggle="create-trailer">
+                        :data-modal-toggle="`update-trailer-${trailer.id}`">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -52,7 +56,7 @@ onMounted(() => {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form @submit.prevent="addTrailer">
+                <form @submit.prevent="updateTrailer">
                     <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
                         <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="trailerStore.getErrors.title"
                             errorID="title-error" />
@@ -82,7 +86,7 @@ onMounted(() => {
                                 <div data-popper-arrow></div>
                             </div>
                         </div>
-                        <ListInput v-model:input="formData.show_id" label="Show" inputType="" inputID="show-id"
+                        <ListInput v-model:input="formData.show_id" label="Show" inputType="" :inputID="`show-id-${trailer.attributes.trailer}`"
                             datalistID="shows-list" :showsList="trailerStore.getAllTrailers" :errors="trailerStore.getErrors.show_id" errorID="show-error" />
                         <div class="flex items-center justify-center lg:col-span-2">
                             <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />

@@ -27,7 +27,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/show', [ShowController::class, 'store']);
     Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
-    Route::get('/shows', [ShowController::class, 'showsWithEpisodes']);
+    Route::get('/shows-and-episodes', [ShowController::class, 'showsWithEpisodes']);
+    Route::get('/shows-and-trailers', [ShowController::class, 'showsWithTrailers']);
 
     // Episodes
     Route::get('/episode', [EpisodeController::class, 'index']);

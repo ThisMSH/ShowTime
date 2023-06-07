@@ -90,8 +90,8 @@ onMounted(() => {
                         <span class="pl-4 text-lg font-medium transition-all duration-500 text">Personal Information</span>
                     </RouterLink>
                 </li>
-                <li @click="toggleDashboardSections" class="hidden dashboard-sections">
-                    <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/profile" >
+                <li @click="toggleDashboardSections" :class="[currentPath == 'my_space' ? 'active' : '']" class="dashboard-sections">
+                    <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/my_space" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
                             text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-sky-400 after:dark:bg-sky-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="ic:baseline-favorite" /></span>
                         <span class="pl-4 text-lg font-medium transition-all duration-500 text">My Space</span>
@@ -135,7 +135,7 @@ onMounted(() => {
                             <span class="pl-4 text-lg font-medium transition-all duration-500 text">Episodes Management</span>
                         </RouterLink>
                     </li>
-                    <li @click="toggleDashboardSections" class="dashboard-sections">
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_trailers' ? 'active' : '']" class="dashboard-sections">
                         <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/manage_trailers" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
                                 text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-amber-400 after:dark:bg-amber-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-panorama-outline-rounded" /></span>

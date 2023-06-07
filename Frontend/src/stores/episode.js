@@ -21,7 +21,7 @@ export const useEpisodeStore = defineStore('episode', {
             this.errors = [];
 
             try {
-                const allEpisodes = await axios.get("/api/shows");
+                const allEpisodes = await axios.get("/api/shows-and-episodes");
                 this.episodes = allEpisodes.data.data;
             } catch (error) {
                 if (error.response.status === 422) {
@@ -104,6 +104,7 @@ export const useEpisodeStore = defineStore('episode', {
         async deleteEpisode(id) {
             this.isLoading = true;
             this.errors = [];
+            
             const closeDeleteBtn = document.querySelector(`#delete-episode-${id} [data-modal-hide]`);
 
             try {
