@@ -26,10 +26,12 @@ class ShowObserver
     public function updated(Show $show): void
     {
         if ($show->prequel) {
+            Show::where('prequel', $show->prequel)->updated(['sequel' => null]);
             Show::find($show->prequel)->update(['sequel' => $show->id]);
         }
 
         if ($show->sequel) {
+            Show::where('sequel', $show->sequel)->updated(['prequel' => null]);
             Show::find($show->sequel)->update(['prequel' => $show->id]);
         }
     }

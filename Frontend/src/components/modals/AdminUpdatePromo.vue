@@ -80,7 +80,7 @@ onMounted(() => {
                                     <p>Copy the id of the promotional video from YouTube and paste it here, like the one highlighted
                                         below:</p>
                                     <p>https://www.youtube.com/watch?v=<span
-                                            class="font-medium text-slate-900 dark:text-slate-100 bg-slate-200 dark:bg-slate-700">a9tq0aS5Zu8</span>
+                                            class="font-medium text-slate-900 dark:text-slate-100 bg-slate-200 dark:bg-slate-700">dQw4w9WgXcQ</span>
                                     </p>
                                 </div>
                                 <div data-popper-arrow></div>

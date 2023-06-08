@@ -39,8 +39,8 @@ class EpisodeController extends Controller
 
         $request->validated();
 
-        $title_no_whitespace = str_replace(' ', '-', $request->title);
-        $number_no_whitespace = str_replace(' ', '-', $request->number);
+        $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title);
+        $number_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->number);
         $file_name = "{$number_no_whitespace}-{$title_no_whitespace}";
 
         if ($request->hasFile('thumbnail')) {

@@ -72,13 +72,13 @@ onMounted(() => {
                 <form @submit.prevent="addShow">
                     <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
                         <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="showStore.getErrors.title"
-                            errorID="title-error" />
+                            errorID="title-error" :isRequired="true" />
                         <TextInput v-model:input="formData.season" label="Season (optional)" inputType="text" inputID="season" :errors="showStore.getErrors.season"
                             errorID="season-error" />
                         <div>
                             <div class="relative z-0">
                                 <label for="category_select" :class="[showStore.getErrors.category_id ? 'text-red-600' : 'text-slate-600', showStore.getErrors.category_id ? 'dark:text-red-500' : 'dark:text-slate-400']" class="absolute duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category</label>
-                                <select v-model="formData.category" id="category_select" :class="[showStore.getErrors.category_id ? 'border-red-600' : 'border-slate-600', showStore.getErrors.category_id ? 'dark:border-red-500' : 'dark:border-slate-400', showStore.getErrors.category_id ? 'focus:border-red-600' : 'focus:border-slate-600', showStore.getErrors.category_id ? 'dark:focus:border-red-500' : 'dark:focus:border-slate-400']" class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950 focus:outline-none focus:ring-0 peer">
+                                <select v-model="formData.category" id="category_select" :class="[showStore.getErrors.category_id ? 'border-red-600' : 'border-slate-600', showStore.getErrors.category_id ? 'dark:border-red-500' : 'dark:border-slate-400', showStore.getErrors.category_id ? 'focus:border-red-600' : 'focus:border-slate-600', showStore.getErrors.category_id ? 'dark:focus:border-red-500' : 'dark:focus:border-slate-400']" class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950 focus:outline-none focus:ring-0 peer" required>
                                     <option disabled selected>Select</option>
                                     <option v-if="categoryStore.getCategories" v-for="category in categoryStore.getCategories" :key="category.id" :value="category.id">{{ category.category }}</option>
                                 </select>
@@ -88,13 +88,13 @@ onMounted(() => {
                             </div>
                         </div>
                         <CustomTextArea class="col-span-2" v-model:input="formData.description" label="Description"
-                            textareaID="description" :errors="showStore.getErrors.description" errorID="description-error" />
+                            textareaID="description" :errors="showStore.getErrors.description" errorID="description-error" :isRequired="true" />
                         <ListInput v-model:input="formData.prequel" label="Prequel (optional)" inputType="" inputID="prequel"
                             datalistID="prequel-list" :showsList="showStore.getAllShows?.shows" :errors="showStore.getErrors.prequel" errorID="prequel-error" />
                         <ListInput v-model:input="formData.sequel" label="Sequel (optional)" inputType="" inputID="sequel"
                             datalistID="sequel-list" :showsList="showStore.getAllShows?.shows" :errors="showStore.getErrors.sequel" errorID="sequel-error" />
-                        <FileInput @file-content="getCover" class="lg:col-span-2"  label="Cover" inputType="file" inputID="cover" :errors="showStore.getErrors.cover" errorID="cover-error" />
-                        <FileInput @file-content="getWideCover" class="lg:col-span-2"  label="Wide Cover" inputType="file" inputID="wide-cover" :errors="showStore.getErrors.wide_cover" errorID="wide-cover-error" />
+                        <FileInput @file-content="getCover" class="lg:col-span-2"  label="Cover" inputType="file" inputID="cover" :errors="showStore.getErrors.cover" errorID="cover-error" :isRequired="true" />
+                        <FileInput @file-content="getWideCover" class="lg:col-span-2"  label="Wide Cover" inputType="file" inputID="wide-cover" :errors="showStore.getErrors.wide_cover" errorID="wide-cover-error" :isRequired="true" />
                         <div class="flex items-center justify-center lg:col-span-2">
                             <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
                         </div>

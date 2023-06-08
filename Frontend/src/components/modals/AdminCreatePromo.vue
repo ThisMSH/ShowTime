@@ -55,10 +55,10 @@ onMounted(() => {
                 <form @submit.prevent="addTrailer">
                     <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
                         <TextInput v-model:input="formData.title" label="Title" inputType="text" inputID="title" :errors="trailerStore.getErrors.title"
-                            errorID="title-error" />
+                            errorID="title-error" :isRequired="true" />
                         <div class="relative">
                             <TextInput v-model:input="formData.trailer" label="Promotion's ID" inputType="text" inputID="trailer" :errors="trailerStore.getErrors.trailer"
-                                errorID="trailer-error" />
+                                errorID="trailer-error" :isRequired="true" />
 
                             <button class="absolute top-4 right-2" data-popover-target="popover-description"
                                 data-popover-placement="bottom-end" type="button"><svg
@@ -76,14 +76,14 @@ onMounted(() => {
                                     <p>Copy the id of the promotional video from YouTube and paste it here, like the one highlighted
                                         below:</p>
                                     <p>https://www.youtube.com/watch?v=<span
-                                            class="font-medium text-slate-900 dark:text-slate-100 bg-slate-200 dark:bg-slate-700">a9tq0aS5Zu8</span>
+                                            class="font-medium text-slate-900 dark:text-slate-100 bg-slate-200 dark:bg-slate-700">dQw4w9WgXcQ</span>
                                     </p>
                                 </div>
                                 <div data-popper-arrow></div>
                             </div>
                         </div>
                         <ListInput v-model:input="formData.show_id" label="Show" inputType="" inputID="show-id"
-                            datalistID="shows-list" :showsList="trailerStore.getAllTrailers" :errors="trailerStore.getErrors.show_id" errorID="show-error" />
+                            datalistID="shows-list" :showsList="trailerStore.getAllTrailers" :errors="trailerStore.getErrors.show_id" errorID="show-error" :isRequired="true" />
                         <div class="flex items-center justify-center lg:col-span-2">
                             <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
                         </div>

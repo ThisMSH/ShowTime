@@ -15,20 +15,6 @@ class TrailerController extends Controller
     use HttpResponses;
 
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        Telescope::stopRecording();
-
-        return $this->success(
-            TrailerResource::collection(
-                Trailer::orderBy('trailer')->get()
-            )
-        );
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTrailerRequest $request)
@@ -45,14 +31,6 @@ class TrailerController extends Controller
         ]);
 
         return $this->success(new TrailerResource($trailer));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Trailer $trailer)
-    {
-        //
     }
 
     /**
@@ -75,7 +53,7 @@ class TrailerController extends Controller
     public function destroy(Trailer $trailer)
     {
         Telescope::stopRecording();
-        
+
         return $trailer->delete();
     }
 }

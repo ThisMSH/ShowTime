@@ -40,6 +40,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/trailer', [TrailerController::class, 'store']);
     Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
     Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
+
+    // Subtitles
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
