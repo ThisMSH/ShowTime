@@ -11,7 +11,7 @@ class Subtitle extends Model
 
     protected $fillable = [
         'user_id',
-        'show_id',
+        'episode_id',
         'subtitle_name',
         'subtitle_file'
     ];
@@ -20,7 +20,7 @@ class Subtitle extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function show() {
-        return $this->belongsTo(Show::class);
+    public function episode() {
+        return $this->belongsTo(Episode::class);
     }
 }

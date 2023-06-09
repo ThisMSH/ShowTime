@@ -22,9 +22,9 @@ class UpdateSubtitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'show_id' => ['sometimes', 'integer'],
+            'episode_id' => ['sometimes', 'integer'],
             'subtitle_name' => ['sometimes', 'string', 'max:20'],
-            'subtitle_file' => ['sometimes', 'file', 'mimes:ass,srt']
+            'subtitle_file' => ['sometimes', 'file']
         ];
     }
 }

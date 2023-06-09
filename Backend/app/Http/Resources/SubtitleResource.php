@@ -22,12 +22,10 @@ class SubtitleResource extends JsonResource
                 "file" => asset(Storage::url($this->subtitle_file))
             ],
             "relationships" => [
-                "show" => [
-                    "id" => (string)$this->show->id,
-                    "title" => $this->show->title,
-                    "season" => $this->show->season,
-                    "category" => $this->show->category->category,
-                    "cover" => asset(Storage::url($this->show->cover))
+                "episode" => [
+                    "id" => (string)$this->episode->id,
+                    "title" => $this->episode->title,
+                    "number" => $this->episode->number
                 ],
                 "creator" => [
                     "username" => $this->user->username

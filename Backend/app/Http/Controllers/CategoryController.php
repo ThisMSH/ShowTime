@@ -7,7 +7,6 @@ use App\Http\Resources\ShowResource;
 use App\Models\Category;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Laravel\Telescope\Telescope;
 
 class CategoryController extends Controller
 {
@@ -18,8 +17,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        Telescope::stopRecording();
-
         return $this->success(
             CategoryResource::collection(
                 Category::all()
@@ -32,8 +29,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        Telescope::stopRecording();
-        
         $shows = $category->shows()
             ->orderBy('title')
             ->orderBy('season')

@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateCommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Telescope\Telescope;
 
 class CommentController extends Controller
 {
@@ -19,8 +18,6 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        Telescope::stopRecording();
-
         $request->validated();
 
         $comment = Comment::create([
@@ -37,8 +34,6 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        Telescope::stopRecording();
-
         if (Auth::user()->id != $comment->user_id && Auth::user()->user_type != 1) {
             return $this->error('', 'You are not authorized to update this comment.', 403);
         }
@@ -55,8 +50,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        Telescope::stopRecording();
-
         if (Auth::user()->id != $comment->user_id && Auth::user()->user_type != 1) {
             return $this->error('', 'You are not authorized to update this comment.', 403);
         }

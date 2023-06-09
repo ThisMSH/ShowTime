@@ -22,9 +22,9 @@ class StoreSubtitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'show_id' => ['required', 'integer'],
+            'episode_id' => ['required', 'integer'],
             'subtitle_name' => ['required', 'string', 'max:20'],
-            'subtitle_file' => ['required', 'file', 'mimes:ass,srt']
+            'subtitle_file' => ['required', 'file']
         ];
     }
 }

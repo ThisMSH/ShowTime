@@ -7,10 +7,10 @@ use App\Http\Requests\StoreEpisodeRequest;
 use App\Http\Requests\UpdateEpisodeRequest;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\EpisodeResource;
+use App\Http\Resources\SubtitleResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Laravel\Telescope\Telescope;
 
 class EpisodeController extends Controller
 {
@@ -21,8 +21,6 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        Telescope::stopRecording();
-
         return $this->success(
             EpisodeResource::collection(
                 Episode::orderBy('number')->get()
@@ -35,8 +33,6 @@ class EpisodeController extends Controller
      */
     public function store(StoreEpisodeRequest $request)
     {
-        Telescope::stopRecording();
-
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title);
@@ -72,17 +68,20 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
-        Telescope::stopRecording();
-
         $comments = $episode->comments()
             ->orderByDesc('id')
+            ->get();
+
+        $subtitles = $episode->subtitles()
+            ->orderBy('subtitle_name')
             ->get();
 
         $episode->loadCount('comments');
 
         return $this->success([
             'episode' => new EpisodeResource($episode),
-            'comments' => CommentResource::collection($comments)
+            'comments' => CommentResource::collection($comments),
+            'subtitles' => SubtitleResource::collection($subtitles)
         ]);
     }
 
@@ -91,8 +90,6 @@ class EpisodeController extends Controller
      */
     public function update(UpdateEpisodeRequest $request, Episode $episode)
     {
-        // Telescope::stopRecording();
-
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $episode->title);
@@ -121,8 +118,6 @@ class EpisodeController extends Controller
      */
     public function destroy(Episode $episode)
     {
-        Telescope::stopRecording();
-
         return $episode->delete();
     }
 }

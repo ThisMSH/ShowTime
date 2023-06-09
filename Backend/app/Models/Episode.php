@@ -14,7 +14,7 @@ class Episode extends Model
         'show_id',
         'episode_type',
         'title',
-        'number', 
+        'number',
         'description',
         'thumbnail',
         'video'
@@ -30,5 +30,9 @@ class Episode extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function subtitles() {
+        return $this->hasMany(Subtitle::class);
     }
 }

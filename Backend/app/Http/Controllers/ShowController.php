@@ -12,7 +12,6 @@ use App\Models\Episode;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Laravel\Telescope\Telescope;
 
 class ShowController extends Controller
 {
@@ -23,8 +22,6 @@ class ShowController extends Controller
      */
     public function index()
     {
-        Telescope::stopRecording();
-
         $totalAnime = Show::whereIn('category_id', [3, 4])->count();
         $totalLiveAction = Show::whereIn('category_id', [1, 2])->count();
         $totalEpisodes = Episode::count();
@@ -42,8 +39,6 @@ class ShowController extends Controller
      */
     public function store(StoreShowRequest $request)
     {
-        Telescope::stopRecording();
-
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title);
@@ -80,8 +75,6 @@ class ShowController extends Controller
      */
     public function show(Show $show)
     {
-        Telescope::stopRecording();
-
         $episodes = $show->episodes()
             ->orderBy('number')
             ->get();
@@ -104,8 +97,6 @@ class ShowController extends Controller
      */
     public function update(UpdateShowRequest $request, Show $show)
     {
-        Telescope::stopRecording();
-
         $request->validated();
 
         $title_no_whitespace = preg_replace('/[^A-Za-z0-9_-]/', '-', $request->title ?? $show->title);
@@ -134,8 +125,6 @@ class ShowController extends Controller
      */
     public function destroy(Show $show)
     {
-        Telescope::stopRecording();
-
         return $show->delete();
     }
 
@@ -144,8 +133,6 @@ class ShowController extends Controller
      */
     public function search($search)
     {
-        Telescope::stopRecording();
-
         $terms = explode(' ', $search);
         $query = Show::query();
 
@@ -194,8 +181,6 @@ class ShowController extends Controller
      */
     public function latestLiveAction()
     {
-        Telescope::stopRecording();
-
         $shows = Show::whereIn('category_id', [1, 2])
             ->latest()
             ->take(9)
@@ -209,8 +194,6 @@ class ShowController extends Controller
      */
     public function latestAnime()
     {
-        Telescope::stopRecording();
-
         $shows = Show::whereIn('category_id', [3, 4])
             ->latest()
             ->take(9)

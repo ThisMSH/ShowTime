@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\TrailerController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,3 +68,7 @@ Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 // Categories
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{category}', [CategoryController::class, 'show']);
+
+Route::post('/subtitle', [SubtitleController::class, 'store']);
+Route::patch('/subtitle/{subtitle}', [SubtitleController::class, 'update']);
+Route::delete('/subtitle/{subtitle}', [SubtitleController::class, 'destroy']);
