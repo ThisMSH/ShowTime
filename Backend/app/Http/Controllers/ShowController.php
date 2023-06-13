@@ -177,6 +177,20 @@ class ShowController extends Controller
     }
 
     /**
+     * Fetch all the shows and episodes with their subtitles
+     */
+    public function showsWithSubtitles()
+    {
+        $shows = Show::with(['episodes' => function ($query) {
+            $query->orderBy('number')->with('subtitles');
+        }])
+            ->orderBy('title')
+            ->get();
+
+        return $this->success(ShowResource::collection($shows));
+    }
+
+    /**
      * Fetch the latest 9 live action shows
      */
     public function latestLiveAction()

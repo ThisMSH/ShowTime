@@ -35,7 +35,7 @@ export const useEpisodeStore = defineStore('episode', {
             this.errors = [];
 
             try {
-                const singleEpisode = await axios.get(`/api/episode/${id}`);
+                const singleEpisode = await axios.get(`/api/episode/${id}`, {withCredentials: true});
                 this.episode = singleEpisode.data.data;
             } catch (error) {
                 if (error.response.status === 404) {

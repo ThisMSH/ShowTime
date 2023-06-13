@@ -5,7 +5,26 @@ import Artplayer from 'artplayer';
 const props = defineProps({
     url: String,
     title: String,
+    subs: { type: Array, default: [] },
 });
+
+const subsArr = ref([]);
+
+if (props.subs[0]) {
+    subsArr.value[0] = {
+        default: true,
+        html: props.subs[0].attributes.name,
+        url: props.subs[0].attributes.file
+    }
+}
+
+for (let i = 1; i < props.subs.length; i++) {
+    let temp = {
+        html: subsArr[i].attributes.name,
+        url: subsArr[i].attributes.file
+    };
+    subsArr.value.push(temp);
+}
 
 const player = ref(null);
 const options = reactive({
@@ -40,7 +59,7 @@ const options = reactive({
         {
             width: 200,
             html: 'Subtitle',
-            tooltip: 'Bilingual',
+            tooltip: props.subs[0] ? props.subs[0]?.attributes.name : 'none',
             icon: '<img width="22" heigth="22" src="../src/assets/images/ArtPlayer/subtitle.svg">',
             selector: [
                 {
@@ -53,12 +72,7 @@ const options = reactive({
                         return !item.switch;
                     },
                 },
-                {
-                    default: true,
-                    html: 'Bilingual',
-                    url: '/assets/sample/subtitle.srt',
-                },
-                // ...obj
+                ...subsArr.value
             ],
             onSelect: function (item) {
                 this.subtitle.switch(item.url, {

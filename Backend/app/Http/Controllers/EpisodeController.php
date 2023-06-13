@@ -76,7 +76,7 @@ class EpisodeController extends Controller
             ->orderBy('subtitle_name')
             ->get();
 
-        $episode->loadCount('comments');
+        $episode->loadCount('comments')->with('subtitles');
 
         return $this->success([
             'episode' => new EpisodeResource($episode),

@@ -2,6 +2,7 @@
 import ToggleBtn from '../components/utilities/ToggleBtn.vue';
 import RectangularLogoDark from './utilities/RectangularLogoDark.vue';
 import RectangularLogoLight from './utilities/RectangularLogoLight.vue';
+import SubtitleSettings from './custom-icons/SubtitleSettings.vue';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useRoute } from 'vue-router';
@@ -142,6 +143,15 @@ onMounted(() => {
                             <span class="pl-4 text-lg font-medium transition-all duration-500 text">Promotions Management</span>
                         </RouterLink>
                     </li>
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_subtitles' ? 'active' : '']" class="dashboard-sections">
+                        <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/manage_subtitles" >
+                            <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
+                                text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-gray-400 after:dark:bg-gray-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500">
+                                <SubtitleSettings class="transition-all duration-500 delay-1000 fill-slate-950 dark:fill-slate-100" />
+                            </span>
+                            <span class="pl-4 text-lg font-medium transition-all duration-500 text">Subtitles Management</span>
+                        </RouterLink>
+                    </li>
                 </template>
             </ul>
         </div>
@@ -183,6 +193,10 @@ onMounted(() => {
 .dashboard-sections.active:nth-child(8) .icon,
 .dashboard-sections.active:nth-child(8) .icon::before {
     @apply bg-amber-400 dark:bg-amber-600;
+}
+.dashboard-sections.active:nth-child(9) .icon,
+.dashboard-sections.active:nth-child(9) .icon::before {
+    @apply bg-gray-400 dark:bg-gray-600;
 }
 .dashboard-sections.active .icon::before
 {

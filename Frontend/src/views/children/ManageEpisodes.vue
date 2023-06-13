@@ -5,10 +5,8 @@ import AdminUpdateEpisode from '../../components/modals/AdminUpdateEpisode.vue';
 import AdminDeleteEpisode from '../../components/modals/AdminDeleteEpisode.vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
-import { useShowStore } from '../../stores/show';
 import { useEpisodeStore } from '../../stores/episode';
 
-const showStore = useShowStore();
 const episodeStore = useEpisodeStore();
 
 document.title = "Dashboard - Episodes Management - ShowTime";
@@ -36,7 +34,7 @@ onMounted(async () => {
                 </div>
             </template>
         </div>
-        <!-- Shows Management -->
+        <!-- Episodes Management -->
         <div class="flex flex-col mt-10">
             <div class="">
                 <div class="inline-block min-w-full align-middle">

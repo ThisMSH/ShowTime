@@ -22,6 +22,7 @@ let thisShowID = ref(null);
 let comments = ref([]);
 let fetchedComments = ref(null);
 let fetchedEpisode = ref(null);
+let fetchedSubs = ref(null);
 
 const data = ref({
     comment: null,
@@ -78,6 +79,10 @@ watch (() => episodeStore.getSingleEpisode?.comments, () => {
 watch (() => episodeStore.getSingleEpisode?.episode, () => {
     fetchedEpisode.value = episodeStore.getSingleEpisode.episode;
 });
+
+watch (() => episodeStore.getSingleEpisode?.subtitles, () => {
+    fetchedSubs.value = episodeStore.getSingleEpisode.subtitles;
+});
 </script>
 
 <template>
@@ -111,7 +116,7 @@ watch (() => episodeStore.getSingleEpisode?.episode, () => {
                         </p>
                     </template>
                     <template v-else>
-                        <VideoPlayer :title="fetchedEpisode.attributes.title" :url="fetchedEpisode.attributes.video" class="aspect-video" />
+                        <VideoPlayer :title="fetchedEpisode.attributes.title" :url="fetchedEpisode.attributes.video" :subs="fetchedSubs" class="aspect-video" />
                     </template>
                 </template>
                 <RouterLink :to="`/show/${showStore.getSingleShow?.show.id}`">

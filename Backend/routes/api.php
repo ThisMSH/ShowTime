@@ -28,21 +28,25 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/show', [ShowController::class, 'store']);
     Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
-    Route::get('/shows-and-episodes', [ShowController::class, 'showsWithEpisodes']);
-    Route::get('/shows-and-trailers', [ShowController::class, 'showsWithTrailers']);
 
     // Episodes
     Route::get('/episode', [EpisodeController::class, 'index']);
     Route::post('/episode', [EpisodeController::class, 'store']);
     Route::patch('/episode/{episode}', [EpisodeController::class, 'update']);
     Route::delete('/episode/{episode}', [EpisodeController::class, 'destroy']);
+    Route::get('/shows-and-episodes', [ShowController::class, 'showsWithEpisodes']);
 
     // Trailers
     Route::post('/trailer', [TrailerController::class, 'store']);
     Route::patch('/trailer/{trailer}', [TrailerController::class, 'update']);
     Route::delete('/trailer/{trailer}', [TrailerController::class, 'destroy']);
+    Route::get('/shows-and-trailers', [ShowController::class, 'showsWithTrailers']);
 
     // Subtitles
+    Route::post('/subtitle', [SubtitleController::class, 'store']);
+    Route::patch('/subtitle/{subtitle}', [SubtitleController::class, 'update']);
+    Route::delete('/subtitle/{subtitle}', [SubtitleController::class, 'destroy']);
+    Route::get('/shows-and-subtitles', [ShowController::class, 'showsWithSubtitles']);
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -68,7 +72,3 @@ Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 // Categories
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{category}', [CategoryController::class, 'show']);
-
-Route::post('/subtitle', [SubtitleController::class, 'store']);
-Route::patch('/subtitle/{subtitle}', [SubtitleController::class, 'update']);
-Route::delete('/subtitle/{subtitle}', [SubtitleController::class, 'destroy']);

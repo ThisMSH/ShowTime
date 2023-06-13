@@ -31,7 +31,7 @@ class SubtitleController extends Controller
         }
 
         $subtitle = Subtitle::create([
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'episode_id' => $request->episode_id,
             'subtitle_name' => $request->subtitle_name,
             'subtitle_file' => $name
@@ -51,7 +51,7 @@ class SubtitleController extends Controller
             if ($request->subtitle_file->getClientOriginalExtension() != "srt" && $request->subtitle_file->getClientOriginalExtension() != "ass") {
                 return $this->error("", "The file type must be .srt or .ass", 422);
             }
-            
+
             $name = "subtitles/" . uniqid() . '.' . $request->subtitle_file->getClientOriginalExtension();
             Storage::disk('public')->put($name, file_get_contents($request->subtitle_file));
             $subtitle->update(['subtitle_file' => $name]);

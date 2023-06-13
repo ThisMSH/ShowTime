@@ -34,6 +34,9 @@ class EpisodeResource extends JsonResource
                     "title" => $this->show->title,
                     "season" => $this->show->season
                 ],
+                "subtitles" => [
+                    "list" => SubtitleResource::collection($this->whenLoaded('subtitles'))
+                ],
                 "creator" => [
                     "username" => $this->user->username
                 ]
