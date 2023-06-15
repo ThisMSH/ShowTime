@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEpisodeRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class UpdateEpisodeRequest extends FormRequest
             'episode_type' => ['sometimes', 'integer'],
             'thumbnail' => ['sometimes', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=16/9,min_width=240,min_height=135'],
             'video' => ['sometimes', 'file', 'mimes:mp4,mkv'],
-            'show_id' => ['sometimes', 'integer']
+            'show_id' => ['sometimes', 'integer', Rule::exists('shows', 'id')]
         ];
     }
 

@@ -89,7 +89,7 @@ onMounted(() => {
                         <ListInput v-model:input="formData.show_id" label="Show" inputType="" :inputID="`show-id-${trailer.attributes.trailer}`"
                             datalistID="shows-list" :showsList="trailerStore.getAllTrailers" :errors="trailerStore.getErrors.show_id" errorID="show-error" />
                         <div class="flex items-center justify-center lg:col-span-2">
-                            <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
+                            <NoBlackBgButton name="Update" iconName="ic:round-system-update-alt" />
                         </div>
                     </div>
                 </form>

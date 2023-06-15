@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\TrailerController;
@@ -65,6 +66,9 @@ Route::get('/show/{show}', [ShowController::class, 'show']);
 Route::get('/show/search/{search}', [ShowController::class, 'search']);
 Route::get('/shows/latest_anime', [ShowController::class, 'latestAnime']);
 Route::get('/shows/latest_live_action', [ShowController::class, 'latestLiveAction']);
+
+// Rating
+Route::post('/rating', [RatingController::class, 'store']);
 
 // Episodes
 Route::get('/episode/{episode}', [EpisodeController::class, 'show']);

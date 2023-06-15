@@ -7,7 +7,6 @@ const props = defineProps({
     title: String,
     subs: { type: Array, default: [] },
 });
-
 const subsArr = ref([]);
 
 if (props.subs[0]) {
@@ -20,8 +19,8 @@ if (props.subs[0]) {
 
 for (let i = 1; i < props.subs.length; i++) {
     let temp = {
-        html: subsArr[i].attributes.name,
-        url: subsArr[i].attributes.file
+        html: props.subs[i].attributes.name,
+        url: props.subs[i].attributes.file
     };
     subsArr.value.push(temp);
 }
@@ -59,7 +58,7 @@ const options = reactive({
         {
             width: 200,
             html: 'Subtitle',
-            tooltip: props.subs[0] ? props.subs[0]?.attributes.name : 'none',
+            tooltip: props.subs[0] ? props.subs[0].attributes.name : 'none',
             icon: '<img width="22" heigth="22" src="../src/assets/images/ArtPlayer/subtitle.svg">',
             selector: [
                 {
@@ -82,6 +81,15 @@ const options = reactive({
             },
         },
     ],
+    subtitle: {
+        url: props.subs[0] ? props.subs[0].attributes.file : '',
+        type: 'srt',
+        style: {
+            color: '#fff',
+            fontSize: 'max(16px, 2vw)',
+        },
+        encoding: 'utf-8',
+    },
     icons: {
         loading: '<img src="../src/assets/images/ArtPlayer/Loading.gif">',
         state: '<img width="150" heigth="150" src="../src/assets/images/ArtPlayer/logo.png">',

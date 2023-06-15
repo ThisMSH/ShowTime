@@ -29,7 +29,7 @@ const inputComputed = computed({
         </div>
         <div v-if="errors" :id="errorID">
             <p v-for="error in errors" :key="error"
-                class="mt-2 text-sm font-medium text-left text-red-600 dark:text-red-400 dark:drop-shadow-black-sm">{{ error
+                class="mt-2 text-sm font-medium text-left text-red-600 dark:text-red-400 dark:drop-shadow-black-sm whitespace-normal">{{ error
                 }}</p>
         </div>
     </div>

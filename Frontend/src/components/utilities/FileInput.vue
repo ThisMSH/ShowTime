@@ -33,7 +33,7 @@ const handleFile = (event) => {
         </div>
         <div v-if="errors" :id="errorID">
             <p v-for="error in errors" :key="error"
-                class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error
+                class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm whitespace-normal">{{ error
                 }}</p>
         </div>
     </div>

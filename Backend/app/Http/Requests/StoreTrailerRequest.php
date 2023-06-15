@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Trailer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTrailerRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class StoreTrailerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'show_id' => ['required', 'integer'],
+            'show_id' => ['required', 'integer', Rule::exists('shows', 'id')],
             'title' => ['required', 'string'],
             'trailer' => ['required', 'string', 'unique:'.Trailer::class]
         ];

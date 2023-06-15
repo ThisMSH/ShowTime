@@ -79,15 +79,15 @@ onMounted(() => {
                         <div>
                             <div class="relative z-0">
                                 <label for="memebership-select"
-                                    class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" :class="[episodeStore.getErrors.premium?.length > 0 ? 'text-red-600 dark:text-red-500' : 'text-slate-600 dark:text-slate-400']">Membership</label>
+                                    class="absolute duration-300 transform -translate-y-6 scale-75 top-2 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" :class="[episodeStore.getErrors.premium?.length > 0 ? 'text-red-600 dark:text-red-500' : 'text-slate-600 dark:text-slate-400']">Membership</label>
                                 <select v-model="formData.membership" id="memebership-select"
-                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer" :class="[episodeStore.getErrors.premium?.length > 0 ? 'border-red-600 dark:border-red-500 focus:border-red-600 dark:focus:border-red-500' : 'border-slate-600 dark:border-slate-400 focus:border-slate-600 dark:focus:border-slate-400']">
+                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950 focus:outline-none focus:ring-0 peer" :class="[episodeStore.getErrors.premium?.length > 0 ? 'border-red-600 dark:border-red-500 focus:border-red-600 dark:focus:border-red-500' : 'border-slate-600 dark:border-slate-400 focus:border-slate-600 dark:focus:border-slate-400']">
                                     <option value="0">Free</option>
                                     <option value="1">Premium</option>
                                 </select>
                             </div>
                             <div v-if="episodeStore.getErrors">
-                                <p v-for="error in episodeStore.getErrors.premium" :key="error" class="mt-2 text-sm font-medium text-red-600 dark:text-red-400 dark:drop-shadow-black-sm">{{ error }}</p>
+                                <p v-for="error in episodeStore.getErrors.premium" :key="error" class="mt-2 text-sm text-left font-medium text-red-600 dark:text-red-400 dark:drop-shadow-black-sm whitespace-normal">{{ error }}</p>
                             </div>
                         </div>
                         <ListInput v-model:input="formData.show_id" label="Show" inputType="" inputID="show-id"
@@ -97,7 +97,7 @@ onMounted(() => {
                         <FileInput @file-content="getThumbnail" class="lg:col-span-2"  label="Thumbnail" inputType="file" inputID="thumbnail" :errors="episodeStore.getErrors.thumbnail" errorID="thumbnail-error" />
                         <FileInput @file-content="getVideo" class="lg:col-span-2"  label="Video" inputType="file" inputID="video" :errors="episodeStore.getErrors.video" errorID="video-error" />
                         <div class="flex items-center justify-center lg:col-span-2">
-                            <NoBlackBgButton name="Submit" iconName="ic:round-system-update-alt" />
+                            <NoBlackBgButton name="Update" iconName="ic:round-system-update-alt" />
                         </div>
                     </div>
                 </form>

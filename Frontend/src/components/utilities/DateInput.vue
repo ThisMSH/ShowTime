@@ -48,7 +48,7 @@ const currentDate = format(new Date(), "yyyy-MM-dd");
         </div>
         <div v-if="errors" :id="errorID" class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">
             <p v-for="error in errors" :key="error"
-                class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm">{{ error
+                class="mt-2 text-left text-sm text-red-600 dark:text-red-400 font-medium dark:drop-shadow-black-sm whitespace-normal">{{ error
                 }}
             </p>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Trailer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTrailerRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class UpdateTrailerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'show_id' => ['sometimes', 'integer'],
+            'show_id' => ['sometimes', 'integer', Rule::exists('shows', 'id')],
             'title' => ['sometimes', 'string'],
             'trailer' => ['sometimes', 'string', 'unique:'.Trailer::class]
         ];

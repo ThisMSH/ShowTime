@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCommentRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'episode_id' => ['required', 'integer'],
+            'episode_id' => ['required', 'integer', Rule::exists('episodes', 'id')],
             'comment' => ['required', 'string', 'max:500', 'min:10']
         ];
     }

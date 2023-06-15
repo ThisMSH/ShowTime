@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateShowRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class UpdateShowRequest extends FormRequest
             'description' => ['sometimes', 'nullable', 'string'],
             'cover' => ['sometimes', 'nullable', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=7/10,min_width=420,min_height=600'],
             'wide_cover' => ['sometimes', 'nullable', 'image', 'mimes:png,jpeg,jpg', 'dimensions:ratio=9/5,min_width=900,min_height=500'],
-            'category_id' => ['sometimes', 'nullable', 'integer'],
+            'category_id' => ['sometimes', 'nullable', 'integer', Rule::exists('categories', 'id')],
             'sequel' => ['sometimes', 'nullable', 'integer'],
             'prequel' => ['sometimes', 'nullable', 'integer'],
         ];

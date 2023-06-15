@@ -31,7 +31,7 @@ class CategoryController extends Controller
     {
         $shows = $category->shows()
             ->orderBy('title')
-            ->orderBy('season')
+            ->orderBy('id')
             ->get();
 
         return $this->success([

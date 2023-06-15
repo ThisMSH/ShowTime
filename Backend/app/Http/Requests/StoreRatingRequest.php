@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRatingRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreRatingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,8 @@ class StoreRatingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'show_id' => ['required', 'integer', Rule::exists('shows', 'id')],
+            'rating' => ['required', 'integer', 'max:10', 'min:1']
         ];
     }
 }

@@ -21,10 +21,6 @@ class SubtitleController extends Controller
     {
         $request->validated();
 
-        if ($request->subtitle_file->getClientOriginalExtension() != "srt" && $request->subtitle_file->getClientOriginalExtension() != "ass") {
-            return $this->error("", "The file type must be .srt or .ass", 422);
-        }
-
         if ($request->hasFile('subtitle_file')) {
             $name = "subtitles/" . uniqid() . '.' . $request->subtitle_file->getClientOriginalExtension();
             Storage::disk('public')->put($name, file_get_contents($request->subtitle_file));

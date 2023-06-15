@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSubtitleRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class UpdateSubtitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'episode_id' => ['sometimes', 'integer'],
+            'episode_id' => ['sometimes', 'integer', Rule::exists('episodes', 'id')],
             'subtitle_name' => ['sometimes', 'string', 'max:20'],
             'subtitle_file' => ['sometimes', 'file']
         ];

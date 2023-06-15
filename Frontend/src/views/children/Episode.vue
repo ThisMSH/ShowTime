@@ -119,7 +119,7 @@ watch (() => episodeStore.getSingleEpisode?.subtitles, () => {
                         <VideoPlayer :title="fetchedEpisode.attributes.title" :url="fetchedEpisode.attributes.video" :subs="fetchedSubs" class="aspect-video" />
                     </template>
                 </template>
-                <RouterLink :to="`/show/${showStore.getSingleShow?.show.id}`">
+                <RouterLink class="inline-block w-fit" :to="`/show/${showStore.getSingleShow?.show.id}`">
                     <h6 class="text-orange-500 dark:text-orange-400">{{ fetchedEpisode.relationships.show.title }}{{ fetchedEpisode.relationships.show.season ? ' - ' + fetchedEpisode.relationships.show.season : '' }}</h6>
                 </RouterLink>
                 <h3 class="text-xl font-semibold sm:text-2xl lg:text-3xl">{{ fetchedEpisode.attributes.number }} - {{ fetchedEpisode.attributes.title }}</h3>

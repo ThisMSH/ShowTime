@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSubtitleRequest extends FormRequest
 {
@@ -22,9 +23,9 @@ class StoreSubtitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'episode_id' => ['required', 'integer'],
+            'episode_id' => ['required', 'integer', Rule::exists('episodes', 'id')],
             'subtitle_name' => ['required', 'string', 'max:20'],
-            'subtitle_file' => ['required', 'file']
+            'subtitle_file' => ['required', 'file', 'max:1024']
         ];
     }
 }

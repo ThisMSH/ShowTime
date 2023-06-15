@@ -36,9 +36,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             form.append("subtitle_name", data.subName);
             form.append("subtitle_file", data.subFile);
 
+            const closeAddSubModel = document.querySelector("#create-subtitle");
+
             try {
                 await axios.post("/api/subtitle", form);
                 await this.fetchAllSubtitles();
+                closeAddSubModel.click();
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
@@ -57,9 +60,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             if (data.subName) form.append("subtitle_name", data.subName);
             if (data.subFile) form.append("subtitle_file", data.subFile);
 
+            const closeUpdateSubModel = document.querySelector(`#create-subtitle-${id}`);
+
             try {
                 await axios.post(`/api/subtitle/${id}`, form);
                 await this.fetchAllSubtitles();
+                closeUpdateSubModel.click();
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
@@ -72,9 +78,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             this.errors = [];
             this.isLoading = true;
 
+            const closeDeleteSubModel = document.querySelector(`#delete-subtitle-${id}`);
+
             try {
                 await axios.delete(`/api/subtitle/${id}`);
                 await this.fetchAllSubtitles();
+                closeDeleteSubModel.click();
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;

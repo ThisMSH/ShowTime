@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
-// use Laravolt\Avatar\Avatar;
 use Laravolt\Avatar\Facade as Avatar;
 
 class RegisteredUserController extends Controller
@@ -49,16 +48,6 @@ class RegisteredUserController extends Controller
         } else {
             $path = 'avatar/default.jpg';
         }
-        
-        /** 
-         * Doesn't seem to work
-         * Package name: laravolt/avatar
-        */
-        // else {
-        //     $avatar = Avatar::create($request->name)->toBase64();
-        //     $path = 'avatars/' . time() . "-" . $request->username . '.png';
-        //     Storage::disk('public')->put($path, $avatar);
-        // }
 
         $user = User::create([
             'name' => $request->name,
