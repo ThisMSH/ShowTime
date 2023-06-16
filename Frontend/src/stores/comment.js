@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { useEpisodeStore } from "./episode";
 
 export const useCommentStore = defineStore('comment', {
     state: () => ({
@@ -34,7 +33,6 @@ export const useCommentStore = defineStore('comment', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.addLoading = false;
@@ -52,7 +50,6 @@ export const useCommentStore = defineStore('comment', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.updateErrors = error.response.data.errors;
-                    console.log(this.updateErrors);
                 }
             } finally {
                 this.isLoading = false;
@@ -67,7 +64,6 @@ export const useCommentStore = defineStore('comment', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.isLoading = false;

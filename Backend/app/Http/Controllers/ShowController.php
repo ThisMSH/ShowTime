@@ -83,7 +83,13 @@ class ShowController extends Controller
             ->orderBy('title')
             ->get();
 
-        $show->loadCount('episodes');
+        $show->loadCount('episodes')
+            ->loadCount('ratings');
+
+        $show->avg_rating = $show->ratings()
+            ->selectRaw('AVG(rating) as avg_rating')
+            ->pluck('avg_rating')
+            ->first();
 
         return $this->success([
             'show' => new ShowResource($show),
@@ -200,6 +206,13 @@ class ShowController extends Controller
             ->take(9)
             ->get();
 
+        foreach ($shows as $show) {
+            $show->avg_rating = $show->ratings()
+                ->selectRaw('AVG(rating) as avg_rating')
+                ->pluck('avg_rating')
+                ->first();
+        }
+
         return $this->success(ShowResource::collection($shows));
     }
 
@@ -212,6 +225,13 @@ class ShowController extends Controller
             ->latest()
             ->take(9)
             ->get();
+
+        foreach ($shows as $show) {
+            $show->avg_rating = $show->ratings()
+                ->selectRaw('AVG(rating) as avg_rating')
+                ->pluck('avg_rating')
+                ->first();
+        }
 
         return $this->success(ShowResource::collection($shows));
     }

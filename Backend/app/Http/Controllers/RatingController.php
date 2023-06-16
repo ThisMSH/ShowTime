@@ -29,7 +29,7 @@ class RatingController extends Controller
         $request->validated();
 
         $rating = Rating::firstOrNew([
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'show_id' => $request->show_id,
         ]);
 
@@ -51,9 +51,17 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rating $rating)
+    public function show($id)
     {
-        //
+        $query = Rating::where('user_id', Auth::id())
+            ->where('show_id', $id)
+            ->first();
+
+        if ($query) {
+            return $this->success(new RatingResource($query));
+        }
+
+        return null;
     }
 
     /**

@@ -26,7 +26,6 @@ export const useEpisodeStore = defineStore('episode', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             }
         },

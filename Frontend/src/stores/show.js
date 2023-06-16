@@ -34,7 +34,6 @@ export const useShowStore = defineStore('show', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.allShowsLoading = false;
@@ -65,7 +64,6 @@ export const useShowStore = defineStore('show', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.searchLoading = false;
@@ -140,7 +138,6 @@ export const useShowStore = defineStore('show', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.isLoading = false;
@@ -159,7 +156,6 @@ export const useShowStore = defineStore('show', {
             } catch (error) {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
-                    console.log(this.errors);
                 }
             } finally {
                 this.latestLoading = false;

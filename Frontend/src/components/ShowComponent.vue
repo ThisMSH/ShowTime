@@ -1,5 +1,8 @@
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps(["show"]);
+const avg = ref(+props.show.relationships.ratings.average);
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const props = defineProps(["show"]);
         </RouterLink>
         <div class="flex justify-between items-center">
             <p class="text-orange-500 dark:text-orange-400">{{ show.relationships.category.name }}</p>
-            <!-- <p class="text-neutral-500 dark:text-neutral-400">{{ show.attributes.rating }}</p> -->
+            <p class="text-neutral-500 dark:text-neutral-400"><span :class="[avg.toFixed(2) > 0 ? '' : 'text-sm font-light']">{{ avg.toFixed(2) > 0 ? avg.toFixed(2) : "N/A" }}</span> / 10</p>
         </div>
     </div>
 </template>

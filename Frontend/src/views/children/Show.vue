@@ -5,9 +5,12 @@ import EpisodeComponent from '../../components/EpisodeComponent.vue';
 import ToggleBtn from '../../components/utilities/ToggleBtn.vue';
 import Trailer from '../../components/modals/Trailer.vue';
 import PageLoading from '../../components/skeleton/PageLoading.vue';
+import RatingComponent from '../../components/RatingComponent.vue';
 import { useShowStore } from '../../stores/show';
+import { useAuthStore } from '../../stores/auth';
 
 const showStore = useShowStore();
+const authStore = useAuthStore();
 
 const props = defineProps(["id"]);
 
@@ -60,9 +63,14 @@ const toggleSideShowInfo = function () {
     toggleSideShowInfoBtn.value.classList.toggle("top-24");
     toggleSideShowInfoBtn.value.classList.toggle("top-2");
 };
+const avgRatingRounded = ref("N/A");
+const avgRating = ref(null);
 
 onMounted(async () => {
     await showStore.fetchShow(props.id);
+
+    avgRating.value = +showStore.getSingleShow.show.relationships.ratings.average;
+    avgRatingRounded.value = avgRating.value > 0 ? avgRating.value.toFixed(2) : "N/A";
 
     document.title = `
     ${showStore.getSingleShow?.show.attributes.title}${showStore.getSingleShow?.show.attributes.season ?
@@ -72,6 +80,9 @@ onMounted(async () => {
 
 watch(() => props.id, async (showID) => {
     await showStore.fetchShow(showID);
+
+    avgRating.value = parseInt(showStore.getSingleShow.show.relationships.ratings.average);
+    avgRatingRounded.value = avgRating.value > 0 ? avgRating.value.toFixed(2) : "N/A";
 
     document.title = `
     ${showStore.getSingleShow.show.attributes.title}${showStore.getSingleShow.show.attributes.season ?
@@ -121,29 +132,16 @@ watch(() => props.id, async (showID) => {
                         <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                         <div class="grid grid-cols-2 gap-x-5 gap-y-2 max-sm:text-sm">
                             <h6>Average score:</h6>
-                            <p>8.8/10 <span>(3 users)</span></p>
+                            <p>{{ avgRatingRounded }} / 10 <span>({{ showStore.getSingleShow.show.relationships.ratings.count == 1 || 0 ? showStore.getSingleShow.show.relationships.ratings.count + " user" : showStore.getSingleShow.show.relationships.ratings.count + " users" }})</span></p>
                             <h6>Category:</h6>
                             <p>{{ showStore.getSingleShow.show.relationships.category.name }}</p>
                             <h6>Episodes:</h6>
                             <p>{{ showStore.getSingleShow.show.relationships.episodes.count }}</p>
                         </div>
-                        <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
-                        <div class="relative z-0 my-2">
-                            <label for="underline_select" class="absolute text-slate-600 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">My Rating</label>
-                            <select id="underline_select" class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 border-slate-600 appearance-none child:bg-slate-100 child:dark:bg-slate-950 dark:border-slate-400 dark:focus:border-slate-400 focus:outline-none focus:ring-0 focus:border-slate-600 peer">
-                                <option disabled selected>Select</option>
-                                <option value="10">10 - Masterpiece</option>
-                                <option value="9">9 - Great</option>
-                                <option value="8">8 - Very good</option>
-                                <option value="7">7 - Good</option>
-                                <option value="6">6 - Fine</option>
-                                <option value="5">5 - Average</option>
-                                <option value="4">4 - Bad</option>
-                                <option value="3">3 - Very bad</option>
-                                <option value="2">2 - Horrible</option>
-                                <option value="1">1 - Appalling</option>
-                            </select>
-                        </div>
+                        <template v-if="authStore.getUser">
+                            <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
+                            <RatingComponent :showID="showStore.getSingleShow.show.id" />
+                        </template>
                         <template v-if="showStore.getSingleShow.show.relationships.prequel">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                             <div class="flex w-full">

@@ -58,6 +58,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/comment', [CommentController::class, 'store']);
     Route::patch('/comment/{comment}', [CommentController::class, 'update']);
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);
+
+    // Rating
+    Route::get('/rating/{id}', [RatingController::class, 'show']);
+    Route::post('/rating', [RatingController::class, 'store']);
 });
 
 // Shows
@@ -69,6 +73,7 @@ Route::get('/shows/latest_live_action', [ShowController::class, 'latestLiveActio
 
 // Rating
 Route::post('/rating', [RatingController::class, 'store']);
+
 
 // Episodes
 Route::get('/episode/{episode}', [EpisodeController::class, 'show']);

@@ -78,7 +78,6 @@ export const useAuthStore = defineStore("auth", {
             registerData.append('avatar', data.image);
             registerData.append('password', data.password);
             registerData.append('password_confirmation', data.confirm_password);
-            // console.log(Array.from(registerData.entries()));
 
             try {
                 await this.fetchToken();
