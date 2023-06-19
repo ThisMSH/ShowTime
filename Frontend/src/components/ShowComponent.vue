@@ -15,7 +15,7 @@ const avg = ref(+props.show.relationships.ratings.average);
         </RouterLink>
         <div class="flex justify-between items-center">
             <p class="text-orange-500 dark:text-orange-400">{{ show.relationships.category.name }}</p>
-            <p class="text-neutral-500 dark:text-neutral-400"><span :class="[avg.toFixed(2) > 0 ? '' : 'text-sm font-light']">{{ avg.toFixed(2) > 0 ? avg.toFixed(2) : "N/A" }}</span> / 10</p>
+            <p class="text-neutral-500 dark:text-neutral-400"><span :class="[avg.toFixed(2) > 0 ? '' : 'align-top text-sm font-light']">{{ avg.toFixed(2) > 0 ? avg.toFixed(2) : "N/A" }}</span>/10</p>
         </div>
     </div>
 </template>

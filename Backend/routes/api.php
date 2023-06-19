@@ -4,7 +4,9 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\TrailerController;
@@ -48,6 +50,12 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::patch('/subtitle/{subtitle}', [SubtitleController::class, 'update']);
     Route::delete('/subtitle/{subtitle}', [SubtitleController::class, 'destroy']);
     Route::get('/shows-and-subtitles', [ShowController::class, 'showsWithSubtitles']);
+
+    // Recommendations
+    Route::get('/recommendation', [RecommendationController::class, 'index']);
+    Route::post('/recommendation', [RecommendationController::class, 'store']);
+    Route::patch('/recommendation/{recommendation}', [RecommendationController::class, 'update']);
+    Route::delete('/recommendation/{recommendation}', [RecommendationController::class, 'destroy']);
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -62,6 +70,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Rating
     Route::get('/rating/{id}', [RatingController::class, 'show']);
     Route::post('/rating', [RatingController::class, 'store']);
+
+    // Recommendations
+
+    // Favorites
+    Route::post('/favorite', [FavoriteController::class, 'store']);
 });
 
 // Shows
@@ -71,13 +84,13 @@ Route::get('/show/search/{search}', [ShowController::class, 'search']);
 Route::get('/shows/latest_anime', [ShowController::class, 'latestAnime']);
 Route::get('/shows/latest_live_action', [ShowController::class, 'latestLiveAction']);
 
-// Rating
-Route::post('/rating', [RatingController::class, 'store']);
-
-
 // Episodes
 Route::get('/episode/{episode}', [EpisodeController::class, 'show']);
 
 // Categories
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{category}', [CategoryController::class, 'show']);
+
+// Recommendations
+Route::get('/recommendation/anime', [RecommendationController::class, 'showAnime']);
+Route::get('/recommendation/live-action', [RecommendationController::class, 'showLiveAction']);

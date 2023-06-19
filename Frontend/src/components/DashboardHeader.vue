@@ -20,6 +20,7 @@ const routeNames = ref({
     "manage_episodes": "Episodes Management",
     "manage_trailers": "Trailers Management",
     "manage_subtitles": "Subtitles Management",
+    "manage_recommendations": "Recommendations Management"
 });
 
 onMounted(() => {

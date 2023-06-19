@@ -15,6 +15,7 @@ import ManageShows from '../views/children/ManageShows.vue';
 import ManageEpisodes from '../views/children/ManageEpisodes.vue';
 import ManageTrailers from '../views/children/ManageTrailers.vue';
 import ManageSubtitles from '../views/children/ManageSubtitles.vue';
+import ManageRecommendations from '../views/children/ManageRecommendations.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Search from '../views/children/Search.vue';
 import test from '../views/test.vue';
@@ -112,6 +113,11 @@ const router = createRouter({
                     path: 'manage_subtitles',
                     name: 'manage_subtitles',
                     component: ManageSubtitles
+                },
+                {
+                    path: 'manage_recommendations',
+                    name: 'manage_recommendations',
+                    component: ManageRecommendations
                 }
             ]
         },

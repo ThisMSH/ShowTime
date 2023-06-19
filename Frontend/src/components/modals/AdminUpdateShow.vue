@@ -55,7 +55,7 @@ onMounted(() => {
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-slate-800 sm:p-5">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
-                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+                    <h3 class="text-lg text-left whitespace-normal font-semibold text-slate-900 dark:text-white">
                         Updating {{ props.show.attributes.title }}{{ props.show.attributes.season ? ' - ' +
                             props.show.attributes.season : '' }}.
                     </h3>
@@ -83,11 +83,11 @@ onMounted(() => {
                         <div>
                             <div class="relative z-0">
                                 <label :for="`category_select-${show.id}`"
-                                    :class="[showStore.getErrors ? 'text-red-600' : 'text-slate-600', showStore.getErrors ? 'dark:text-red-500' : 'dark:text-slate-400']"
+                                    :class="[showStore.getErrors.lenth > 0 ? 'text-red-600' : 'text-slate-600', showStore.getErrors.lenth > 0 ? 'dark:text-red-500' : 'dark:text-slate-400']"
                                     class="absolute duration-300 transform -translate-y-6 scale-75 left-0 top-2 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category</label>
                                 <select v-model="formData.category_id" :id="`category_select-${show.id}`"
-                                    :class="[showStore.getErrors ? 'border-red-600' : 'border-slate-600', showStore.getErrors ? 'dark:border-red-500' : 'dark:border-slate-400', showStore.getErrors ? 'focus:border-red-600' : 'focus:border-slate-600', showStore.getErrors ? 'dark:focus:border-red-500' : 'dark:focus:border-slate-400']"
-                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950focus:outline-none focus:ring-0 peer">
+                                    :class="[showStore.getErrors.lenth > 0 ? 'border-red-600' : 'border-slate-600', showStore.getErrors.lenth > 0 ? 'dark:border-red-500' : 'dark:border-slate-400', showStore.getErrors.lenth > 0 ? 'focus:border-red-600' : 'focus:border-slate-600', showStore.getErrors.lenth > 0 ? 'dark:focus:border-red-500' : 'dark:focus:border-slate-400']"
+                                    class="block py-2.5 px-2 w-full max-md:text-sm bg-transparent border-0 border-b-2 appearance-none child:bg-slate-100 child:dark:bg-slate-950 focus:outline-none focus:ring-0 peer">
                                     <option disabled selected>Select</option>
                                     <option v-if="categoryStore.getCategories"
                                         v-for="category in categoryStore.getCategories" :key="category.id"

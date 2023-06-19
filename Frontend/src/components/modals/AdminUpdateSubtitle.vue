@@ -48,7 +48,7 @@ onMounted(() => {
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
                     <div>
-                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white whitespace-normal">
+                        <h3 class="text-lg text-left font-semibold text-slate-900 dark:text-white whitespace-normal">
                             Update " <span class="font-bold text-slate-600 dark:text-slate-300">{{ subtitle.attributes.name
                             }}</span> " subtitle from <span class="font-bold text-slate-600 dark:text-slate-300">
                                 {{ subtitle.relationships.episode.number }} - {{ subtitle.relationships.episode.title}}

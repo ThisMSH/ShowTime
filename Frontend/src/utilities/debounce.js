@@ -6,7 +6,7 @@ export function debounce(fn, delay) {
             clearTimeout(timer);
         }
 
-        timer = setTimeout(async () => {
+        timer = setTimeout(() => {
             fn.apply(this, args);
         }, delay);
     };

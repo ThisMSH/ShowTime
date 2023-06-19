@@ -8,9 +8,11 @@ import PageLoading from '../../components/skeleton/PageLoading.vue';
 import RatingComponent from '../../components/RatingComponent.vue';
 import { useShowStore } from '../../stores/show';
 import { useAuthStore } from '../../stores/auth';
+import { useFavoriteStore } from '../../stores/favorite';
 
 const showStore = useShowStore();
 const authStore = useAuthStore();
+const favStore = useFavoriteStore();
 
 const props = defineProps(["id"]);
 
@@ -132,7 +134,7 @@ watch(() => props.id, async (showID) => {
                         <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                         <div class="grid grid-cols-2 gap-x-5 gap-y-2 max-sm:text-sm">
                             <h6>Average score:</h6>
-                            <p>{{ avgRatingRounded }} / 10 <span>({{ showStore.getSingleShow.show.relationships.ratings.count == 1 || 0 ? showStore.getSingleShow.show.relationships.ratings.count + " user" : showStore.getSingleShow.show.relationships.ratings.count + " users" }})</span></p>
+                            <p><span class="text-lg font-bold">{{ avgRatingRounded }} / 10</span> <span>({{ showStore.getSingleShow.show.relationships.ratings.count == 1 || 0 ? showStore.getSingleShow.show.relationships.ratings.count + " user" : showStore.getSingleShow.show.relationships.ratings.count + " users" }})</span></p>
                             <h6>Category:</h6>
                             <p>{{ showStore.getSingleShow.show.relationships.category.name }}</p>
                             <h6>Episodes:</h6>
@@ -141,6 +143,7 @@ watch(() => props.id, async (showID) => {
                         <template v-if="authStore.getUser">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                             <RatingComponent :showID="showStore.getSingleShow.show.id" />
+                            <button @click="favStore.addDeleteFav(showStore.getSingleShow.show.id)">fav</button>
                         </template>
                         <template v-if="showStore.getSingleShow.show.relationships.prequel">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>

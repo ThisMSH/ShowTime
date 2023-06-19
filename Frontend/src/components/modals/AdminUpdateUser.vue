@@ -30,7 +30,7 @@ onMounted(() => {
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-slate-800 sm:p-5">
                 <!-- Modal header -->
                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-slate-600">
-                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+                    <h3 class="text-lg text-left whitespace-normal font-semibold text-slate-900 dark:text-white">
                         Updating {{ update_username }}'s profile
                     </h3>
                     <button type="button" class="text-slate-400 bg-transparent hover:bg-slate-200 hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-slate-600 dark:hover:text-white" :data-modal-toggle="update_username">

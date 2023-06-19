@@ -54,7 +54,7 @@ onMounted(() => {
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-slate-800 sm:p-5">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-slate-600">
-                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+                    <h3 class="text-lg text-left whitespace-normal font-semibold text-slate-900 dark:text-white">
                         Update {{ episode.attributes.number }} - {{ episode.attributes.title }}
                     </h3>
                     <button type="button"

@@ -149,9 +149,16 @@ class ShowController extends Controller
             });
         }
 
-        $result = $query->get();
+        $results = $query->get();
 
-        return $this->success(ShowResource::collection($result));
+        foreach ($results as $show) {
+            $show["avg_rating"] = $show->ratings()
+                ->selectRaw('AVG(rating) as avg_rating')
+                ->pluck('avg_rating')
+                ->first();
+        }
+
+        return $this->success(ShowResource::collection($results));
     }
 
     /**

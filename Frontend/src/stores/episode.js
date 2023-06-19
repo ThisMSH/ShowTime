@@ -27,6 +27,8 @@ export const useEpisodeStore = defineStore('episode', {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
+            } finally {
+                this.episodesLoading = true;
             }
         },
         async fetchEpisode(id) {

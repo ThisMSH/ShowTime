@@ -9,9 +9,12 @@ import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
 import { useShowStore } from '../../stores/show';
 import { useAuthStore } from '../../stores/auth';
+import { useRecommendationStore } from '../../stores/recommendation';
+import ShowCardSkeleton from '../../components/skeleton/ShowCardSkeleton.vue';
 
 const showStore = useShowStore();
 const authStore = useAuthStore();
+const recStore = useRecommendationStore();
 
 const animeShowCardContents = [
     {
@@ -51,6 +54,7 @@ document.title = "Home - ShowTime";
 onMounted(async () => {
     initFlowbite();
     await showStore.latestShows();
+    await recStore.fetchRecommendations();
 });
 </script>
 
@@ -108,8 +112,11 @@ onMounted(async () => {
     <!-- Anime showcase -->
     <section class="container mx-auto mt-40">
         <H2 title="Our Anime Recommendation" />
-        <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
-            <ShowCard v-for="showCardContent in animeShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent" class="max-lg:scale-90" />
+        <div v-if="!recStore.recIsLoading" class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
+            <ShowCard v-for="showCardContent in recStore.getAnime" :key="showCardContent.id" :showCardContent="showCardContent" class="max-lg:scale-90" />
+        </div>
+        <div v-else class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
+            <ShowCardSkeleton v-for="i in 2" :key="i" />
         </div>
     </section>
     <section>
@@ -125,8 +132,11 @@ onMounted(async () => {
     <!-- Live action showcase -->
     <section class="container mx-auto mt-40">
         <H2 title="Our Shows Recommendation" />
-        <div class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
-            <ShowCard v-for="showCardContent in liveShowCardContents" :key="showCardContent.title" :showCardContent="showCardContent"  />
+        <div v-if="!recStore.recIsLoading" class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
+            <ShowCard v-for="showCardContent in recStore.getLiveAction" :key="showCardContent.id" :showCardContent="showCardContent" class="max-lg:scale-90" />
+        </div>
+        <div v-else class="flex max-md:flex-col max-md:gap-y-32 items-center justify-around my-52">
+            <ShowCardSkeleton v-for="i in 2" :key="i" />
         </div>
     </section>
     <section>

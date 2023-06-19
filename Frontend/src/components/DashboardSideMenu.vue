@@ -83,7 +83,7 @@ onMounted(() => {
                 </div>
             </div>
             <!-- Side menu contents -->
-            <ul ref="sideMenuList" class="mt-28 flex flex-col text-start w-full transition-all duration-500 child:relative child:w-full child:h-20 child:rounded-full child:border-8 child:border-transparent child:transition-all child:duration-500 child:before:absolute child:before:w-5 child:before:h-5 child:before:rounded-br-3xl child:before:shadow-[6px_5px_0_5px] child:before:shadow-slate-100 child:before:dark:shadow-slate-950 child:before:-right-3 child:before:-top-7 child:before:opacity-0 child:before:scale-0 child:before:transition-all child:before:duration-500 child:before:origin-bottom-right child:after:absolute child:after:w-5 child:after:h-5 child:after:rounded-tr-3xl child:after:shadow-[6px_-5px_0_5px] child:after:shadow-slate-100 child:after:dark:shadow-slate-950 child:after:-right-3 child:after:-bottom-7 child:after:opacity-0 child:after:scale-0 child:after:transition-all child:after:duration-500 child:after:origin-bottom-right">
+            <ul ref="sideMenuList" class="mt-28 flex flex-col text-start w-full transition-all duration-500 child:relative child:w-full child:h-20 child:rounded-full child:border-8 child:border-transparent child:overflow-hidden child:transition-all child:duration-500 child:before:absolute child:before:w-5 child:before:h-5 child:before:rounded-br-3xl child:before:shadow-[6px_5px_0_5px] child:before:shadow-slate-100 child:before:dark:shadow-slate-950 child:before:-right-3 child:before:-top-7 child:before:opacity-0 child:before:scale-0 child:before:transition-all child:before:duration-500 child:before:origin-bottom-right child:after:absolute child:after:w-5 child:after:h-5 child:after:rounded-tr-3xl child:after:shadow-[6px_-5px_0_5px] child:after:shadow-slate-100 child:after:dark:shadow-slate-950 child:after:-right-3 child:after:-bottom-7 child:after:opacity-0 child:after:scale-0 child:after:transition-all child:after:duration-500 child:after:origin-bottom-right ">
                 <li @click="toggleDashboardSections" :class="[currentPath == 'profile' ? 'active' : '']" class="dashboard-sections">
                     <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/profile" >
                         <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
@@ -152,6 +152,15 @@ onMounted(() => {
                             <span class="pl-4 text-lg font-medium transition-all duration-500 text">Subtitles Management</span>
                         </RouterLink>
                     </li>
+                    <li @click="toggleDashboardSections" :class="[currentPath == 'manage_recommendations' ? 'active' : '']" class="dashboard-sections">
+                        <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/manage_recommendations" >
+                            <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
+                                text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-blue-400 after:dark:bg-blue-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500">
+                                <SubtitleSettings class="transition-all duration-500 delay-1000 fill-slate-950 dark:fill-slate-100" />
+                            </span>
+                            <span class="pl-4 text-lg font-medium transition-all duration-500 text">Recommendations Management</span>
+                        </RouterLink>
+                    </li>
                 </template>
             </ul>
         </div>
@@ -160,7 +169,7 @@ onMounted(() => {
 
 <style scoped>
 .active {
-    @apply translate-x-8 bg-slate-100 dark:bg-slate-950;
+    @apply translate-x-8 bg-slate-100 dark:bg-slate-950 overflow-visible;
 }
 .active::after,
 .active::before {
@@ -197,6 +206,10 @@ onMounted(() => {
 .dashboard-sections.active:nth-child(9) .icon,
 .dashboard-sections.active:nth-child(9) .icon::before {
     @apply bg-gray-400 dark:bg-gray-600;
+}
+.dashboard-sections.active:nth-child(10) .icon,
+.dashboard-sections.active:nth-child(10) .icon::before {
+    @apply bg-blue-400 dark:bg-blue-600;
 }
 .dashboard-sections.active .icon::before
 {

@@ -49,6 +49,10 @@ class Show extends Model
         return $this->hasMany(Rating::class);
     }
 
+    public function favorites() {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function recommendation() {
         return $this->hasOne(Recommendation::class);
     }

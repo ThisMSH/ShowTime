@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use App\Http\Requests\StoreRatingRequest;
-use App\Http\Requests\UpdateRatingRequest;
 use App\Http\Resources\RatingResource;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +66,7 @@ class RatingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRatingRequest $request, Rating $rating)
+    public function update()
     {
         /**
          * Code I was using in the store function
