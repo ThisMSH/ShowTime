@@ -60,7 +60,7 @@ class EpisodeController extends Controller
             'video' => $video
         ]);
 
-        return $this->success(new EpisodeResource($episode));
+        return $this->success(new EpisodeResource($episode), "The episode \"{$episode->title}\" has been added successfully.");
     }
 
     /**
@@ -110,7 +110,7 @@ class EpisodeController extends Controller
 
         $episode->update($request->except(['thumbnail', 'video']));
 
-        return $this->success(new EpisodeResource($episode));
+        return $this->success(new EpisodeResource($episode), "The episode \"{$episode->title}\" has been updated successfully.");
     }
 
     /**
@@ -118,6 +118,9 @@ class EpisodeController extends Controller
      */
     public function destroy(Episode $episode)
     {
-        return $episode->delete();
+        $episode_title = $episode->title;
+        $episode->delete();
+
+        return $this->success(null, "The episode \"{$episode_title}\" has been deleted successfully.");
     }
 }

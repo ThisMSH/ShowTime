@@ -2,11 +2,18 @@
 import TextInput from '../../components/utilities/TextInput.vue';
 import UpdateUser from '../../components/modals/UpdateUser.vue';
 import HexagonalRow from '../../components/utilities/HexagonalRow.vue';
+import { watch, ref } from 'vue';
 import { useAuthStore } from '../../stores/auth';
+import { format } from 'date-fns';
 
 const authStore = useAuthStore();
+const bd = ref(format(new Date(authStore.getUser.birthday), "dd-MM-yyyy"));
 
 document.title = "Dashboard - Personal Information - ShowTime";
+
+watch(() => authStore.getUser.birthday, (newBd) => {
+    bd.value = format(new Date(newBd), "dd-MM-yyyy")
+});
 </script>
 
 <template>
@@ -68,7 +75,7 @@ document.title = "Dashboard - Personal Information - ShowTime";
                     <TextInput v-model:input="authStore.getUser.name" label="Full name" inputType="text" inputID="name" :isReadOnly="true" />
                     <TextInput v-model:input="authStore.getUser.username" label="Username" inputType="text" inputID="username" :isReadOnly="true" />
                     <TextInput v-model:input="authStore.getUser.email" label="E-mail" inputType="email" inputID="email" :isReadOnly="true" />
-                    <TextInput v-model:input="authStore.getUser.birthday" label="Birthday" inputType="text" inputID="birthday" :isReadOnly="true" />
+                    <TextInput v-model:input="bd" label="Birthday" inputType="text" inputID="birthday" :isReadOnly="true" />
                 </template>
             </div>
             <div class="mb-10 mt-20 flex justify-center items-center">

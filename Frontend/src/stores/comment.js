@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
 
 export const useCommentStore = defineStore('comment', {
     state: () => ({
@@ -47,7 +48,9 @@ export const useCommentStore = defineStore('comment', {
             try {
                 const editedComment = await axios.patch(`/api/comment/${data.episode_id}`, form);
                 this.updatedComment = editedComment.data.data;
+                toast.success(editedComment.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.updateErrors = error.response.data.errors;
                 }
@@ -61,7 +64,9 @@ export const useCommentStore = defineStore('comment', {
 
             try {
                 await axios.delete(`/api/comment/${id}`);
+                toast.success("Your comment has been deleted successfully.");
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }

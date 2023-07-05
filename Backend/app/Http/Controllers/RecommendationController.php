@@ -47,7 +47,10 @@ class RecommendationController extends Controller
             'character' => $character,
         ]);
 
-        return $this->success(new RecommendationResource($recommendation));
+        return $this->success(
+            new RecommendationResource($recommendation),
+            "A new recommendation has been created successfully."
+        );
     }
 
     /**
@@ -71,7 +74,10 @@ class RecommendationController extends Controller
 
         $recommendation->update($request->except(['logo', 'character']));
 
-        return $this->success(new RecommendationResource($recommendation));
+        return $this->success(
+            new RecommendationResource($recommendation),
+            "The recommendation for \"{$recommendation->show->title}\" has been updated successfully."
+        );
     }
 
     /**
@@ -79,7 +85,13 @@ class RecommendationController extends Controller
      */
     public function destroy(Recommendation $recommendation)
     {
-        return $recommendation->delete();
+        $show_title = $recommendation->show->title;
+        $recommendation->delete();
+
+        return $this->success(
+            null,
+            "The recommendation for \"{$show_title}\" has been removed successfully."
+        );
     }
 
     /**

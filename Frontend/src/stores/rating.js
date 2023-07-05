@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
 
 export const useRatingStore = defineStore('rating', {
     state: () => ({
@@ -10,12 +11,23 @@ export const useRatingStore = defineStore('rating', {
     }),
     getters: {
         getRating: (state) => state.rating,
-        getAllRating: (state) => state.ratings,
+        getAllRatings: (state) => state.ratings,
         getErrors: (state) => state.errors
     },
     actions: {
-        async addUpdateRating(data) {
+        async fetchAllRatings() {
             this.isLoading = true;
+
+            try {
+                const ratings = await axios.get("/api/rating");
+                this.ratings = ratings.data.data;
+            } catch (error) {
+                console.log(error);
+            } finally {
+                this.isLoading = false;
+            }
+        },
+        async addUpdateRating(data) {
             this.errors = [];
 
             const form = new FormData();
@@ -25,12 +37,12 @@ export const useRatingStore = defineStore('rating', {
             try {
                 const ratingData = await axios.post("/api/rating/", form);
                 this.rating = ratingData.data;
+                toast.success(ratingData.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
-            } finally {
-                this.isLoading = false;
             }
         },
         async fetchRating(id) {

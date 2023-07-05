@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
 
 export const useEpisodeStore = defineStore('episode', {
     state: () => ({
@@ -63,10 +64,12 @@ export const useEpisodeStore = defineStore('episode', {
             const closeButton = document.querySelector('#create-episode');
 
             try {
-                await axios.post("/api/episode", form);
+                const newEpisode = await axios.post("/api/episode", form);
                 await this.fetchAllEpisodes();
                 closeButton.click();
+                toast.success(newEpisode.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -91,10 +94,12 @@ export const useEpisodeStore = defineStore('episode', {
             const closeUpdateBtn = document.querySelector(`#update-episode-${id}`);
 
             try {
-                await axios.post(`api/episode/${id}`, form);
+                const updatedEpisode = await axios.post(`api/episode/${id}`, form);
                 await this.fetchAllEpisodes();
                 closeUpdateBtn.click();
+                toast.success(updatedEpisode.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -109,10 +114,12 @@ export const useEpisodeStore = defineStore('episode', {
             const closeDeleteBtn = document.querySelector(`#delete-episode-${id} [data-modal-hide]`);
 
             try {
-                await axios.delete(`/api/episode/${id}`);
+                const deletedEpisode = await axios.delete(`/api/episode/${id}`);
                 await this.fetchAllEpisodes();
                 closeDeleteBtn.click();
+                toast.success(deletedEpisode.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }

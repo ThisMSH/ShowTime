@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
 
 export const useSubtitleStore = defineStore('subtitle', {
     state: () => ({
@@ -39,10 +40,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             const closeAddSubModel = document.querySelector("#create-subtitle");
 
             try {
-                await axios.post("/api/subtitle", form);
+                const newSub = await axios.post("/api/subtitle", form);
                 await this.fetchAllSubtitles();
                 closeAddSubModel.click();
+                toast.success(newSub.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -63,10 +66,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             const closeUpdateSubModel = document.querySelector(`#create-subtitle-${id}`);
 
             try {
-                await axios.post(`/api/subtitle/${id}`, form);
+                const updatedSub = await axios.post(`/api/subtitle/${id}`, form);
                 await this.fetchAllSubtitles();
                 closeUpdateSubModel.click();
+                toast.success(updatedSub.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -81,10 +86,12 @@ export const useSubtitleStore = defineStore('subtitle', {
             const closeDeleteSubModel = document.querySelector(`#delete-subtitle-${id}`);
 
             try {
-                await axios.delete(`/api/subtitle/${id}`);
+                const deleteSub = await axios.delete(`/api/subtitle/${id}`);
                 await this.fetchAllSubtitles();
                 closeDeleteSubModel.click();
+                toast.success(deleteSub.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }

@@ -10,7 +10,7 @@ import AdminDeleteRecommendation from '../../components/modals/AdminDeleteRecomm
 const recStore = useRecommendationStore();
 const showStore = useShowStore();
 
-document.title = "Dashboard - Shows Management - ShowTime";
+document.title = "Dashboard - Recommendations Management - ShowTime";
 
 onMounted(async () => {
     await recStore.fetchAllRecommendations();
@@ -42,13 +42,15 @@ onMounted(async () => {
             <!-- <div class="overflow-x-auto max-w-[1200px]"> -->
             <div class="">
                 <div class="inline-block min-w-full align-middle">
-                    <div class="shadow ring-1 ring-black ring-opacity-5">
-                        <table class="min-w-full border divide-y divide-slate-400 border-slate-400 dark:border-slate-500">
+                    <div class="py-2.5 bg-slate-200 dark:bg-slate-900 rounded-xl shadow ring-1 ring-white ring-opacity-20">
+                        <table class="min-w-full divide-y divide-slate-400">
                             <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-900">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Logo
+                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Show
                                     </th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Character
+                                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold">Logo
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold">Character
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Color
                                     </th>
@@ -57,26 +59,21 @@ onMounted(async () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700">
+                            <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-800">
                                 <template v-if="recStore.getRecommendations" v-for="rec in recStore.getRecommendations" :key="rec.id">
-                                    <tr class="bg-slate-400 dark:bg-slate-800">
-                                        <td class="px-3 py-4 text-slate-950 dark:text-slate-300 font-semibold">
-                                            <p>Show:</p>
-                                        </td>
-                                        <td colspan="3" class="px-3 py-4 text-slate-950 dark:text-slate-300 font-semibold">
+                                    <tr>
+                                        <td class="px-3 py-4 text-sm text-slate-700 dark:text-slate-300 whitespace-normal">
                                             <p :title="`${rec.relationships.show.title}${rec.relationships.show.season ? ' - ' + rec.relationships.show.season : ''}`" class="line-clamp-2">{{ rec.relationships.show.title }}{{ rec.relationships.show.season ? ' - ' + rec.relationships.show.season : '' }}</p>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <div class="flex items-center">
+                                        <td class="p-4 sm:px-10">
+                                            <div class="flex items-center justify-center">
                                                 <div class="">
                                                     <img class="w-20 min-w-[60px] rounded-md" :src="rec.attributes.logo" :alt="`${rec.relationships.show.title}'s logo`" />
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <div class="flex items-center">
+                                        <td class="p-4 sm:px-10">
+                                            <div class="flex items-center justify-center">
                                                 <div class="">
                                                     <img class="w-20 min-w-[60px] rounded-md" :src="rec.attributes.character" :alt="`${rec.relationships.show.title}'s character`" />
                                                 </div>
@@ -95,7 +92,7 @@ onMounted(async () => {
                                 </template>
                                 <template v-else>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <div role="status" class="p-4 animate-pulse">
                                                 <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
@@ -103,7 +100,7 @@ onMounted(async () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <div role="status" class="p-4 animate-pulse">
                                                 <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
@@ -111,7 +108,7 @@ onMounted(async () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <div role="status" class="p-4 animate-pulse">
                                                 <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
@@ -119,7 +116,7 @@ onMounted(async () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <div role="status" class="p-4 animate-pulse">
                                                 <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>
@@ -127,7 +124,7 @@ onMounted(async () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <div role="status" class="p-4 animate-pulse">
                                                 <div class="h-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                                                 <span class="sr-only">Loading...</span>

@@ -17,7 +17,13 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+        $rates = Rating::where('user_id', Auth::id())->get();
+
+        if ($rates->count() > 0) {
+            return $this->success(RatingResource::collection($rates));
+        }
+
+        return null;
     }
 
     /**
@@ -101,6 +107,6 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        return $rating->delete();
     }
 }

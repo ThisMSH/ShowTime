@@ -16,7 +16,7 @@ const routeNames = ref({
     "profile": "Personal Information",
     "pricing": "Pricing",
     "manage_shows": "Shows Management",
-    "manage_users": "Users Information",
+    "manage_users": "Users Management",
     "manage_episodes": "Episodes Management",
     "manage_trailers": "Trailers Management",
     "manage_subtitles": "Subtitles Management",
@@ -62,7 +62,7 @@ watch(() => route.name, (currentRouteName) => {
                             </div>
                             <ul class="font-medium text-slate-700 dark:text-slate-200" aria-labelledby="user-menu-button">
                                 <li>
-                                    <RouterLink to="/dashboard" class="relative block px-4 py-2 overflow-hidden transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="relative z-10">Dashboard</p></RouterLink>
+                                    <RouterLink to="/" class="relative block px-4 py-2 overflow-hidden transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="relative z-10">Home</p></RouterLink>
                                 </li>
                                 <li>
                                     <button @click="authStore.handleLogout" type="button" class="relative block w-full px-4 py-2 overflow-hidden transition-all duration-300 before:absolute before:w-0 before:h-full before:top-0 before:right-0 before:bg-orange-400 before:transition-all before:duration-300 hover:shadow-header-icons-orange hover:text-slate-900 before:hover:shadow-header-icons-inner-orange hover:before:w-full hover:before:left-0"><p class="relative z-10 text-left">Logout</p></button>

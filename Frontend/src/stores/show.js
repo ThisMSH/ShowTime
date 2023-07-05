@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
 
 export const useShowStore = defineStore('show', {
     state: () => ({
@@ -62,6 +63,7 @@ export const useShowStore = defineStore('show', {
                 const searchShow = await axios.get(`/api/show/search/${search}`);
                 this.searchShows = searchShow.data.data;
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -86,10 +88,12 @@ export const useShowStore = defineStore('show', {
             const closeButton = document.querySelector('#create-show');
 
             try {
-                await axios.post("/api/show", form);
+                const newShow = await axios.post("/api/show", form);
                 await this.fetchAllShows();
                 closeButton.click();
+                toast.success(newShow.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -115,10 +119,12 @@ export const useShowStore = defineStore('show', {
             const closeUpdateBtn = document.querySelector(`#show-${id} [data-modal-toggle]`);
 
             try {
-                await axios.post(`/api/show/${id}`, form);
+                const updatedShow = await axios.post(`/api/show/${id}`, form);
                 await this.fetchAllShows();
                 closeUpdateBtn.click();
+                toast.success(updatedShow.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -132,10 +138,12 @@ export const useShowStore = defineStore('show', {
             const closeDeleteBtn = document.querySelector(`#delete-show-${id} [data-modal-hide]`);
 
             try {
-                await axios.delete(`/api/show/${id}`);
+                const deletedShow = await axios.delete(`/api/show/${id}`);
                 await this.fetchAllShows();
                 closeDeleteBtn.click();
+                toast.success(deletedShow.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }

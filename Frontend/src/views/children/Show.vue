@@ -6,6 +6,8 @@ import ToggleBtn from '../../components/utilities/ToggleBtn.vue';
 import Trailer from '../../components/modals/Trailer.vue';
 import PageLoading from '../../components/skeleton/PageLoading.vue';
 import RatingComponent from '../../components/RatingComponent.vue';
+import FavButton from '../../components/utilities/FavButton.vue';
+import FavButtonLoading from '../../components/skeleton/FavButtonLoading.vue';
 import { useShowStore } from '../../stores/show';
 import { useAuthStore } from '../../stores/auth';
 import { useFavoriteStore } from '../../stores/favorite';
@@ -26,6 +28,8 @@ const trailerIcon = ref(null);
 const toggleBtn = ref(null);
 const sideShowInfo = ref(null);
 const toggleSideShowInfoBtn = ref(null);
+const avgRatingRounded = ref("N/A");
+const avgRating = ref(null);
 
 const showEpisodes = function () {
     btnBg.value.classList.remove("sm:left-[252px]");
@@ -65,8 +69,6 @@ const toggleSideShowInfo = function () {
     toggleSideShowInfoBtn.value.classList.toggle("top-24");
     toggleSideShowInfoBtn.value.classList.toggle("top-2");
 };
-const avgRatingRounded = ref("N/A");
-const avgRating = ref(null);
 
 onMounted(async () => {
     await showStore.fetchShow(props.id);
@@ -78,6 +80,8 @@ onMounted(async () => {
     ${showStore.getSingleShow?.show.attributes.title}${showStore.getSingleShow?.show.attributes.season ?
         ' - ' + showStore.getSingleShow.show.attributes.season :
         ''} - ShowTime`;
+
+    await favStore.fetchFav(props.id);
 });
 
 watch(() => props.id, async (showID) => {
@@ -90,6 +94,8 @@ watch(() => props.id, async (showID) => {
     ${showStore.getSingleShow.show.attributes.title}${showStore.getSingleShow.show.attributes.season ?
         ' - ' + showStore.getSingleShow.show.attributes.season :
         ''} - ShowTime`;
+
+    await favStore.fetchFav(showID);
 });
 </script>
 
@@ -143,7 +149,9 @@ watch(() => props.id, async (showID) => {
                         <template v-if="authStore.getUser">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>
                             <RatingComponent :showID="showStore.getSingleShow.show.id" />
-                            <button @click="favStore.addDeleteFav(showStore.getSingleShow.show.id)">fav</button>
+                            <FavButton v-if="!favStore.fetchIsLoading && !favStore.isLoading" @click="favStore.addDeleteFav(showStore.getSingleShow.show.id)" :fav="favStore.getFav" />
+                            <FavButtonLoading v-else />
+                            <!-- <button class="px-6 py-2 border border-slate-500 rounded-md" :class="[favStore.getFav ? 'bg-blue-400 font-semibold' : 'bg-slate-200 text-slate-600']" @click="favStore.addDeleteFav(showStore.getSingleShow.show.id)">Fav</button> -->
                         </template>
                         <template v-if="showStore.getSingleShow.show.relationships.prequel">
                             <div class="w-48 h-1 bg-gradient-to-r from-transparent via-orange-500 dark:via-orange-400 to-transparent"></div>

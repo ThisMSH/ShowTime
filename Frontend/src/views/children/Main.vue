@@ -16,39 +16,6 @@ const showStore = useShowStore();
 const authStore = useAuthStore();
 const recStore = useRecommendationStore();
 
-const animeShowCardContents = [
-    {
-    "title": "Kimetsu No Yaiba",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
-    "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093510933873164351/Demon_Slayer_Logo.png",
-    "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093510934254862336/Kyojuro_Rengoku.png",
-    "color": "red",
-    },
-    {
-    "title": "Shingeki No Kyojin",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
-    "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511735132041288/Shingeki_no_Kyojin_anime_Logo.png",
-    "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093511734687436810/Eren-Jaeger-PNG-Image.png",
-    "color": "blue",
-    },
-];
-const liveShowCardContents = [
-    {
-    "title": "Game Of Thrones",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
-    "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558008153395210/game_of_thrones.png",
-    "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558008413438082/character.png",
-    "color": "yellow",
-    },
-    {
-    "title": "Avengers",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam maxime harum cumque iure omnis corrupti, eaque voluptates voluptas architecto eum eveniet explicabo voluptatibus autem debitis temporibus quibusdam, expedita facilis.",
-    "logo": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558067439874068/logo.png",
-    "character": "https://cdn.discordapp.com/attachments/1093229006402375680/1093558067184025620/char1.png",
-    "color": "gray",
-    },
-];
-
 document.title = "Home - ShowTime";
 
 onMounted(async () => {

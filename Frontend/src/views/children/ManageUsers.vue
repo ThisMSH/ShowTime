@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 const authStore = useAuthStore();
 
-document.title = "Dashboard - Users Information - ShowTime";
+document.title = "Dashboard - Users Management - ShowTime";
 
 onMounted(async () => {
     await authStore.fetchAllUsers();
@@ -66,7 +66,7 @@ onMounted(async () => {
         <div class="mt-10 flex flex-col">
             <div class="">
                 <div class="inline-block min-w-full align-middle">
-                    <div class="shadow ring-1 ring-black ring-opacity-5">
+                    <div class="py-2.5 bg-slate-200 dark:bg-slate-800 rounded-xl shadow ring-1 ring-white ring-opacity-20">
                         <table class="min-w-full divide-y divide-slate-400">
                             <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-800">
                                 <tr>
@@ -121,8 +121,8 @@ onMounted(async () => {
                                         </td>
                                         <td
                                             class="relative flex gap-x-5 py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <AdminUpdateUser />
-                                            <AdminDeleteUser userID="1" />
+                                            <AdminUpdateUser :user="person" />
+                                            <AdminDeleteUser :user="person" />
                                         </td>
                                     </tr>
                                 </template>

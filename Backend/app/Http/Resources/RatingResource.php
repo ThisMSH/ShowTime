@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class RatingResource extends JsonResource
 {
@@ -23,7 +24,12 @@ class RatingResource extends JsonResource
                 "show" => [
                     "id" => (string)$this->show->id,
                     "title" => $this->show->title,
-                    "season" => $this->show->season
+                    "season" => $this->show->season,
+                    "cover" => asset(Storage::url($this->show->cover)),
+                    "avg_rating" => $this->show->ratings()
+                        ->selectRaw('AVG(rating) as avg_rating')
+                        ->pluck('avg_rating')
+                        ->first()
                 ],
                 "user" => [
                     "id" => (string)$this->user->id,

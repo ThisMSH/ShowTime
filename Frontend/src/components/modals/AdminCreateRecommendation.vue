@@ -38,7 +38,7 @@ onMounted(() => {
 
 <template>
     <!-- Modal toggle -->
-    <DefaultButton type="button" name="New Recommendation" icon-name="iconoir:add-media-video"
+    <DefaultButton type="button" name="New Recommendation" icon-name="ri:heart-add-fill"
         data-modal-toggle="create-rec" />
 
     <!-- Main modal -->

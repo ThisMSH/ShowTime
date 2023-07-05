@@ -3,6 +3,7 @@ import ToggleBtn from '../components/utilities/ToggleBtn.vue';
 import RectangularLogoDark from './utilities/RectangularLogoDark.vue';
 import RectangularLogoLight from './utilities/RectangularLogoLight.vue';
 import SubtitleSettings from './custom-icons/SubtitleSettings.vue';
+import RecommendationSettings from './custom-icons/RecommendationSettings.vue';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useRoute } from 'vue-router';
@@ -119,7 +120,7 @@ onMounted(() => {
                         <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/manage_users" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
                                 text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-lime-400 after:dark:bg-lime-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500"><Icon icon="material-symbols:settings-account-box-outline-rounded" /></span>
-                            <span class="pl-4 text-lg font-medium transition-all duration-500 text">Users Information</span>
+                            <span class="pl-4 text-lg font-medium transition-all duration-500 text">Users Management</span>
                         </RouterLink>
                     </li>
                     <li @click="toggleDashboardSections" :class="[currentPath == 'manage_shows' ? 'active' : '']" class="dashboard-sections">
@@ -156,7 +157,7 @@ onMounted(() => {
                         <RouterLink class="relative z-10 flex items-center w-full no-underline" to="/dashboard/manage_recommendations" >
                             <span class="icon relative flex justify-center items-center min-w-[64px] h-16 rounded-full
                                 text-5xl before:absolute before:top-2 before:w-full before:h-full before:blur-md before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:z-[-1] after:absolute after:w-4 after:h-4 after:rounded-full after:bg-blue-400 after:dark:bg-blue-600 after:border-slate-100 after:border-8 after:dark:border-slate-950 after:box-content after:-left-14 after:transition-all after:duration-500">
-                                <SubtitleSettings class="transition-all duration-500 delay-1000 fill-slate-950 dark:fill-slate-100" />
+                                <RecommendationSettings class="transition-all duration-500 delay-1000 fill-slate-950 dark:fill-slate-100" />
                             </span>
                             <span class="pl-4 text-lg font-medium transition-all duration-500 text">Recommendations Management</span>
                         </RouterLink>

@@ -42,7 +42,7 @@ class CommentController extends Controller
 
         $comment->update($request->all());
 
-        return $this->success(new CommentResource($comment));
+        return $this->success(new CommentResource($comment), "Your comment has been updated successfully.");
     }
 
     /**

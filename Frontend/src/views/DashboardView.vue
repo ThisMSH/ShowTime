@@ -17,7 +17,7 @@ onMounted(() => {
 
 <template>
     <ScrollToTop />
-    <main v-if="!authStore.isLoading" class="container mx-auto mt-4 grid grid-cols-[auto_1fr] gap-x-16">
+    <main v-if="authStore.getUser" class="container mx-auto mt-4 grid grid-cols-[auto_1fr] gap-x-16">
         <DashboardSideMenu />
         <div>
             <DashboardHeader />

@@ -67,7 +67,7 @@ class ShowController extends Controller
             'prequel' => $request->prequel,
         ]);
 
-        return $this->success(new ShowResource($show));
+        return $this->success(new ShowResource($show), "The show \"{$show->title}\" has been created successfully.");
     }
 
     /**
@@ -123,7 +123,7 @@ class ShowController extends Controller
 
         $show->update($request->except(['cover', 'wide_cover']));
 
-        return $this->success(new ShowResource($show));
+        return $this->success(new ShowResource($show), "\"{$show->title}\" has been updated successfully.");
     }
 
     /**
@@ -131,7 +131,10 @@ class ShowController extends Controller
      */
     public function destroy(Show $show)
     {
-        return $show->delete();
+        $show_title = $show->title;
+        $show->delete();
+
+        return $this->success(null, "\"{$show_title}\" has been deleted successfully");
     }
 
     /**

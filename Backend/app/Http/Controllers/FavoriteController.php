@@ -18,7 +18,13 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //
+        $favs = Favorite::where('user_id', Auth::id())->get();
+
+        if ($favs->count() > 0) {
+            return $this->success(FavoriteResource::collection($favs));
+        }
+
+        return null;
     }
 
     /**
@@ -37,7 +43,7 @@ class FavoriteController extends Controller
 
         if ($isNewFav) {
             $fav->delete();
-            $message = "The show has been deleted from your favorites successfully.";
+            $message = "The show has been removed from your favorites successfully.";
 
             return $this->success(
                 '',
@@ -57,9 +63,17 @@ class FavoriteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Favorite $favorite)
+    public function show($id)
     {
-        //
+        $query = Favorite::where('user_id', Auth::id())
+            ->where('show_id', $id)
+            ->first();
+
+        if ($query) {
+            return $this->success(new FavoriteResource($query));
+        }
+
+        return null;
     }
 
     /**

@@ -86,8 +86,8 @@ onMounted(async () => {
             <!-- <div class="overflow-x-auto max-w-[1200px]"> -->
             <div class="">
                 <div class="inline-block min-w-full align-middle">
-                    <div class="shadow ring-1 ring-black ring-opacity-5">
-                        <table class="min-w-full border divide-y divide-slate-400 border-slate-400 dark:border-slate-500">
+                    <div class="py-2.5 bg-slate-200 dark:bg-slate-800 rounded-xl shadow ring-1 ring-white ring-opacity-20">
+                        <table class="min-w-full divide-y divide-slate-400">
                             <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-800">
                                 <tr>
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Cover

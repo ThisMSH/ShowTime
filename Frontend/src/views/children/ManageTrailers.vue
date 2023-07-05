@@ -38,10 +38,10 @@ onMounted(async () => {
         <div class="flex flex-col mt-10">
             <div class="">
                 <div class="inline-block min-w-full align-middle">
-                    <div class="shadow ring-1 ring-black ring-opacity-5">
+                    <div class="py-2.5 bg-slate-200 dark:bg-slate-900 rounded-xl shadow ring-1 ring-white ring-opacity-20">
                         <!-- Main table, contains shows -->
-                        <table class="min-w-full border divide-y divide-slate-400 border-slate-400 dark:border-slate-500">
-                            <thead class="sticky top-0 z-10 bg-slate-300 dark:bg-slate-900">
+                        <table class="min-w-full divide-y divide-slate-400">
+                            <thead class="sticky top-0 z-10 bg-slate-200 dark:bg-slate-900">
                                 <tr>
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6" colspan="2">Title
                                     </th>
@@ -49,7 +49,7 @@ onMounted(async () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700" data-accordion="collapse" data-inactive-classes="bg-slate-200 dark:bg-slate-800" data-active-classes="bg-slate-300 dark:bg-slate-700">
+                            <tbody class="divide-y divide-slate-700 dark:divide-slate-200 bg-slate-300 dark:bg-slate-700" data-accordion="collapse" data-inactive-classes="bg-slate-300 dark:bg-slate-800" data-active-classes="bg-slate-400 dark:bg-slate-700">
                                 <template v-if="trailerStore.getAllTrailers" v-for="show in trailerStore.getAllTrailers" :key="show.id">
                                     <template v-if="show.relationships.trailers.list.length > 0">
                                         <tr class="bg-slate-200 dark:bg-slate-800" :id="`show-name-${show.id}`" :data-accordion-target="`#show-episodes-${show.id}`" aria-expanded="false" :aria-controls="`show-episodes-${show.id}`">

@@ -33,7 +33,10 @@ class SubtitleController extends Controller
             'subtitle_file' => $name
         ]);
 
-        return $this->success(new SubtitleResource($subtitle));
+        return $this->success(
+            new SubtitleResource($subtitle),
+            "\"{$subtitle->subtitle_name}\" subtitle for \"{$subtitle->episode->number} - {$subtitle->episode->title}\" has been created successfully."
+        );
     }
 
     /**
@@ -55,7 +58,10 @@ class SubtitleController extends Controller
 
         $subtitle->update($request->except(['subtitle_file']));
 
-        return $this->success(new SubtitleResource($subtitle));
+        return $this->success(
+            new SubtitleResource($subtitle),
+            "\"{$subtitle->subtitle_name}\" subtitle has been updated successfully."
+        );
     }
 
     /**
@@ -63,6 +69,12 @@ class SubtitleController extends Controller
      */
     public function destroy(Subtitle $subtitle)
     {
-        return $subtitle->delete();
+        $sub_name = $subtitle->subtitle_name;
+        $subtitle->delete();
+
+        return $this->success(
+            null,
+            "\"{$sub_name}\" subtitle has been deleted successfully."
+        );
     }
 }

@@ -23,6 +23,10 @@ class FavoriteResource extends JsonResource
                     "title" => $this->show->title,
                     "season" => $this->show->season,
                     "cover" => asset(Storage::url($this->show->cover)),
+                    "avg_rating" => $this->show->ratings()
+                        ->selectRaw('AVG(rating) as avg_rating')
+                        ->pluck('avg_rating')
+                        ->first()
                 ]
             ]
         ];

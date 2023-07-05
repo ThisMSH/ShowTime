@@ -27,7 +27,12 @@ class TrailerController extends Controller
             'trailer' => $request->trailer
         ]);
 
-        return $this->success(new TrailerResource($trailer));
+        $show_title = $trailer->show->title . ($trailer->show->season ? " - " . $trailer->show->season : "");
+
+        return $this->success(
+            new TrailerResource($trailer),
+            "A new promotion for \"{$show_title}\" has been created successfully."
+        );
     }
 
     /**
@@ -39,7 +44,10 @@ class TrailerController extends Controller
 
         $trailer->update($request->all());
 
-        return $this->success(new TrailerResource($trailer));
+        return $this->success(
+            new TrailerResource($trailer),
+            "\"{$trailer->title}\" has been created successfully."
+        );
     }
 
     /**
@@ -47,6 +55,12 @@ class TrailerController extends Controller
      */
     public function destroy(Trailer $trailer)
     {
-        return $trailer->delete();
+        $trailer_name = $trailer->title;
+        $trailer->delete();
+
+        return $this->success(
+            null,
+            "\"{$trailer_name}\" has been deleted successfully."
+        );
     }
 }

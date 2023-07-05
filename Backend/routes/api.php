@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('/users', [UserController::class, 'index']);
 
     // Shows
+    Route::get('/show', [ShowController::class, 'index']);
     Route::post('/show', [ShowController::class, 'store']);
     Route::patch('/show/{show}', [ShowController::class, 'update']);
     Route::delete('/show/{show}', [ShowController::class, 'destroy']);
@@ -59,8 +60,10 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    // User info
+    // User
     Route::get('/user', [UserController::class, 'show']);
+    Route::patch('/user/{user}', [UserController::class, 'update']);
+    Route::delete('/user/{user}', [UserController::class, 'destroy']);
 
     // Comments
     Route::post('/comment', [CommentController::class, 'store']);
@@ -68,17 +71,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);
 
     // Rating
+    Route::get('/rating', [RatingController::class, 'index']);
     Route::get('/rating/{id}', [RatingController::class, 'show']);
     Route::post('/rating', [RatingController::class, 'store']);
-
-    // Recommendations
+    Route::delete('/rating/{rating}', [RatingController::class, 'destroy']);
 
     // Favorites
+    Route::get('/favorite', [FavoriteController::class, 'index']);
     Route::post('/favorite', [FavoriteController::class, 'store']);
+    Route::get('/favorite/{id}', [FavoriteController::class, 'show']);
 });
 
 // Shows
-Route::get('/show', [ShowController::class, 'index']);
 Route::get('/show/{show}', [ShowController::class, 'show']);
 Route::get('/show/search/{search}', [ShowController::class, 'search']);
 Route::get('/shows/latest_anime', [ShowController::class, 'latestAnime']);

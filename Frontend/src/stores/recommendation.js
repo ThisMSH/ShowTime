@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 
 export const useRecommendationStore = defineStore('recommendation', {
     state: () => ({
@@ -45,10 +46,12 @@ export const useRecommendationStore = defineStore('recommendation', {
             const closeBtn = document.querySelector('#create-rec');
 
             try {
-                await axios.post("/api/recommendation", form);
+                const newRec = await axios.post("/api/recommendation", form);
                 await this.fetchAllRecommendations();
                 closeBtn.click();
+                toast.success(newRec.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -70,10 +73,12 @@ export const useRecommendationStore = defineStore('recommendation', {
             const closeBtn = document.querySelector(`#update-rec-${id}`);
 
             try {
-                await axios.post(`/api/recommendation/${id}`, form);
+                const updatedRec = await axios.post(`/api/recommendation/${id}`, form);
                 await this.fetchAllRecommendations();
                 closeBtn.click();
+                toast.success(updatedRec.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
@@ -88,10 +93,12 @@ export const useRecommendationStore = defineStore('recommendation', {
             const closeBtn = document.querySelector(`#delete-rec-${id}`);
 
             try {
-                await axios.delete(`/api/recommendation/${id}`);
+                const deletedRec = await axios.delete(`/api/recommendation/${id}`);
                 await this.fetchAllRecommendations();
                 closeBtn.click();
+                toast.success(deletedRec.data.message);
             } catch (error) {
+                toast.error("An error has occurred!");
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
                 }
