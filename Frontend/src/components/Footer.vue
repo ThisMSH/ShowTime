@@ -127,26 +127,41 @@ import H4 from './utilities/H4.vue';
         <div class="mt-5 lg:mt-8">
             <div class="flex justify-center items-center">
                 <ul class="flex text-2xl md:text-4xl gap-x-5">
-                    <li class="group"><a href="#" target="_blank"
+                    <li class="group child:flex child:flex-col child:items-center child:justify-center">
+                        <a href="#" target="_blank"
                             class="inline-block transition-all group-hover:text-[#FF0000] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:youtube" />
-                        </a></li>
-                    <li class="group"><a href="#" target="_blank"
+                            <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">YouTube</p>
+                        </a>
+                    </li>
+                    <li class="group child:flex child:flex-col child:items-center child:justify-center">
+                        <a href="#" target="_blank"
                             class="inline-block transition-all group-hover:text-[#4267B2] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:square-facebook" />
-                        </a></li>
-                    <li class="group"><a href="#" target="_blank"
+                            <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="group child:flex child:flex-col child:items-center child:justify-center">
+                        <a href="#" target="_blank"
                             class="inline-block transition-all group-hover:text-[#1DA1F2] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:square-twitter" />
-                        </a></li>
-                    <li class="group"><a href="#" target="_blank"
+                            <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="group child:flex child:flex-col child:items-center child:justify-center">
+                        <a href="#" target="_blank"
                             class="inline-block transition-all group-hover:text-[#833AB4] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:instagram" />
-                        </a></li>
-                    <li class="group"><a href="#" target="_blank"
+                            <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">Instagram</p>
+                        </a>
+                    </li>
+                    <li class="group child:flex child:flex-col child:items-center child:justify-center">
+                        <a href="#" target="_blank"
                             class="inline-block transition-all group-hover:text-[#0077b5] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:linkedin" />
-                        </a></li>
+                            <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">LinkedIn</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="border-b border-slate-300 dark:border-slate-600"></div>
