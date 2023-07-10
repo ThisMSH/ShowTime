@@ -18,7 +18,7 @@ import ManageSubtitles from '../views/children/ManageSubtitles.vue';
 import ManageRecommendations from '../views/children/ManageRecommendations.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Search from '../views/children/Search.vue';
-import test from '../views/test.vue';
+import { useAuthStore } from '../stores/auth.js';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,18 +61,27 @@ const router = createRouter({
         {
             path: '/login',
             name: 'login',
-            component: LoginView
+            component: LoginView,
+            beforeEnter: (to, from, next) => {
+                useAuthStore().getUser ? next("/dashboard") : next();
+            }
         },
         {
             path: '/register',
             name: 'SignUp',
-            component: RegisterView
+            component: RegisterView,
+            beforeEnter: (to, from, next) => {
+                useAuthStore().getUser ? next("/dashboard/profile") : next();
+            }
         },
         {
             path: '/dashboard',
             name: 'dashboard',
             component: DashboardView,
-            redirect: '/dashboard/profile',
+            redirect: "/dashboard/profile",
+            beforeEnter: (to, from, next) => {
+                useAuthStore().getUser ? next() : next("/login");
+            },
             children: [
                 {
                     path: 'profile',
@@ -92,32 +101,50 @@ const router = createRouter({
                 {
                     path: 'manage_shows',
                     name: 'manage_shows',
-                    component: ManageShows
+                    component: ManageShows,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 },
                 {
                     path: 'manage_users',
                     name: 'manage_users',
-                    component: ManageUsers
+                    component: ManageUsers,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 },
                 {
                     path: 'manage_episodes',
                     name: 'manage_episodes',
-                    component: ManageEpisodes
+                    component: ManageEpisodes,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 },
                 {
                     path: 'manage_trailers',
                     name: 'manage_trailers',
-                    component: ManageTrailers
+                    component: ManageTrailers,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 },
                 {
                     path: 'manage_subtitles',
                     name: 'manage_subtitles',
-                    component: ManageSubtitles
+                    component: ManageSubtitles,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 },
                 {
                     path: 'manage_recommendations',
                     name: 'manage_recommendations',
-                    component: ManageRecommendations
+                    component: ManageRecommendations,
+                    beforeEnter: (to, from, next) => {
+                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    },
                 }
             ]
         },
@@ -126,13 +153,8 @@ const router = createRouter({
             path: '/:catchAll(.*)',
             name: 'PageNotFound',
             component: PageNotFound
-        },
-        {
-            path: '/test',
-            name: 'test',
-            component: test
-        },
+        }
     ]
-})
+});
 
 export default router

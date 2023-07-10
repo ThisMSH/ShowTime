@@ -5,17 +5,25 @@ import RectangularLogoDark from '../components/utilities/RectangularLogoDark.vue
 import RectangularLogoLight from '../components/utilities/RectangularLogoLight.vue';
 import TextInput from '../components/utilities/TextInput.vue';
 import SubmitBtn from '../components/utilities/SubmitBtn.vue';
-import { ref } from 'vue';
+import router from '../router';
+import { onMounted, ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
 
 const authStore = useAuthStore()
 
 const formData = ref({
     email: "",
-    password: "",
+    password: ""
 });
 
 document.title = "Sign-in - ShowTime";
+
+onMounted(async () => {
+    if (!authStore.getUser) {
+        await authStore.fetchUser();
+        authStore.getUser ? router.push("/dashboard/profile") : null;
+    }
+});
 </script>
 
 <template>
@@ -52,7 +60,7 @@ document.title = "Sign-in - ShowTime";
                         <div class="flex flex-col items-center justify-between gap-y-14">
                             <div class="flex flex-col w-64 gap-y-8">
                                 <TextInput v-model:input="formData.email" label="Your E-mail" inputType="email" inputID="user_email" :errors="authStore.getErrors.email" errorID="user_email_error" :isFocused="true" :isRequired="true" />
-                                <TextInput v-model:input="formData.password" label="Your password" inputType="password" inputID="user_password" :errors="authStore.getErrors > 0" errorID="user_password_error" :isRequired="true" />
+                                <TextInput v-model:input="formData.password" label="Your password" inputType="password" inputID="user_password" :errors="authStore.getErrors.password" errorID="user_password_error" :isRequired="true" />
                             </div>
                             <SubmitBtn name="Login" />
                         </div>

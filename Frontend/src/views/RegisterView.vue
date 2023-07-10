@@ -6,7 +6,7 @@ import TextInput from '../components/utilities/TextInput.vue';
 import FileInput from '../components/utilities/FileInput.vue';
 import DateInput from '../components/utilities/DateInput.vue';
 import SubmitBtn from '../components/utilities/SubmitBtn.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
 
 const authStore = useAuthStore();
@@ -26,6 +26,13 @@ function getAvatar(data) {
 }
 
 document.title = "Sign-up - ShowTime";
+
+onMounted(async () => {
+    if (!authStore.getUser) {
+        await authStore.fetchUser();
+        authStore.getUser ? router.push("/dashboard/profile") : null;
+    }
+});
 </script>
 
 <template>
