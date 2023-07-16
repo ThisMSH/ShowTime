@@ -7,7 +7,9 @@ import { useAuthStore } from './stores/auth';
 const authStore = useAuthStore();
 
 onMounted(async () => {
-    await authStore.fetchUser();
+    if (!authStore.getUser) {
+        await authStore.fetchUser();
+    }
     initFlowbite();
 });
 </script>

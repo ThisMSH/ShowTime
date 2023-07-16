@@ -26,9 +26,7 @@ export const useAuthStore = defineStore("auth", {
                 const userData = await axios.get("/api/users");
                 this.allUsers = userData.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.authErrors = error.response.data.errors;
-                }
+                toast.error("You are not authenticated or authorized for this request.");
             }
         },
         async fetchUser() {

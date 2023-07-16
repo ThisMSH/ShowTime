@@ -33,9 +33,7 @@ export const useShowStore = defineStore('show', {
                 const allShows = await axios.get("/api/show");
                 this.shows = allShows.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.allShowsLoading = false;
             }

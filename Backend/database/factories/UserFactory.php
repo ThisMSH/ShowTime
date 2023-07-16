@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'birthday' => fake()->date('Y_m_d'),
-            'user_type' => fake()->randomDigit(),
+            'user_type' => fake()->randomElement([0, 2]),
             'avatar' => 'avatar/default.jpg',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

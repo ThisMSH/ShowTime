@@ -22,7 +22,7 @@ export const useRatingStore = defineStore('rating', {
                 const ratings = await axios.get("/api/rating");
                 this.ratings = ratings.data.data;
             } catch (error) {
-                console.log(error);
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.isLoading = false;
             }

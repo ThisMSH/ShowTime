@@ -128,7 +128,7 @@ import H4 from './utilities/H4.vue';
             <div class="flex justify-center items-center">
                 <ul class="flex text-2xl md:text-4xl gap-x-5">
                     <li class="group child:flex child:flex-col child:items-center child:justify-center">
-                        <a href="#" target="_blank"
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
                             class="inline-block transition-all group-hover:text-[#FF0000] group-hover:-translate-y-2">
                             <Icon icon="fa6-brands:youtube" />
                             <p class="font-medium text-xs text-center scale-0 transition-all group-hover:scale-100 group-hover:text-slate-950 group-hover:dark:text-slate-100">YouTube</p>

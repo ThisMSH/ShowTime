@@ -35,7 +35,7 @@ const options = reactive({
     autoplay: false,
     pip: false,
     autoSize: true,
-    autoMini: true,
+    autoMini: false,
     screenshot: true,
     setting: true,
     loop: false,

@@ -22,7 +22,7 @@ export const useFavoriteStore = defineStore('favorite', {
                 const favorites = await axios.get("/api/favorite");
                 this.favs = favorites.data.data;
             } catch (error) {
-                console.log(error);
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.allFavsLoading = false;
             }
@@ -49,8 +49,7 @@ export const useFavoriteStore = defineStore('favorite', {
             try {
                 const favorite = await axios.get(`/api/favorite/${id}`);
                 this.fav = favorite.data.data;
-            } catch (error) {
-                console.log(error);
+            } catch (error) { 
             } finally {
                 this.fetchIsLoading = false;
             }

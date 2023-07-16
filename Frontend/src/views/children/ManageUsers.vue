@@ -120,9 +120,11 @@ onMounted(async () => {
                                             </p>
                                         </td>
                                         <td
-                                            class="relative flex gap-x-5 py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <AdminUpdateUser :user="person" />
-                                            <AdminDeleteUser :user="person" />
+                                            class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                            <div class="flex items-center gap-x-5">
+                                                <AdminUpdateUser :user="person" />
+                                                <AdminDeleteUser :user="person" />
+                                            </div>
                                         </td>
                                     </tr>
                                 </template>

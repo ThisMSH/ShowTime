@@ -21,9 +21,7 @@ export const useSubtitleStore = defineStore('subtitle', {
                 const allSubs = await axios.get("/api/shows-and-subtitles");
                 this.subtitles = allSubs.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.isLoading = false;
             }

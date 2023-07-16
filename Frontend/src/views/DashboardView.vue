@@ -21,9 +21,28 @@ onMounted(() => {
         <DashboardSideMenu />
         <div>
             <DashboardHeader />
-            <RouterView />
+            <RouterView v-slot="{ Component }">
+                <Transition name="dashboard" mode="out-in">
+                    <component :is="Component" />
+                </Transition>
+            </RouterView>
             <FooterRights />
         </div>
     </main>
     <PageLoading v-else />
 </template>
+
+<style>
+.dashboard-enter-from {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+.dashboard-leave-to {
+    transform: translateY(50px);
+    opacity: 0;
+}
+.dashboard-enter-active,
+.dashboard-leave-active {
+    transition: all 0.5s ease-out;
+}
+</style>

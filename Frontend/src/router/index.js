@@ -62,25 +62,52 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: LoginView,
-            beforeEnter: (to, from, next) => {
-                useAuthStore().getUser ? next("/dashboard") : next();
-            }
+            beforeEnter: async (to, from, next) => {
+                if (!useAuthStore().getUser) {
+                    try {
+                        await useAuthStore().fetchUser();
+                        next("/dashboard/profile");
+                    } catch (error) {
+                        next();
+                    }
+                } else {
+                    next("/dashboard/profile");
+                }
+            },
         },
         {
             path: '/register',
             name: 'SignUp',
             component: RegisterView,
-            beforeEnter: (to, from, next) => {
-                useAuthStore().getUser ? next("/dashboard/profile") : next();
-            }
+            beforeEnter: async (to, from, next) => {
+                if (!useAuthStore().getUser) {
+                    try {
+                        await useAuthStore().fetchUser();
+                        next("/dashboard/profile");
+                    } catch (error) {
+                        next();
+                    }
+                } else {
+                    next("/dashboard/profile");
+                }
+            },
         },
         {
             path: '/dashboard',
             name: 'dashboard',
             component: DashboardView,
             redirect: "/dashboard/profile",
-            beforeEnter: (to, from, next) => {
-                useAuthStore().getUser ? next() : next("/login");
+            beforeEnter: async (to, from, next) => {
+                if (!useAuthStore().getUser) {
+                    try {
+                        await useAuthStore().fetchUser();
+                        next();
+                    } catch (error) {
+                        next("/login");
+                    }
+                } else {
+                    next();
+                }
             },
             children: [
                 {
@@ -102,48 +129,102 @@ const router = createRouter({
                     path: 'manage_shows',
                     name: 'manage_shows',
                     component: ManageShows,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 },
                 {
                     path: 'manage_users',
                     name: 'manage_users',
                     component: ManageUsers,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 },
                 {
                     path: 'manage_episodes',
                     name: 'manage_episodes',
                     component: ManageEpisodes,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 },
                 {
                     path: 'manage_trailers',
                     name: 'manage_trailers',
                     component: ManageTrailers,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 },
                 {
                     path: 'manage_subtitles',
                     name: 'manage_subtitles',
                     component: ManageSubtitles,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 },
                 {
                     path: 'manage_recommendations',
                     name: 'manage_recommendations',
                     component: ManageRecommendations,
-                    beforeEnter: (to, from, next) => {
-                        useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                    beforeEnter: async (to, from, next) => {
+                        if (!useAuthStore().getUser) {
+                            try {
+                                await useAuthStore().fetchUser();
+                                useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                            } catch (error) {
+                                next("/login");
+                            }
+                        } else {
+                            useAuthStore().getUser.user_type === 1 ? next() : next("/dashboard/profile");
+                        }
                     },
                 }
             ]
@@ -155,6 +236,11 @@ const router = createRouter({
             component: PageNotFound
         }
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    window.scrollTo(0, 0);
+    next();
 });
 
 export default router

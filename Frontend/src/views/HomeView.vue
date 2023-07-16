@@ -3,7 +3,6 @@ import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import ScrollToTop from '../components/ScrollToTop.vue';
 import PageLoading from '../components/skeleton/PageLoading.vue';
-import { onMounted } from 'vue';
 import { useAuthStore } from '../stores/auth';
 
 const authStore = useAuthStore();

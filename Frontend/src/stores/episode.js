@@ -25,9 +25,7 @@ export const useEpisodeStore = defineStore('episode', {
                 const allEpisodes = await axios.get("/api/shows-and-episodes");
                 this.episodes = allEpisodes.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.episodesLoading = true;
             }

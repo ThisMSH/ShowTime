@@ -26,9 +26,7 @@ export const useRecommendationStore = defineStore('recommendation', {
                 const allRecommendations = await axios.get("/api/recommendation");
                 this.recommendations = allRecommendations.data.data;
             } catch (error) {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
+                toast.error("You are not authenticated or authorized for this request.");
             } finally {
                 this.isLoading = false;
             }
