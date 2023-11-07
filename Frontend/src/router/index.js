@@ -66,7 +66,7 @@ const router = createRouter({
                 if (!useAuthStore().getUser) {
                     try {
                         await useAuthStore().fetchUser();
-                        next("/dashboard/profile");
+                        useAuthStore().getUser ? next("/dashboard/profile") : next();
                     } catch (error) {
                         next();
                     }
@@ -83,7 +83,7 @@ const router = createRouter({
                 if (!useAuthStore().getUser) {
                     try {
                         await useAuthStore().fetchUser();
-                        next("/dashboard/profile");
+                        useAuthStore().getUser ? next("/dashboard/profile") : next();
                     } catch (error) {
                         next();
                     }
@@ -101,7 +101,7 @@ const router = createRouter({
                 if (!useAuthStore().getUser) {
                     try {
                         await useAuthStore().fetchUser();
-                        next();
+                        useAuthStore().getUser ? next() : next("/login");
                     } catch (error) {
                         next("/login");
                     }
